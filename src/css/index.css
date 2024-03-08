@@ -1,0 +1,308 @@
+@font-face {
+    font-family: 'AnimeAce';
+    src: url('../../ressources/font/animeace2bb_tt/animeace2_reg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'RedHands';
+    src: url('../../ressources/font/KGRedHands.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #1a1a1a, #333);
+    color: #fff;
+    position: relative;
+    background: linear-gradient(rgba(30, 30, 30, 0.96), rgba(30, 30, 30, 0.96)), url('../../ressources/img/bodybg.webp') center/cover no-repeat;
+}
+
+header {
+    background: linear-gradient(rgba(30, 30, 30, 0.95), rgba(30, 30, 30, 0.95)), url('../../ressources/img/headerbg.jpg') center/cover no-repeat;
+    background-color: #333;
+    text-align: center;
+    padding: 2em 0;
+    position: relative;
+    font-family: 'AnimeAce';
+}
+
+.question-txt {
+    text-align: center;
+    padding: 2em 0;
+    position: relative;
+    font-family: 'AnimeAce';
+}
+
+.answer-txt {
+    text-align: center;
+    padding: 2em 0;
+    position: relative;
+    font-family: 'AnimeAce';
+    color: #fff;
+}
+
+.contact-txt {
+    text-align: center;
+    padding: 2em 0;
+    position: relative;
+    font-family: 'RedHands';
+}
+
+nav {
+    margin-top: 20px;
+}
+
+nav a {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #333, #1a1a1a);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 2);
+    transition: background 0.3s ease;
+}
+
+nav a:hover {
+    background: rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+}
+
+.imageCV {
+    border: 3px solid #cc2f2f;
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    margin-bottom: 1em;
+    box-shadow: 10px 10px 5px #1a1a1a;
+    
+}
+
+.imageCV:hover{
+    animation: enlargeImage1 0.5s forwards ease-in-out;
+}
+
+h1, h2 {
+    color: #cc2f2f;
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 2);
+}
+
+.job-text {
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 5);
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #870808, transparent, #870808);
+}
+
+section {
+    max-width: 800px;
+    margin: 2em auto;
+    padding: 1em;
+    background: linear-gradient(135deg, #333, #1a1a1a);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+.about {
+    margin-bottom: 2em;
+    font-family: "RedHands";
+}
+
+.about-text {
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 1);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+a {
+    color: #61dafb;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.left-img {
+    position: absolute;
+    top: 50%;
+    left: -5%;
+    transform: translate(0, -50%) scale(0.25) rotate(2deg);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.left-img:hover {
+    animation: enlargeImage2 0.5s forwards ease-in-out;}
+
+.left-img img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 10px solid #cc2f2f;
+}
+
+.right-img {
+    position: absolute;
+    top: 65%;
+    right: -15%;
+    transform: translate(0, -50%) scale(0.25) rotate(-5deg);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.right-img:hover {
+    animation: enlargeImage3 0.5s forwards ease-in-out;
+}
+
+.right-img img {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 10px solid #cc2f2f;
+}
+
+.left-img.show-on-scroll,
+.right-img.show-on-scroll {
+    opacity: 1;
+}
+.arrow-container {
+    text-align: center;
+    margin-top: 20px;
+    animation: levitate 0.4s infinite alternate;
+}
+
+.arrow-container img {
+    width: 100px;
+    height: auto;
+}
+
+.contact-txt {
+    margin-top: 150px;
+}
+
+.contact-txt p {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 3);
+}
+
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.social-buttons div {
+    margin-right: 10px;
+}
+
+.social-buttons a {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.social-buttons a img {
+    width: 30px;
+    height: auto;
+    
+}
+
+.social-buttons a:hover {
+    background-color: #1a1a1a;
+}
+
+.footer-lines {
+    position: relative;
+    height: 10px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-lines::before, .footer-lines::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #870808, transparent, #870808);
+}
+
+.footer-lines::before {
+    left: 0;
+}
+
+.footer-lines::after {
+    right: 0;
+}
+
+@keyframes levitate {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes enlargeImage1 {
+    0% {
+        transform: translate(0, 0) scale(1.0);
+    }
+    100% {
+        transform: translate(0, 0) scale(1.1);
+    }
+}
+
+@keyframes enlargeImage2 {
+    0% {
+        transform: translate(0, -50%) scale(0.25) rotate(2deg);
+    }
+    100% {
+        transform: translate(0, -50%) scale(0.30) rotate(2deg);
+    }
+}
+
+@keyframes enlargeImage3 {
+    0% {
+        transform: translate(0, -50%) scale(0.25) rotate(-5deg);
+    }
+    100% {
+        transform: translate(0, -50%) scale(0.30) rotate(-5deg);
+    }
+}

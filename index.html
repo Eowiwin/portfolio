@@ -1,34 +1,65 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-  <title>Portfolio2A - One incredible styled html page</title>
-  <link rel="stylesheet" href="mycoolstyle.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENAGER Erwan - À Propos</title>
+    <link rel="stylesheet" href="src/css/index.css">
+    <script src="src/js/index.js" defer></script>
 </head>
-
 <body>
+    <div class="left-img">
+        <img src="ressources/img/leftimg.jpg" alt="Calisthenics">
+    </div>
+    <div class="right-img">
+        <img src="ressources/img/rightimg.jpg" alt="Calisthenics">
+    </div>
+    <header>
+        <img src="ressources/img/CVimg.png" alt="MENAGER Erwan" class="imageCV">
+        <h1>MENAGER Erwan</h1>
+        <p class="job-text">Développeur</p>
 
-<!-- Navigation menu -->
-<ul class="navbar">
-  <li><a href="https://codefirst.iut.uca.fr/home">Code#0</a>
-  <li><a href="http://iut.uca.fr">IUT</a>
-  <li><a href="https://neilyoungarchives.com/">Very good music</a>
-  <li><a href="https://www.youtube.com/watch?v=CY5dTBhRxOA">Very good music too!</a>
-</ul>
-
-<!-- Main Content -->
-<h1>Portfolio2A is my first page, and it has got style!</h1>
-
-<p>Welcome on this template html/css project 
-
-<p>Very simple, some links, some menu... make it your own
-&hellip;
-
-<p>I have nothing more to say
-
-<!-- my footer -->
-<address>Template made in 2022<br>
-  with Code#0 <a href="https://codefirst.iut.uca.fr/home"><img src="images/CodeFirstLogo.png" alt="Code#0" align="middle" border="0" height="40px"/>
-  </a></address>
-
+        <nav>
+            <a href="index.html">À Propos</a>
+            <a href="projects.html">Projets</a>
+            <a href="achievements.html">Réalisations</a>
+            <a href="cv.html">CV</a>
+        </nav>
+    </header>
+    <section class="about">
+        <h2>À Propos de Moi</h2>
+        <p class="about-text">Je suis Erwan Menager et je suis actuellement installé à Clermont-Ferrand pour mes études en BUT Informatique. En dehors de mon cursus scolaire, je suis passionné par le sport et plus particulièrement la callisthénie.</p>
+    </section>
+    <section>
+        <h1 class="question-txt">La callisthénie, c'est quoi ?</h1>
+    </section>
+    <div class="arrow-container">
+        <img src="ressources/img/arrowdown.png" alt="Flèche">
+    </div>
+    <section>
+        <h1 class="answer-txt">C'est l'art de maîtriser son corps dans l'espace !</h1>
+    </section>
+    <section class="contact-txt">
+        <h2>Contactez-moi !</h2>
+        <p>Je répondrai le plus vite possible :)</p>
+        <div class="social-buttons">
+            <div class="linkedin">
+                <a href="https://www.linkedin.com/in/erwan-menager-430783291/" target="_blank" rel="noopener noreferrer">
+                    <img src="ressources/img/linkedin.png" alt="LinkedIn">
+                </a>
+            </div>
+            <div class="gmail">
+                <a href="mailto:erwanmenagerpro@gmail.com" target="_blank" rel="noopener noreferrer">
+                    <img src="ressources/img/gmail.png" alt="Gmail">
+                </a>
+            </div>
+            <div class="uca">
+                <a href="mailto:erwan.menager@etu.uca.fr" target="_blank" rel="noopener noreferrer">
+                    <img src="ressources/img/uca.png" alt="UCA">
+                </a>
+            </div>
+        </div>
+    </section>
+    <footer class="footer-lines"></footer>
 </body>
 </html>
