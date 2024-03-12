@@ -78,7 +78,12 @@ section {
     background: linear-gradient(135deg, #333, #1a1a1a);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border-radius: 8px;
-    width: 50%;
+    width: 20%;
+}
+
+section img {
+    width: 100%;
+    height: 40%;
 }
 
 .footer-lines {
@@ -104,4 +109,24 @@ section {
 
 .footer-lines::after {
     right: 0;
+}
+
+.about1 {
+    font-family: "RedHands";
+    width: 50%;
+}
+
+.about2 {
+    font-family: "RedHands";
+    width: 50%;
+}
+
+.about3 {
+    font-family: "RedHands";
+    width: 50%;
+}
+
+.about4 {
+    font-family: "RedHands";
+    width: 50%;
 }
