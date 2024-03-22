@@ -24,7 +24,7 @@ body {
 }
 
 header {
-    background: linear-gradient(rgba(30, 30, 30, 0.95), rgba(30, 30, 30, 0.95)), url('../../ressources/img/headerbg.jpg') center/cover no-repeat;
+    background: linear-gradient(rgba(30, 30, 30, 0.60), rgba(30, 30, 30, 0.95)), url('../../ressources/img/headerbg.jpg') center/cover no-repeat;
     background-color: #333;
     text-align: center;
     padding: 2em 0;
@@ -127,6 +127,7 @@ section {
 
 .about-text {
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 1);
+    text-align: justify;
 }
 
 ul {
@@ -304,5 +305,17 @@ a:hover {
     }
     100% {
         transform: translate(0, -50%) scale(0.30) rotate(-5deg);
+    }
+}
+
+@media only screen and (max-width: 1620px) {
+    .left-img, .right-img {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 1621px) {
+    .left-img, .right-img {
+        display: block;
     }
 }

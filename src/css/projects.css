@@ -1,0 +1,293 @@
+@font-face {
+    font-family: 'AnimeAce';
+    src: url('../../ressources/font/animeace2bb_tt/animeace2_reg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'RedHands';
+    src: url('../../ressources/font/KGRedHands.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #1a1a1a, #333);
+    color: #fff;
+    position: relative;
+    background: linear-gradient(rgba(30, 30, 30, 0.96), rgba(30, 30, 30, 0.96)), url('../../ressources/img/bodybg.webp') center/cover no-repeat;
+}
+
+header {
+    background: linear-gradient(rgba(30, 30, 30, 0.95), rgba(30, 30, 30, 0.95)), url('../../ressources/img/headerbg.jpg') center/cover no-repeat;
+    background-color: #333;
+    text-align: center;
+    padding: 2em 0;
+    position: relative;
+    font-family: 'AnimeAce';
+}
+
+nav {
+    margin-top: 20px;
+}
+
+nav a {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #333, #1a1a1a);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 2);
+    transition: background 0.3s ease;
+}
+
+nav a:hover {
+    background: rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+}
+
+h1, h2 {
+    color: #cc2f2f;
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 2);
+    text-align: center;
+    font-family: "AnimeAce";
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #870808, transparent, #870808);
+}
+
+section {
+    margin: 2em auto;
+    padding: 1em;
+    background: linear-gradient(135deg, #333, #1a1a1a);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    width: 20%;
+}
+
+span {
+    color:#f2c305
+}
+
+section img {
+    width: 100%;
+    height: 40%;
+}
+
+.footer-lines {
+    position: relative;
+    height: 10px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-lines::before, .footer-lines::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #870808, transparent, #870808);
+}
+
+.footer-lines::before {
+    left: 0;
+}
+
+.footer-lines::after {
+    right: 0;
+}
+
+.about1 {
+    font-family: "RedHands";
+    width: 50%;
+    text-align: justify;
+}
+
+.about2 {
+    font-family: "RedHands";
+    width: 50%;
+    text-align: justify;
+}
+
+.about3 {
+    font-family: "RedHands";
+    width: 50%;
+    text-align: justify;
+}
+
+.about4 {
+    font-family: "RedHands";
+    width: 50%;
+    text-align: justify;
+}
+
+.left-img1 {
+    position: absolute;
+    top: 45%;
+    left: -5%;
+    transform: translate(0, -50%) scale(0.45) rotate(1deg);
+    z-index: 1;
+    transition: opacity 0.5s ease;
+}
+
+.left-img1:hover {
+    animation: enlargeImage2 0.5s forwards ease-in-out;
+}
+
+.left-img1 img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 10px solid #cc2f2f;
+}
+
+.right-img1 {
+    position: absolute;
+    top: 50%;
+    right: -10%;
+    transform: translate(0, -50%) scale(0.35) rotate(-2deg);
+    z-index: 1;
+    transition: opacity 0.5s ease;
+}
+
+.right-img1:hover {
+    animation: enlargeImage3 0.5s forwards ease-in-out;
+}
+
+.right-img1 img {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 10px solid #cc2f2f;
+}
+
+.left-img2 {
+    position: absolute;
+    top: 80%;
+    left: -10%;
+    transform: translate(0, -50%) scale(0.40) rotate(-1deg);
+    z-index: 1;
+    transition: opacity 0.5s ease;
+}
+
+.left-img2:hover {
+    animation: enlargeImage4 0.5s forwards ease-in-out;
+}
+
+.left-img2 img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 10px solid #cc2f2f;
+}
+
+.right-img2 {
+    position: absolute;
+    top: 80%;
+    right: -5%;
+    transform: translate(0, -50%) scale(0.35) rotate(4deg);
+    z-index: 1;
+    transition: opacity 0.5s ease;
+}
+
+.right-img2:hover {
+    animation: enlargeImage5 0.5s forwards ease-in-out;
+}
+
+.right-img2 img {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 10px solid #cc2f2f;
+}
+
+@keyframes enlargeImage2 {
+    0% {
+        transform: translate(0, -50%) scale(0.45) rotate(1deg);
+    }
+    100% {
+        transform: translate(0, -50%) scale(0.50) rotate(1deg);
+    }
+}
+
+@keyframes enlargeImage3 {
+    0% {
+        transform: translate(0, -50%) scale(0.25) rotate(-2deg);
+    }
+    100% {
+        transform: translate(0, -50%) scale(0.30) rotate(-2deg);
+    }
+}
+
+@keyframes enlargeImage3 {
+    0% {
+        transform: translate(0, -50%) scale(0.35) rotate(-2deg);
+    }
+    100% {
+        transform: translate(0, -50%) scale(0.40) rotate(-2deg);
+    }
+}
+
+@keyframes enlargeImage4 {
+    0% {
+        transform: translate(0, -50%) scale(0.40) rotate(-1deg);
+    }
+    100% {
+        transform: translate(0, -50%) scale(0.45) rotate(-1deg);
+    }
+}
+
+@keyframes enlargeImage5 {
+    0% {
+        transform: translate(0, -50%) scale(0.35) rotate(4deg);
+    }
+    100% {
+        transform: translate(0, -50%) scale(0.40) rotate(4deg);
+    }
+}
+
+@media only screen and (max-width: 1660px) {
+    .left-img1, .right-img1, .left-img2, .right-img2 {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 1661px) {
+    .left-img1, .right-img1, .left-img2, .right-img2 {
+        display: block;
+    }
+}

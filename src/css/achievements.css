@@ -118,19 +118,185 @@ section img {
 .about1 {
     font-family: "RedHands";
     width: 50%;
+    text-align: justify;
 }
 
 .about2 {
     font-family: "RedHands";
     width: 50%;
+    text-align: justify;
 }
 
 .about3 {
     font-family: "RedHands";
     width: 50%;
+    text-align: justify;
 }
 
 .about4 {
     font-family: "RedHands";
     width: 50%;
+    text-align: justify;
+}
+
+.left-img1 {
+    position: absolute;
+    top: 50%;
+    left: -10%;
+    transform: translate(0, -50%) scale(0.45) rotate(-2deg);
+    z-index: 1;
+    transition: opacity 0.5s ease;
+}
+
+.left-img1:hover {
+    animation: enlargeImage2 0.5s forwards ease-in-out;
+}
+
+.left-img1 img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 10px solid #cc2f2f;
+}
+
+.right-img1 {
+    position: absolute;
+    top: 60%;
+    right: 5%;
+    transform: translate(0, -50%) scale(0.25) rotate(3deg);
+    z-index: 1;
+    transition: opacity 0.5s ease;
+}
+
+.right-img1:hover {
+    animation: enlargeImage3 0.5s forwards ease-in-out;
+}
+
+.right-img1 img {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 10px solid #cc2f2f;
+}
+
+.left-img2 {
+    position: absolute;
+    top: 80%;
+    left: -10%;
+    transform: translate(0, -50%) scale(0.40) rotate(2deg);
+    z-index: 1;
+    transition: opacity 0.5s ease;
+}
+
+.left-img2:hover {
+    animation: enlargeImage4 0.5s forwards ease-in-out;
+}
+
+.left-img2 img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 10px solid #cc2f2f;
+}
+
+.right-img2 {
+    position: absolute;
+    top: 90%;
+    right: -15%;
+    transform: translate(0, -50%) scale(0.35) rotate(-3deg);
+    z-index: 1;
+    transition: opacity 0.5s ease;
+}
+
+.right-img2:hover {
+    animation: enlargeImage5 0.5s forwards ease-in-out;
+}
+
+.right-img2 img {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 10px solid #cc2f2f;
+}
+
+@keyframes enlargeImage2 {
+    0% {
+        transform: translate(0, -50%) scale(0.45) rotate(-2deg);
+    }
+    100% {
+        transform: translate(0, -50%) scale(0.50) rotate(-2deg);
+    }
+}
+
+@keyframes enlargeImage3 {
+    0% {
+        transform: translate(0, -50%) scale(0.25) rotate(3deg);
+    }
+    100% {
+        transform: translate(0, -50%) scale(0.30) rotate(3deg);
+    }
+}
+
+@keyframes enlargeImage2 {
+    0% {
+        transform: translate(0, -50%) scale(0.45) rotate(-2deg);
+    }
+    100% {
+        transform: translate(0, -50%) scale(0.50) rotate(-2deg);
+    }
+}
+
+@keyframes enlargeImage3 {
+    0% {
+        transform: translate(0, -50%) scale(0.25) rotate(3deg);
+    }
+    100% {
+        transform: translate(0, -50%) scale(0.30) rotate(3deg);
+    }
+}
+
+@keyframes enlargeImage4 {
+    0% {
+        transform: translate(0, -50%) scale(0.40) rotate(2deg);
+    }
+    100% {
+        transform: translate(0, -50%) scale(0.45) rotate(2deg);
+    }
+}
+
+@keyframes enlargeImage5 {
+    0% {
+        transform: translate(0, -50%) scale(0.35) rotate(-3deg);
+    }
+    100% {
+        transform: translate(0, -50%) scale(0.40) rotate(-3deg);
+    }
+}
+
+@media only screen and (max-width: 1720px) {
+    .left-img1, .right-img1, .left-img2, .right-img2 {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 1721px) {
+    .left-img1, .right-img1, .left-img2, .right-img2 {
+        display: block;
+    }
 }
