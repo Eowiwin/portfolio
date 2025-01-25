@@ -308,9 +308,27 @@ a:hover {
     }
 }
 
+@media only screen and (max-width: 768px) {
+    .left-img img, .right-img img {
+        width: 80%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .left-img, .right-img {
+        position: relative;
+        transform: none;
+        opacity: 1;
+    }
+}
+
 @media only screen and (max-width: 1620px) {
     .left-img, .right-img {
-        display: none;
+        display: block;
+        position: static;
+        transform: none;
+        margin: 20px auto;
+        opacity: 1;
     }
 }
 
