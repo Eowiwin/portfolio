@@ -370,4 +370,7 @@ section img {
     .left-img1, .right-img1, .left-img2, .right-img2 {
         display: block;
     }
+    .img-sqluedo {
+        display: none;
+    }
 }
