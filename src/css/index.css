@@ -427,6 +427,25 @@ a:hover {
     .right-img-phone {
         transform: rotate(3deg);
     }
+    .left-gif-phone {
+        transform: rotate(-2deg);
+    }
+    .right-gif-phone {
+        transform: rotate(2deg);
+    }
+    section {
+        width: 90%;
+    }
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    nav a {
+        width: 130px
+    }
 }
 
 @media only screen and (min-width: 1621px) {
