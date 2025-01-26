@@ -117,25 +117,25 @@ section img {
 
 .about1 {
     font-family: "RedHands";
-    width: 80%;
+    width: 50%;
     text-align: justify;
 }
 
 .about2 {
     font-family: "RedHands";
-    width: 80%;
+    width: 50%;
     text-align: justify;
 }
 
 .about3 {
     font-family: "RedHands";
-    width: 80%;
+    width: 50%;
     text-align: justify;
 }
 
 .about4 {
     font-family: "RedHands";
-    width: 80%;
+    width: 50%;
     text-align: justify;
 }
 
@@ -293,9 +293,11 @@ section img {
         justify-content: center;
         gap: 10px;
     }
-
     nav a {
         width: 130px
+    }
+    .about1, .about2, .about3, .about4 {
+        width: 80%;
     }
 }
 
