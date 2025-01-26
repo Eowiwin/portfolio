@@ -345,11 +345,11 @@ section img {
     nav a {
         width: 130px
     }
-    .about1, .about2, .about3, .about4 {
-        width: 100%;
-    }
-    .pagination {
+    .about-text {
         width: 80%;
+    }
+    .pagination, .pagination button {
+        width: 40%;
     }
 }
 
