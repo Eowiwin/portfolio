@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MENAGER Erwan - À Propos</title>
     <link rel="stylesheet" href="src/css/cv.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <header>
@@ -21,8 +22,34 @@
         <h2>Dernière mise à jour : <span>27/01/2025</span></h2>
     </section>
     <section class="about">
-        <img src="ressources/img/CV.png">
+        <img src="ressources/img/CV.png" id="cvImage">
     </section>
     <footer class="footer-lines"></footer>
+    <button id="downloadCV">Télécharger mon CV en PDF</button>
+    <script>
+        document.getElementById('downloadCV').addEventListener('click', function() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            const imgElement = document.getElementById('cvImage');
+
+            imgElement.onload = function() {
+                console.log("Image chargée avec succès.");
+
+                doc.addImage(imgElement, 'PNG', 10, 10, 180, 0);
+
+                doc.save('CV_MENAGER_Erwan.pdf');
+            };
+
+            imgElement.onerror = function() {
+                console.error("Erreur lors du chargement de l'image.");
+                alert("L'image du CV n'a pas pu être chargée.");
+            };
+
+            if (imgElement.complete) {
+                imgElement.onload();
+            }
+        });
+    </script>
 </body>
 </html>
