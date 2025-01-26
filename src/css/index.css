@@ -158,8 +158,21 @@ a:hover {
     transition: opacity 0.5s ease;
 }
 
+.left-gif {
+    position: absolute;
+    top: 75%;
+    left: -8%;
+    transform: translate(0, -50%) scale(0.25) rotate(-3deg);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
 .left-img:hover {
     animation: enlargeImage2 0.5s forwards ease-in-out;}
+
+.left-gif:hover {
+    animation: enlargeImage4 0.5s forwards ease-in-out;}
 
 .left-img img {
     width: 100%;
@@ -172,9 +185,20 @@ a:hover {
     border: 10px solid #cc2f2f;
 }
 
+.left-gif img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 10px solid #cc2f2f;
+}
+
 .right-img {
     position: absolute;
-    top: 65%;
+    top: 55%;
     right: -15%;
     transform: translate(0, -50%) scale(0.25) rotate(-5deg);
     z-index: 1;
@@ -182,8 +206,22 @@ a:hover {
     transition: opacity 0.5s ease;
 }
 
+.right-gif {
+    position: absolute;
+    top: 75%;
+    right: 5%;
+    transform: translate(0, -50%) scale(0.5) rotate(2deg);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
 .right-img:hover {
     animation: enlargeImage3 0.5s forwards ease-in-out;
+}
+
+.right-gif:hover {
+    animation: enlargeImage5 0.5s forwards ease-in-out;
 }
 
 .right-img img {
@@ -197,8 +235,21 @@ a:hover {
     border: 10px solid #cc2f2f;
 }
 
+.right-gif img {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 5px solid #cc2f2f;
+}
+
 .left-img.show-on-scroll,
-.right-img.show-on-scroll {
+.right-img.show-on-scroll,
+.left-gif.show-on-scroll,
+.right-gif.show-on-scroll {
     opacity: 1;
 }
 .arrow-container {
@@ -286,6 +337,20 @@ a:hover {
     width: 150px;
 }
 
+.left-gif-phone {
+    position: absolute;
+    top: 50px;
+    display: none;
+    width: 150px;
+}
+
+.right-gif-phone {
+    position: absolute;
+    display: none;
+    top: 50px;
+    width: 150px;
+}
+
 @keyframes levitate {
     0% {
         transform: translateY(0);
@@ -322,9 +387,29 @@ a:hover {
     }
 }
 
+@keyframes enlargeImage4 {
+    0% {
+        transform: translate(0, -50%) scale(0.25) rotate(-3deg);
+    }
+    100% {
+        transform: translate(0, -50%) scale(0.30) rotate(-3deg);
+    }
+}
+
+@keyframes enlargeImage5 {
+    0% {
+        transform: translate(0, -50%) scale(0.5) rotate(2deg);
+    }
+    100% {
+        transform: translate(0, -50%) scale(0.6) rotate(2deg);
+    }
+}
+
 @media only screen and (max-width: 1620px) {
     .left-img-phone,
-    .right-img-phone {
+    .right-img-phone,
+    .left-gif-phone,
+    .right-gif-phone {
         position: static;
         display: block;
         margin: 40px auto;
@@ -333,7 +418,7 @@ a:hover {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         border: 5px solid #cc2f2f;
     }
-    .left-img, .right-img {
+    .left-img, .right-img, .left-gif, .right-gif {
         display: none;
     }
     .left-img-phone {
@@ -345,7 +430,7 @@ a:hover {
 }
 
 @media only screen and (min-width: 1621px) {
-    .left-img, .right-img {
+    .left-img, .right-img, .left-gif, .right-gif {
         display: block;
     }
 }
