@@ -250,7 +250,7 @@ section img {
 .pagination button {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    padding: 20px;
+    padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -348,8 +348,10 @@ section img {
     .content {
         width: 80%;
     }
-    .pagination, .pagination button {
+    .pagination {
         scale: 0.75;
+    }
+    .pagination, .pagination button {
         justify-content:  center;
     }
     .img-sqluedo {
