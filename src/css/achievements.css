@@ -429,8 +429,8 @@ section img {
 
 .right-img2 {
     position: absolute;
-    top: 90%;
-    right: -17%;
+    top: 80%;
+    right: -15%;
     transform: translate(0, -50%) scale(0.35) rotate(-3deg);
     z-index: 1;
     transition: opacity 0.5s ease;
@@ -441,7 +441,7 @@ section img {
 }
 
 .right-img2 img {
-    width: 90%;
+    width: 60%;
     max-width: 1000px;
     height: auto;
     display: block;
