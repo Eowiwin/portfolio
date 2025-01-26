@@ -250,12 +250,12 @@ section img {
 .pagination button {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    padding: 10px 20px;
+    padding: 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-family: "RedHands";
-    font-size: 16px;
+    font-size: 20px;
     transition: background-color 0.3s ease;
 }
 
@@ -349,7 +349,7 @@ section img {
         width: 80%;
     }
     .pagination, .pagination button {
-        scale: 0.8;
+        scale: 0.75;
         justify-content:  center;
     }
     .img-sqluedo {
