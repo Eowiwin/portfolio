@@ -349,8 +349,19 @@ section img {
         width: 80%;
     }
     .pagination, .pagination button {
-        scale: 0.9;
+        scale: 0.8;
         justify-content:  center;
+    }
+    .img-sqluedo {
+        position: static;
+        display: block;
+        margin: 40px auto;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        border: 5px solid #cc2f2f;
+        width: 100%;
+        max-width: 1000px;
+        height: auto;
     }
 }
 
