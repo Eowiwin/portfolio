@@ -349,7 +349,7 @@ section img {
         width: 80%;
     }
     .pagination {
-        scale: 0.75;
+        scale: 0.7;
     }
     .pagination, .pagination button {
         justify-content:  center;
