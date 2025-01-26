@@ -17,57 +17,135 @@
             <a href="cv.html">CV</a>
         </nav>
     </header>
+    <div class="pagination">
+        <button class="page" data-page="sqluedo">SQLuedo</button>
+        <button class="page" data-page="undertalya">Undertalya</button>
+        <button class="page" data-page="bongomino">Bongomino</button>
+        <button class="page" data-page="connect4">Connect4</button>
+    </div>
     <section class="sqluedo">
-        <img src="ressources/img/SQLuedo.png">
+        <img id="mainImage" src="ressources/img/SQLuedo.png">
     </section>
-    <section class="about1">
+
+    <section class="content" id="sqluedo" style="display: none;">
         <h2>SQLuedo - Projet BUT 2ème année</h2>
+
         <div class="left-img1">
             <img src="ressources/img/blockly.PNG" alt="Left Image">
         </div>
-        <p class="about-text">Le jeu consiste à résoudre des enquêtes
-            policières en cherchant dans une base de données. Pour cela,
-            l'utilisateur doit rassembler différentes informations pour
-            réaliser des <span>requêtes SQL</span>. Un mode plus accessible aux débutants
-            est disponible où le concept des <span>blocs de Scratch</span> est implémenté.
+
+        <p class="about-text">
+            Le jeu consiste à résoudre des enquêtes policières en cherchant dans une base de données. 
+            Pour cela, l'utilisateur doit rassembler différentes informations pour réaliser des 
+            <span>requêtes SQL</span>. Un mode plus accessible aux débutants est disponible où le 
+            concept des <span>blocs de Scratch</span> est implémenté.
         </p>
-    </section>
-    <section class="about2">
+
         <div class="right-img1">
             <img src="ressources/img/lecon.PNG" alt="Right Image">
         </div>
-        <p class="about-text">Si l'utilisateur n'arrive pas à obtenir ce qu'il souhaite,
-            des <span>leçons</span> sont mis à sa disposition afin de lui expliquer les différents
-            <span>thèmes abordés</span> (SELECT DISTINCT, GROUP BY...). En fait, nous
-            souhaitons rendre SQLuedo utilisable par les adeptes du SQL mais
+
+        <p class="about-text">
+            Si l'utilisateur n'arrive pas à obtenir ce qu'il souhaite, des <span>leçons</span> sont mises à 
+            sa disposition afin de lui expliquer les différents <span>thèmes abordés</span> (SELECT DISTINCT, 
+            GROUP BY...). En fait, nous souhaitons rendre SQLuedo utilisable par les adeptes du SQL mais 
             également faire découvrir ce langage de programmation à tout le monde.
         </p>
-    </section>
-    <section class="about3">
+
         <div class="left-img2">
             <img src="ressources/img/architecture_img.jpg" alt="Left Image">
         </div>
-        <p class="about-text">Pour pouvoir réaliser la demande de notre Product
-            Owner et structurer notre application, nous nous sommes basé sur
-            <span>l'architecture</span> qui est affichée à droite de votre écran.
-            Pour résumé, nous avons un <span>site web</span>, une <span>application
-            android</span>, une <span>API</span>, un <span>docker</span> et une 
-            "<span>admin app</span>" pour pouvoir gérer et maintenir du mieux possible
-            le projet SQLuedo.
+
+        <p class="about-text">
+            Pour pouvoir réaliser la demande de notre Product Owner et structurer notre application, 
+            nous nous sommes basés sur <span>l'architecture</span> qui est affichée à droite de votre écran. 
+            Pour résumer, nous avons un <span>site web</span>, une <span>application android</span>, une 
+            <span>API</span>, un <span>docker</span> et une "<span>admin app</span>" pour pouvoir gérer et maintenir 
+            du mieux possible le projet SQLuedo.
         </p>
-    </section>
-    <section class="about4">
+
         <div class="right-img2">
             <img src="ressources/img/kanban.PNG" alt="Left Image">
         </div>
-        <p class="about-text">En collaborant dans une équipe de 5, nous avons
-            réussi à mettre en place toute une architecture pour l'application 
-            SQLuedo. En parallèle, nous avons utilisé les <span>méthodes agiles</span> et
-            plus particulièrement les méthodes scrum pour réussir notre <span>gestion
-            de projet</span>.
 
+        <p class="about-text">
+            En collaborant dans une équipe de 5, nous avons réussi à mettre en place toute une architecture 
+            pour l'application SQLuedo. En parallèle, nous avons utilisé les <span>méthodes agiles</span> et 
+            plus particulièrement les méthodes scrum pour réussir notre <span>gestion de projet</span>.
         </p>
     </section>
+
+    <section class="content" id="undertalya" style="display: none;">
+        <h2>Undertalya</h2>
+        <p class="about-text">Détails du projet Undertalya...</p>
+    </section>
+
+    <section class="content" id="bongomino" style="display: none;">
+        <h2>Bongomino</h2>
+        <p class="about-text">Détails du projet Bongomino...</p>
+    </section>
+
+    <section class="content" id="connect4" style="display: none;">
+        <h2>Connect4</h2>
+        <p class="about-text">Détails du projet Connect4...</p>
+    </section>
+
     <footer class="footer-lines"></footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const pageButtons = document.querySelectorAll(".pagination .page");
+
+            const contentSections = document.querySelectorAll(".content");
+
+            function changePage(targetPage) {
+
+                contentSections.forEach(section => {
+                    section.style.display = "none";
+                });
+
+
+                const activeSection = document.getElementById(targetPage);
+                if (activeSection) {
+                    activeSection.style.display = "block";
+                }
+
+                pageButtons.forEach(button => {
+                    const pageId = button.getAttribute("data-page");
+
+                    if (pageId === targetPage) {
+                        button.disabled = true;
+                    } else {
+                        button.disabled = false;
+                    }
+                });
+
+                const image = document.getElementById("mainImage");
+                if (image) {
+                    switch (targetPage) {
+                        case "sqluedo":
+                            image.src = "ressources/img/SQLuedo.png";
+                            break;
+                        case "undertalya":
+                            image.src = "ressources/img/Undertalya.png";
+                            break;
+                        case "bongomino":
+                            image.src = "ressources/img/Bongomino.svg";
+                            break;
+                        case "connect4":
+                            image.src = "ressources/img/Connect4.png";
+                            break;
+                    }
+                }
+            }
+
+            pageButtons.forEach(button => {
+                button.addEventListener("click", function() {
+                    const targetPage = this.getAttribute("data-page");
+                    changePage(targetPage);
+                });
+            });
+            changePage("sqluedo");
+        });
+    </script>
 </body>
 </html>

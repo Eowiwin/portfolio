@@ -115,7 +115,7 @@ section img {
     right: 0;
 }
 
-.about1 {
+.content {
     font-family: "RedHands";
     width: 50%;
     text-align: justify;
@@ -233,6 +233,43 @@ section img {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border: 10px solid #cc2f2f;
+}
+
+.pagination {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    width: 100%;
+    height: 40%;
+    background-color: none;
+}
+
+.pagination button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "RedHands";
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: #870808;
+}
+
+.pagination .page {
+    font-weight: bold;
+}
+
+.pagination button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
 }
 
 @keyframes enlargeImage2 {

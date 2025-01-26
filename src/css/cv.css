@@ -153,9 +153,9 @@ section img {
 
 section.about {
     display: flex;
-    justify-content: center; /* Centre le bouton horizontalement */
-    align-items: center;     /* Centre le bouton verticalement */
-    flex-direction: column;  /* Assurez-vous que le contenu s'empile (en cas de contenu additionnel) */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-bottom: 2em;
     font-family: "RedHands";
 }
