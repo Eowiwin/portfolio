@@ -158,7 +158,7 @@ section.about {
     flex-direction: column;  /* Assurez-vous que le contenu s'empile (en cas de contenu additionnel) */
     margin-bottom: 2em;
     font-family: "RedHands";
-
+}
 
 @media only screen and (max-width: 1620px) {
     section {
