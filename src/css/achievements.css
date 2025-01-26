@@ -345,11 +345,12 @@ section img {
     nav a {
         width: 130px
     }
-    .about-text {
+    .content {
         width: 80%;
     }
     .pagination, .pagination button {
-        width: 40%;
+        scale: 0.9;
+        justify-content:  center;
     }
 }
 
