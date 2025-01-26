@@ -351,6 +351,10 @@ a:hover {
     width: 150px;
 }
 
+span {
+    color:#f2c305
+}
+
 @keyframes levitate {
     0% {
         transform: translateY(0);
