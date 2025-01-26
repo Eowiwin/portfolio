@@ -280,13 +280,26 @@ section img {
     }
 }
 
-@media only screen and (max-width: 1660px) {
+@media only screen and (max-width: 1620px) {
     .left-img1, .right-img1, .left-img2, .right-img2 {
         display: none;
     }
+    section {
+        width: 90%;
+    }
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    nav a {
+        width: 130px
+    }
 }
 
-@media only screen and (min-width: 1661px) {
+@media only screen and (min-width: 1621px) {
     .left-img1, .right-img1, .left-img2, .right-img2 {
         display: block;
     }
