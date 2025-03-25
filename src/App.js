@@ -1,15 +1,11 @@
-import logo from './logo.svg';
+import React from 'react';
+import HeroSection from './components/HeroSection';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Non mais gros prout en fait.
-        </p>
-      </header>
+      <HeroSection />
     </div>
   );
 }
