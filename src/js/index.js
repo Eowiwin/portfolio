@@ -35,3 +35,31 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', checkScroll);
 });
 
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+
+    if (document.body.classList.contains('dark-mode')) {
+        document.getElementById('theme-icon').src = 'ressources/img/sun.png'; 
+        document.getElementById('theme-icon').alt = 'Mode clair';
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.getElementById('theme-icon').src = 'ressources/img/moon.png';
+        document.getElementById('theme-icon').alt = 'Mode sombre';
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+window.addEventListener('load', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.getElementById('theme-icon').src = 'ressources/img/sun.png';
+        document.getElementById('theme-icon').alt = 'Mode clair';
+    } else {
+        document.body.classList.remove('dark-mode');
+        document.getElementById('theme-icon').src = 'ressources/img/moon.png';
+        document.getElementById('theme-icon').alt = 'Mode sombre';
+    }
+});
+
+document.getElementById('theme-icon').addEventListener('click', toggleDarkMode);
