@@ -2,7 +2,7 @@
   "name": "portfoliov2",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://eowiwin.github.io/portfoliov2",
+  "homepage": "https://eowiwin.github.io/portfoliov2/",
   "dependencies": {
     "@tailwindcss/postcss": "^4.0.15",
     "@testing-library/dom": "^10.4.0",
