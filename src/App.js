@@ -1,11 +1,11 @@
 import React from 'react';
-import HeroSection from './components/HeroSection';
+import MainSection from './pages/MainSection';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <HeroSection />
+      <MainSection />
     </div>
   );
 }
