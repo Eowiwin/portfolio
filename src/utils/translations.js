@@ -14,7 +14,7 @@ export const translations = {
     name: "Erwan MENAGER",
     nickname: "Mais en ligne je suis",
     nicknameValue: "Eowin",
-    description: "Je suis développeur full-stack et athlète de calisthénie.",
+    description: "Je suis développeur full-stack et athlète de callisthénie.",
     projects: "→ Voir mes projets",
     about: "→ Plus sur moi",
     language: "EN"

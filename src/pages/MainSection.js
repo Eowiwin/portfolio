@@ -3,6 +3,8 @@ import GradientBackground from '../components/GradientBackground';
 import useThemeStore from '../store/themeStore';
 import useLanguageStore from '../store/languageStore';
 import { translations } from '../utils/translations';
+import Logo from '../components/Logo';
+import MouseFollower from '../components/MouseFollower';
 
 const MainSection = () => {
   const { isDarkMode, toggleDarkMode } = useThemeStore();
@@ -20,7 +22,9 @@ const MainSection = () => {
 
   return (
     <div className="relative w-full h-screen flex items-center justify-center bg-white dark:bg-gray-900 transition-colors duration-300">
+      <MouseFollower />
       <GradientBackground />
+      <Logo />
       
       {/* Content */}
       <div className="relative z-10 text-center">
