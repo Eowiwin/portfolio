@@ -8,7 +8,6 @@ import MouseFollower from '../components/MouseFollower';
 
 const AnimatedName = ({ children }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const { isDarkMode } = useThemeStore();
 
   return (
     <span 
@@ -23,12 +22,53 @@ const AnimatedName = ({ children }) => {
     >
       {isHovered && (
         <>
+          {/* Multiple sparkles with different positions and delays */}
           <span 
-            className="absolute inset-0 blur-xl bg-blue-400 dark:bg-blue-600 opacity-50 animate-pulse"
+            className="absolute -top-12 left-0 animate-sparkleLeft opacity-0 invisible"
+            style={{ animationDelay: '0s' }}
             aria-hidden="true"
-          />
+          >
+            ✨
+          </span>
           <span 
-            className="absolute left-1/2 -translate-x-1/2 animate-floatUp pointer-events-none select-none"
+            className="absolute -top-12 right-0 animate-sparkleRight opacity-0 invisible"
+            style={{ animationDelay: '0.2s' }}
+            aria-hidden="true"
+          >
+            ✨
+          </span>
+          <span 
+            className="absolute -top-16 left-1/4 animate-sparkleLeft opacity-0 invisible"
+            style={{ animationDelay: '0.4s' }}
+            aria-hidden="true"
+          >
+            ⭐
+          </span>
+          <span 
+            className="absolute -top-16 right-1/4 animate-sparkleRight opacity-0 invisible"
+            style={{ animationDelay: '0.6s' }}
+            aria-hidden="true"
+          >
+            ⭐
+          </span>
+          <span 
+            className="absolute -top-20 left-1/2 -translate-x-1/2 animate-sparkleLeft opacity-0 invisible"
+            style={{ animationDelay: '0.8s' }}
+            aria-hidden="true"
+          >
+            ✨
+          </span>
+          <span 
+            className="absolute -top-24 right-1/2 -translate-x-1/2 animate-sparkleRight opacity-0 invisible"
+            style={{ animationDelay: '1s' }}
+            aria-hidden="true"
+          >
+            ✨
+          </span>
+          
+          {/* Lion */}
+          <span 
+            className="absolute left-1/2 -translate-x-1/2 -top-32 animate-floatUp pointer-events-none select-none"
             style={{ fontSize: '1.5em' }}
             aria-hidden="true"
           >
@@ -39,12 +79,6 @@ const AnimatedName = ({ children }) => {
       <span className="relative">
         {children}
       </span>
-      {isHovered && (
-        <span 
-          className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-600 opacity-20 rounded-lg blur-sm"
-          aria-hidden="true"
-        />
-      )}
     </span>
   );
 };

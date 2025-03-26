@@ -9,6 +9,8 @@ module.exports = {
         'float-medium': 'float 6s ease-in-out infinite',
         'float-fast': 'float 4s ease-in-out infinite',
         'floatUp': 'floatUp 1s ease-out forwards',
+        sparkleLeft: 'sparkleLeft 2s ease-in-out infinite',
+        sparkleRight: 'sparkleRight 2s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -19,16 +21,66 @@ module.exports = {
         },
         floatUp: {
           '0%': { 
+            opacity: '0',
             transform: 'translate(-50%, 0) scale(0.5)',
-            opacity: 0
-          },
-          '50%': { 
-            transform: 'translate(-50%, -2em) scale(1)',
-            opacity: 1
           },
           '100%': { 
-            transform: 'translate(-50%, -4em) scale(1)',
-            opacity: 0
+            opacity: '1',
+            transform: 'translate(-50%, -20px) scale(1)',
+          }
+        },
+        sparkleLeft: {
+          '0%': { 
+            opacity: '0',
+            visibility: 'hidden',
+            transform: 'translateX(0) scale(0.5)',
+          },
+          '10%': {
+            opacity: '1',
+            visibility: 'visible',
+            transform: 'translateX(-5px) scale(0.8)',
+          },
+          '50%': { 
+            opacity: '1',
+            visibility: 'visible',
+            transform: 'translateX(-10px) scale(1.2)',
+          },
+          '90%': {
+            opacity: '1',
+            visibility: 'visible',
+            transform: 'translateX(-15px) scale(0.8)',
+          },
+          '100%': { 
+            opacity: '0',
+            visibility: 'hidden',
+            transform: 'translateX(-20px) scale(0.5)',
+          }
+        },
+        sparkleRight: {
+          '0%': { 
+            opacity: '0',
+            visibility: 'hidden',
+            transform: 'translateX(0) scale(0.5)',
+          },
+          '10%': {
+            opacity: '1',
+            visibility: 'visible',
+            transform: 'translateX(5px) scale(0.8)',
+          },
+          '50%': { 
+            opacity: '1',
+            visibility: 'visible',
+            transform: 'translateX(10px) scale(1.2)',
+          },
+          '90%': {
+            opacity: '1',
+            visibility: 'visible',
+            transform: 'translateX(15px) scale(0.8)',
+          },
+          '100%': { 
+            opacity: '0',
+            visibility: 'hidden',
+            transform: 'translateX(20px) scale(0.5)',
           }
         }
       }
