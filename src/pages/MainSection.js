@@ -28,13 +28,6 @@ const MainSection = () => {
       
       {/* Content */}
       <div className="relative z-10 text-center px-4 scale-75 md:scale-100 transform-gpu">
-        <div className="mb-6 md:mb-8 flex justify-center">
-          <img 
-            src={process.env.PUBLIC_URL + '/me.png'} 
-            alt="Profile" 
-            className="w-28 h-28 md:w-48 md:h-48 rounded-full object-cover"
-          />
-        </div>
         <h1 className="text-2xl md:text-5xl font-bold text-gray-800 dark:text-white mb-1 md:mb-2">
           {t.greeting} <span className="text-blue-600 dark:text-blue-400">{t.name}</span>
         </h1>
