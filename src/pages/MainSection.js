@@ -27,33 +27,33 @@ const MainSection = () => {
       <Logo />
       
       {/* Content */}
-      <div className="relative z-10 text-center">
-        <div className="mb-8 flex justify-center">
+      <div className="relative z-10 text-center px-4 scale-75 md:scale-100 transform-gpu">
+        <div className="mb-6 md:mb-8 flex justify-center">
           <img 
             src={process.env.PUBLIC_URL + '/me.png'} 
             alt="Profile" 
-            className="w-48 h-48 rounded-full object-cover"
+            className="w-28 h-28 md:w-48 md:h-48 rounded-full object-cover"
           />
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-2">
+        <h1 className="text-2xl md:text-5xl font-bold text-gray-800 dark:text-white mb-1 md:mb-2">
           {t.greeting} <span className="text-blue-600 dark:text-blue-400">{t.name}</span>
         </h1>
-        <h2 className="text-2xl md:text-3xl font-medium text-gray-600 dark:text-gray-300 mb-4">
+        <h2 className="text-lg md:text-3xl font-medium text-gray-600 dark:text-gray-300 mb-2 md:mb-4">
           {t.nickname} <span className="text-blue-500 dark:text-blue-400">{t.nicknameValue}</span>
         </h2>
-        <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8">
+        <p className="text-sm md:text-xl text-gray-600 dark:text-gray-300 mb-6 md:mb-8">
           {t.description}
         </p>
-        <div className="flex gap-6 justify-center">
+        <div className="flex gap-4 md:gap-6 justify-center">
           <a 
             href="#projects" 
-            className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            className="text-xs md:text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
           >
             {t.projects}
           </a>
           <a 
             href="#about" 
-            className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            className="text-xs md:text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
           >
             {t.about}
           </a>
@@ -61,7 +61,7 @@ const MainSection = () => {
       </div>
 
       {/* Top right menu */}
-      <div className="absolute top-6 right-6 flex items-center gap-4">
+      <div className="absolute top-4 md:top-6 right-4 md:right-6 flex items-center gap-3 md:gap-4 scale-75 md:scale-100">
         <button 
           onClick={toggleLanguage}
           className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
