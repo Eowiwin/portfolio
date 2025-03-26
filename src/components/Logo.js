@@ -6,7 +6,7 @@ const Logo = () => {
 
   return (
     <div className="absolute top-6 left-6 z-20">
-      <a href="/" className="flex items-center space-x-2">
+      <a href="/portfoliov2/" className="flex items-center space-x-2">
         <div className="relative">
           {isDarkMode && (
             <div 
