@@ -21,13 +21,20 @@ const MainSection = () => {
   }, [isDarkMode]);
 
   return (
-    <div className="relative w-full h-screen flex items-center justify-center bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div className="relative w-full h-screen flex items-center justify-center transition-colors duration-300">
       <MouseFollower />
       <GradientBackground />
       <Logo />
       
       {/* Content */}
       <div className="relative z-10 text-center">
+        <div className="mb-8 flex justify-center">
+          <img 
+            src={process.env.PUBLIC_URL + '/me.png'} 
+            alt="Profile" 
+            className="w-48 h-48 rounded-full object-cover"
+          />
+        </div>
         <h1 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-2">
           {t.greeting} <span className="text-blue-600 dark:text-blue-400">{t.name}</span>
         </h1>

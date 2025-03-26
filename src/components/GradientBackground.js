@@ -1,45 +1,139 @@
-import React from 'react';
-import AnimatedShapes from './AnimatedShapes';
+import React, { useState, useEffect } from 'react';
 import useThemeStore from '../store/themeStore';
 
-const GradientBlob = ({ className, gradientColors }) => (
-  <div 
-    className={`absolute rounded-full blur-2xl opacity-50 ${className}`}
-    style={{
-      background: `linear-gradient(to bottom right, ${gradientColors.join(', ')})`
-    }}
-  />
-);
+const GradientBlob = ({ style, mousePosition }) => {
+  // Calculate offset based on mouse position
+  const offsetX = (mousePosition.x / window.innerWidth - 0.5) * 100;
+  const offsetY = (mousePosition.y / window.innerHeight - 0.5) * 100;
+
+  return (
+    <div 
+      style={{
+        position: 'fixed',
+        borderRadius: '50%',
+        filter: 'blur(20px)',
+        opacity: 0.6,
+        pointerEvents: 'none',
+        transition: 'transform 0.3s ease-out',
+        transform: `translate(${offsetX}px, ${offsetY}px)`,
+        ...style
+      }}
+    />
+  );
+};
 
 const GradientBackground = () => {
   const { isDarkMode } = useThemeStore();
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({
+        x: e.clientX,
+        y: e.clientY
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
+    <div className="fixed inset-0" style={{ zIndex: 0 }}>
       {/* Background texture */}
       <div 
-        className="absolute inset-0 bg-gray-50/50 dark:bg-gray-900/50 z-0"
+        className="absolute inset-0"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a0aec0' fill-opacity='${isDarkMode ? '0.06' : '0.1'}'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a0aec0' fill-opacity='${isDarkMode ? '0.08' : '0.2'}'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          zIndex: 0
         }}
       />
 
-      {/* Animated shapes */}
-      <AnimatedShapes />
-
       {/* Gradient Blobs */}
       <GradientBlob 
-        className="w-[500px] h-[300px] left-[-100px] top-[-50px]"
-        gradientColors={['#86efac', '#93c5fd', '#f9a8d4']}
+        mousePosition={mousePosition}
+        style={{
+          width: '1200px',
+          height: '1200px',
+          background: isDarkMode 
+            ? 'linear-gradient(to right, #020617, #172554)'
+            : 'linear-gradient(to right, #3b82f6, #93c5fd)',
+          left: '-600px',
+          top: '-600px',
+          zIndex: -1,
+          animation: 'pulse 4s ease-in-out infinite'
+        }}
       />
       <GradientBlob 
-        className="w-[400px] h-[400px] right-[-50px] top-[100px]"
-        gradientColors={['#fde047', '#f9a8d4', '#fca5a5']}
+        mousePosition={mousePosition}
+        style={{
+          width: '1200px',
+          height: '1200px',
+          background: isDarkMode 
+            ? 'linear-gradient(to right, #1e1b4b, #312e81)'
+            : 'linear-gradient(to right, #8b5cf6, #d946ef)',
+          right: '-600px',
+          top: '-600px',
+          zIndex: -1,
+          animation: 'pulse 4s ease-in-out infinite',
+          animationDelay: '-1s'
+        }}
       />
       <GradientBlob 
-        className="w-[450px] h-[250px] bottom-[-50px] left-1/4"
-        gradientColors={['#93c5fd', '#d8b4fe', '#86efac']}
+        mousePosition={mousePosition}
+        style={{
+          width: '1200px',
+          height: '1200px',
+          background: isDarkMode 
+            ? 'linear-gradient(to right, #042f2e, #134e4a)'
+            : 'linear-gradient(to right, #2dd4bf, #34d399)',
+          left: '-600px',
+          bottom: '-600px',
+          zIndex: -1,
+          animation: 'pulse 4s ease-in-out infinite',
+          animationDelay: '-2s'
+        }}
       />
+      <GradientBlob 
+        mousePosition={mousePosition}
+        style={{
+          width: '1200px',
+          height: '1200px',
+          background: isDarkMode 
+            ? 'linear-gradient(to right, #1e1b4b, #312e81)'
+            : 'linear-gradient(to right, #8b5cf6, #d946ef)',
+          right: '-600px',
+          bottom: '-600px',
+          zIndex: -1,
+          animation: 'pulse 4s ease-in-out infinite',
+          animationDelay: '-3s'
+        }}
+      />
+      <GradientBlob 
+        mousePosition={mousePosition}
+        style={{
+          width: '1400px',
+          height: '1400px',
+          background: isDarkMode 
+            ? 'linear-gradient(to right, #020617, #172554)'
+            : 'linear-gradient(to right, #3b82f6, #93c5fd)',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: -1,
+          animation: 'pulse 4s ease-in-out infinite',
+          animationDelay: '-1.5s'
+        }}
+      />
+
+      <style>
+        {`
+          @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 0.8; }
+          }
+        `}
+      </style>
     </div>
   );
 };
