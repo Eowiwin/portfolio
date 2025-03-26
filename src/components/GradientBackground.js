@@ -58,8 +58,8 @@ const GradientBackground = () => {
           background: isDarkMode 
             ? 'linear-gradient(to right, #020617, #172554)'
             : 'linear-gradient(to right, #3b82f6, #93c5fd)',
-          left: 'min(-45vw, -700px)',
-          top: 'min(-45vw, -700px)',
+          left: 'min(-30vw, -500px)',
+          top: 'min(-30vw, -500px)',
           zIndex: -1,
           animation: 'pulse 4s ease-in-out infinite'
         }}
@@ -72,8 +72,8 @@ const GradientBackground = () => {
           background: isDarkMode 
             ? 'linear-gradient(to right, #1e1b4b, #312e81)'
             : 'linear-gradient(to right, #8b5cf6, #d946ef)',
-          right: 'min(-45vw, -700px)',
-          top: 'min(-45vw, -700px)',
+          right: 'min(-30vw, -500px)',
+          top: 'min(-30vw, -500px)',
           zIndex: -1,
           animation: 'pulse 4s ease-in-out infinite',
           animationDelay: '-1s'
@@ -87,8 +87,8 @@ const GradientBackground = () => {
           background: isDarkMode 
             ? 'linear-gradient(to right, #042f2e, #134e4a)'
             : 'linear-gradient(to right, #2dd4bf, #34d399)',
-          left: 'min(-45vw, -700px)',
-          bottom: 'min(-45vw, -700px)',
+          left: 'min(-30vw, -500px)',
+          bottom: 'min(-30vw, -500px)',
           zIndex: -1,
           animation: 'pulse 4s ease-in-out infinite',
           animationDelay: '-2s'
@@ -102,8 +102,8 @@ const GradientBackground = () => {
           background: isDarkMode 
             ? 'linear-gradient(to right, #1e1b4b, #312e81)'
             : 'linear-gradient(to right, #8b5cf6, #d946ef)',
-          right: 'min(-45vw, -700px)',
-          bottom: 'min(-45vw, -700px)',
+          right: 'min(-30vw, -500px)',
+          bottom: 'min(-30vw, -500px)',
           zIndex: -1,
           animation: 'pulse 4s ease-in-out infinite',
           animationDelay: '-3s'
