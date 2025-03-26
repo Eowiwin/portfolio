@@ -1,5 +1,6 @@
 import React from 'react';
 import AnimatedShapes from './AnimatedShapes';
+import useThemeStore from '../store/themeStore';
 
 const GradientBlob = ({ className, gradientColors }) => (
   <div 
@@ -11,13 +12,15 @@ const GradientBlob = ({ className, gradientColors }) => (
 );
 
 const GradientBackground = () => {
+  const { isDarkMode } = useThemeStore();
+
   return (
     <div className="absolute inset-0 overflow-hidden">
       {/* Background texture */}
       <div 
         className="absolute inset-0 bg-gray-50/50 dark:bg-gray-900/50 z-0"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a0aec0' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23a0aec0' fill-opacity='${isDarkMode ? '0.08' : '0.2'}'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}
       />
 
