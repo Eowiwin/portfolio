@@ -83,7 +83,7 @@ const AnimatedName = ({ children }) => {
   );
 };
 
-const MainSection = () => {
+const MainSection = ({ onNavigate }) => {
   const { isDarkMode, toggleDarkMode } = useThemeStore();
   const { isFrench, toggleLanguage } = useLanguageStore();
   const t = translations[isFrench ? 'fr' : 'en'];
@@ -121,12 +121,12 @@ const MainSection = () => {
           >
             {t.projects}
           </a>
-          <a 
-            href="#about" 
+          <button 
+            onClick={() => onNavigate('about')}
             className="text-xs md:text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
           >
             {t.about}
-          </a>
+          </button>
         </div>
       </div>
 
