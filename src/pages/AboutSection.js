@@ -54,20 +54,20 @@ const AboutSection = ({ onNavigate }) => {
   };
 
   return (
-    <div className="relative w-full min-h-screen h-auto overflow-y-auto overflow-x-hidden bg-transparent">
+    <div className="relative w-full h-auto min-h-screen overflow-y-auto overflow-x-hidden touch-manipulation overscroll-none">
       <MouseFollower />
       <GradientBackground />
       
       {/* Content */}
-      <div className="relative z-10 px-4 max-w-7xl mx-auto mt-24 md:mt-40 w-full pb-20">
+      <div className="relative z-10 px-4 max-w-7xl mx-auto pt-28 pb-24 md:pt-40 md:pb-20 w-full">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-16">
           {/* Text content */}
           <div className="w-full md:w-6/12">
-            <h1 className={`text-4xl md:text-6xl font-bold mb-8 md:mb-12 font-display ${isDarkMode ? 'text-white' : 'text-black'}`}>
+            <h1 className={`text-3xl md:text-6xl font-bold mb-6 md:mb-12 font-display ${isDarkMode ? 'text-white' : 'text-black'}`}>
               {t.aboutTitle}
             </h1>
             
-            <div className="space-y-8">
+            <div className="space-y-6 md:space-y-8">
               <p className={`text-base md:text-xl leading-relaxed text-justify ${isDarkMode ? 'text-gray-300' : 'text-black'}`}>
                 {t.aboutDescription}
               </p>
@@ -82,8 +82,8 @@ const AboutSection = ({ onNavigate }) => {
           </div>
 
           {/* Image with navigation - fixed for mobile centering */}
-          <div className="w-full md:w-5/12 flex justify-center md:justify-start mt-8 md:mt-0">
-            <div className="relative w-[280px] md:w-full">
+          <div className="w-full md:w-5/12 flex justify-center md:justify-start mt-6 md:mt-0">
+            <div className="relative w-[250px] md:w-full">
               <div className="relative aspect-[3/4] w-full group flex items-center justify-center md:justify-start gap-8">
                 {/* Previous image preview */}
                 <div 
