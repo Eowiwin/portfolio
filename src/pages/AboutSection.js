@@ -79,7 +79,7 @@ const AboutSection = ({ onNavigate }) => {
         
         <div className="relative z-10 w-full h-full p-4 flex flex-row items-center justify-between">
           {/* Text content - made more compact */}
-          <div className="w-7/12 pr-4 h-full flex flex-col justify-center">
+          <div className="w-8/12 pr-4 h-full flex flex-col justify-center">
             <h1 className={`text-2xl font-bold mb-2 font-display ${isDarkMode ? 'text-white' : 'text-black'}`}>
               {t.aboutTitle}
             </h1>
@@ -98,9 +98,9 @@ const AboutSection = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Image part - optimized for landscape with reduced size */}
-          <div className="w-5/12 h-full flex items-center justify-center">
-            <div className="relative h-[70%] aspect-[3/4] max-w-[30vh]">
+          {/* Image part - significantly reduced size */}
+          <div className="w-4/12 h-full flex items-center justify-center">
+            <div className="relative h-[50%] aspect-[3/4] max-w-[22vh]">
               {/* Current image */}
               <div 
                 className="relative w-full h-full overflow-hidden rounded-lg"
@@ -130,7 +130,7 @@ const AboutSection = ({ onNavigate }) => {
                   <button 
                     key={index}
                     onClick={() => setCurrentImageIndex(index)}
-                    className={`w-2 h-2 rounded-full transition-colors ${
+                    className={`w-1.5 h-1.5 rounded-full transition-colors ${
                       index === currentImageIndex 
                         ? (isDarkMode ? 'bg-blue-400' : 'bg-blue-600') 
                         : (isDarkMode ? 'bg-gray-600' : 'bg-gray-300')
