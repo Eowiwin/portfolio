@@ -7,7 +7,7 @@ const LoadingScreen = ({ onLoadingComplete }) => {
   const { isDarkMode } = useThemeStore();
 
   useEffect(() => {
-    // Simulate loading with a faster gradual progress increase
+    // SIMULATE LOADING
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
         const newProgress = prevProgress + Math.random() * 20; // Doubled speed

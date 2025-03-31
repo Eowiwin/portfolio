@@ -4,6 +4,7 @@ import useThemeStore from '../store/themeStore';
 import useLanguageStore from '../store/languageStore';
 import { translations } from '../utils/translations';
 import MouseFollower from '../components/MouseFollower';
+import Footer from '../components/Footer';
 
 const MenuSection = ({ onNavigate, currentSection }) => {
   const { isDarkMode } = useThemeStore();
@@ -71,6 +72,9 @@ const MenuSection = ({ onNavigate, currentSection }) => {
           </button>
         </nav>
       </div>
+      
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
