@@ -25,6 +25,7 @@ const GradientBlob = ({ style, mousePosition }) => {
 const GradientBackground = () => {
   const { isDarkMode } = useThemeStore();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -34,9 +35,22 @@ const GradientBackground = () => {
       });
     };
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
+
+  // Adjust blob sizes for mobile
+  const cornerBlobSize = isMobile ? 'min(120vw, 1300px)' : 'min(85vw, 1300px)';
+  const centerBlobSize = isMobile ? 'min(150vw, 1600px)' : 'min(100vw, 1600px)';
 
   return (
     <div className="fixed inset-0" style={{ zIndex: 0 }}>
@@ -53,13 +67,13 @@ const GradientBackground = () => {
       <GradientBlob 
         mousePosition={mousePosition}
         style={{
-          width: 'min(85vw, 1300px)',
-          height: 'min(85vw, 1300px)',
+          width: cornerBlobSize,
+          height: cornerBlobSize,
           background: isDarkMode 
             ? 'linear-gradient(to right, #020617, #172554)'
             : 'linear-gradient(to right, #3b82f6, #93c5fd)',
-          left: 'min(-5vw, -100px)',
-          top: 'min(-5vw, -100px)',
+          left: isMobile ? '-10vw' : 'min(-5vw, -100px)',
+          top: isMobile ? '-10vw' : 'min(-5vw, -100px)',
           zIndex: -1,
           animation: 'pulse 4s ease-in-out infinite'
         }}
@@ -67,13 +81,13 @@ const GradientBackground = () => {
       <GradientBlob 
         mousePosition={mousePosition}
         style={{
-          width: 'min(85vw, 1300px)',
-          height: 'min(85vw, 1300px)',
+          width: cornerBlobSize,
+          height: cornerBlobSize,
           background: isDarkMode 
             ? 'linear-gradient(to right, #1e1b4b, #312e81)'
             : 'linear-gradient(to right, #8b5cf6, #d946ef)',
-          right: 'min(-5vw, -100px)',
-          top: 'min(-5vw, -100px)',
+          right: isMobile ? '-10vw' : 'min(-5vw, -100px)',
+          top: isMobile ? '-10vw' : 'min(-5vw, -100px)',
           zIndex: -1,
           animation: 'pulse 4s ease-in-out infinite',
           animationDelay: '-1s'
@@ -82,13 +96,13 @@ const GradientBackground = () => {
       <GradientBlob 
         mousePosition={mousePosition}
         style={{
-          width: 'min(85vw, 1300px)',
-          height: 'min(85vw, 1300px)',
+          width: cornerBlobSize,
+          height: cornerBlobSize,
           background: isDarkMode 
             ? 'linear-gradient(to right, #042f2e, #134e4a)'
             : 'linear-gradient(to right, #2dd4bf, #34d399)',
-          left: 'min(-5vw, -100px)',
-          bottom: 'min(-5vw, -100px)',
+          left: isMobile ? '-10vw' : 'min(-5vw, -100px)',
+          bottom: isMobile ? '-10vw' : 'min(-5vw, -100px)',
           zIndex: -1,
           animation: 'pulse 4s ease-in-out infinite',
           animationDelay: '-2s'
@@ -97,13 +111,13 @@ const GradientBackground = () => {
       <GradientBlob 
         mousePosition={mousePosition}
         style={{
-          width: 'min(85vw, 1300px)',
-          height: 'min(85vw, 1300px)',
+          width: cornerBlobSize,
+          height: cornerBlobSize,
           background: isDarkMode 
             ? 'linear-gradient(to right, #1e1b4b, #312e81)'
             : 'linear-gradient(to right, #8b5cf6, #d946ef)',
-          right: 'min(-5vw, -100px)',
-          bottom: 'min(-5vw, -100px)',
+          right: isMobile ? '-10vw' : 'min(-5vw, -100px)',
+          bottom: isMobile ? '-10vw' : 'min(-5vw, -100px)',
           zIndex: -1,
           animation: 'pulse 4s ease-in-out infinite',
           animationDelay: '-3s'
@@ -112,8 +126,8 @@ const GradientBackground = () => {
       <GradientBlob 
         mousePosition={mousePosition}
         style={{
-          width: 'min(100vw, 1600px)',
-          height: 'min(100vw, 1600px)',
+          width: centerBlobSize,
+          height: centerBlobSize,
           background: isDarkMode 
             ? 'linear-gradient(to right, #020617, #172554)'
             : 'linear-gradient(to right, #3b82f6, #93c5fd)',
@@ -138,4 +152,4 @@ const GradientBackground = () => {
   );
 };
 
-export default GradientBackground; 
+export default GradientBackground;

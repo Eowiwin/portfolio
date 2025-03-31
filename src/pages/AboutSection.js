@@ -26,13 +26,13 @@ const AboutSection = ({ onNavigate }) => {
   };
 
   return (
-    <div className="relative w-full min-h-screen flex items-start justify-center transition-colors duration-300">
+    <div className="relative w-full min-h-screen overflow-y-auto flex flex-col items-start justify-start transition-colors duration-300">
       <MouseFollower />
       <GradientBackground />
       
       {/* Content */}
-      <div className="relative z-10 px-4 max-w-7xl mx-auto mt-32 md:mt-40 w-full">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-16">
+      <div className="relative z-10 px-4 max-w-7xl mx-auto mt-20 md:mt-40 w-full pb-20">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-16">
           {/* Text content */}
           <div className="w-full md:w-6/12">
             <h1 className={`text-4xl md:text-6xl font-bold mb-8 md:mb-12 font-display ${isDarkMode ? 'text-white' : 'text-black'}`}>
@@ -53,53 +53,71 @@ const AboutSection = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Image with navigation */}
-          <div className="w-full md:w-5/12">
-            <div className="relative aspect-[3/4] w-full group flex items-center gap-8">
-              {/* Previous image preview */}
-              <div 
-                className="hidden md:block relative w-48 h-96 overflow-hidden opacity-50 cursor-pointer hover:opacity-70 transition-opacity"
-                onClick={previousImage}
-              >
-                <img
-                  src={images[(currentImageIndex - 1 + images.length) % images.length]}
-                  alt="Previous"
-                  className="absolute inset-0 w-full h-full object-cover blur-sm"
-                />
-              </div>
-
-              {/* Current image */}
-              <div 
-                className="relative flex-[2] cursor-pointer h-96 overflow-hidden"
-                onClick={nextImage}
-              >
-                <img
-                  src={images[currentImageIndex]}
-                  alt="Profile"
-                  className="w-full h-full object-cover rounded-br-[8rem] transition-all duration-300"
-                  style={{ objectPosition: 'center' }}
-                />
+          {/* Image with navigation - fixed for mobile centering */}
+          <div className="w-full md:w-5/12 flex justify-center md:justify-start mt-8 md:mt-0">
+            <div className="relative w-[280px] md:w-full">
+              <div className="relative aspect-[3/4] w-full group flex items-center justify-center md:justify-start gap-8">
+                {/* Previous image preview */}
                 <div 
-                  className="absolute inset-0 rounded-br-[8rem]"
-                  style={{
-                    background: 'linear-gradient(to bottom right, rgba(255,255,255,0.1), rgba(255,255,255,0))',
-                    mixBlendMode: 'overlay'
-                  }}
-                />
-              </div>
+                  className="hidden md:block relative w-48 h-96 overflow-hidden opacity-50 cursor-pointer hover:opacity-70 transition-opacity"
+                  onClick={previousImage}
+                >
+                  <img
+                    src={images[(currentImageIndex - 1 + images.length) % images.length]}
+                    alt="Previous"
+                    className="absolute inset-0 w-full h-full object-cover blur-sm"
+                  />
+                </div>
 
-              {/* Next image preview */}
-              <div 
-                className="hidden md:block relative w-48 h-96 overflow-hidden opacity-50 cursor-pointer hover:opacity-70 transition-opacity"
-                onClick={nextImage}
-              >
-                <img
-                  src={images[(currentImageIndex + 1) % images.length]}
-                  alt="Next"
-                  className="absolute inset-0 w-full h-full object-cover blur-sm"
-                />
+                {/* Current image - fixed width container for mobile */}
+                <div 
+                  className="relative w-full md:flex-[2] cursor-pointer h-80 md:h-96 overflow-hidden"
+                  onClick={nextImage}
+                >
+                  <img
+                    src={images[currentImageIndex]}
+                    alt="Profile"
+                    className="w-full h-full object-cover rounded-br-[8rem] transition-all duration-300"
+                    style={{ objectPosition: 'center' }}
+                  />
+                  <div 
+                    className="absolute inset-0 rounded-br-[8rem]"
+                    style={{
+                      background: 'linear-gradient(to bottom right, rgba(255,255,255,0.1), rgba(255,255,255,0))',
+                      mixBlendMode: 'overlay'
+                    }}
+                  />
+                </div>
+
+                {/* Next image preview */}
+                <div 
+                  className="hidden md:block relative w-48 h-96 overflow-hidden opacity-50 cursor-pointer hover:opacity-70 transition-opacity"
+                  onClick={nextImage}
+                >
+                  <img
+                    src={images[(currentImageIndex + 1) % images.length]}
+                    alt="Next"
+                    className="absolute inset-0 w-full h-full object-cover blur-sm"
+                  />
+                </div>
               </div>
             </div>
+          </div>
+
+          {/* Mobile navigation indicators */}
+          <div className="md:hidden flex justify-center w-full mt-4 gap-2">
+            {images.map((_, index) => (
+              <button 
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentImageIndex 
+                    ? (isDarkMode ? 'bg-blue-400' : 'bg-blue-600') 
+                    : (isDarkMode ? 'bg-gray-600' : 'bg-gray-300')
+                }`}
+                aria-label={`View image ${index + 1}`}
+              />
+            ))}
           </div>
         </div>
       </div>

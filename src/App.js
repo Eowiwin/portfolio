@@ -42,7 +42,7 @@ const App = () => {
         <div className="scale-125">
           <MusicPlayer 
             audioSrc={process.env.PUBLIC_URL + "/audio/HisTheme.mp3"} 
-            trackTitle="His Theme" 
+            trackTitle="His Theme - Undertale" 
           />
         </div>
         <button 
