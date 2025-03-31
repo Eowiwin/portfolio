@@ -59,7 +59,30 @@ const App = () => {
             aria-label="Menu button"
             aria-expanded={menuOpen}
           >
-            ☰
+            <div className="relative w-6 h-6 flex items-center justify-center">
+              {/* Three lines that transform into a cross */}
+              <span 
+                className={`absolute w-6 h-0.5 rounded transition-all duration-300 ease-in-out ${isDarkMode ? 'bg-gray-300' : 'bg-black'} ${
+                  menuOpen 
+                    ? 'transform rotate-45 translate-y-0' 
+                    : 'transform -translate-y-2'
+                }`}
+              ></span>
+              <span 
+                className={`absolute w-6 h-0.5 rounded transition-all duration-300 ease-in-out ${isDarkMode ? 'bg-gray-300' : 'bg-black'} ${
+                  menuOpen 
+                    ? 'opacity-0' 
+                    : 'opacity-100'
+                }`}
+              ></span>
+              <span 
+                className={`absolute w-6 h-0.5 rounded transition-all duration-300 ease-in-out ${isDarkMode ? 'bg-gray-300' : 'bg-black'} ${
+                  menuOpen 
+                    ? 'transform -rotate-45 translate-y-0' 
+                    : 'transform translate-y-2'
+                }`}
+              ></span>
+            </div>
           </button>
           
           {/* Dropdown Menu */}
