@@ -4,17 +4,16 @@ import useThemeStore from '../store/themeStore';
 import useLanguageStore from '../store/languageStore';
 import { translations } from '../utils/translations';
 import MouseFollower from '../components/MouseFollower';
-import Logo from '../components/Logo';
 
 const images = [
-  process.env.PUBLIC_URL + '/calisthenics1.jpg',
-  process.env.PUBLIC_URL + '/calisthenics2.jpg',
-  process.env.PUBLIC_URL + '/calisthenics3.jpg',
+  process.env.PUBLIC_URL + '/img/calisthenics1.jpg',
+  process.env.PUBLIC_URL + '/img/calisthenics2.jpg',
+  process.env.PUBLIC_URL + '/img/calisthenics3.jpg',
 ];
 
 const AboutSection = ({ onNavigate }) => {
-  const { isDarkMode, toggleDarkMode } = useThemeStore();
-  const { isFrench, toggleLanguage } = useLanguageStore();
+  const { isDarkMode } = useThemeStore();
+  const { isFrench } = useLanguageStore();
   const t = translations[isFrench ? 'fr' : 'en'];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -30,7 +29,6 @@ const AboutSection = ({ onNavigate }) => {
     <div className="relative w-full min-h-screen flex items-start justify-center transition-colors duration-300">
       <MouseFollower />
       <GradientBackground />
-      <Logo />
       
       {/* Content */}
       <div className="relative z-10 px-4 max-w-7xl mx-auto mt-32 md:mt-40 w-full">
@@ -50,7 +48,7 @@ const AboutSection = ({ onNavigate }) => {
                 href="#resume" 
                 className={`inline-block text-base md:text-xl transition-colors ${isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-black hover:text-blue-600'}`}
               >
-                ↓ {isFrench ? 'CV' : 'resume'}
+                ↓ {isFrench ? 'CV' : 'Resume'}
               </a>
             </div>
           </div>
@@ -72,13 +70,14 @@ const AboutSection = ({ onNavigate }) => {
 
               {/* Current image */}
               <div 
-                className="relative flex-[2] cursor-pointer"
+                className="relative flex-[2] cursor-pointer h-96 overflow-hidden"
                 onClick={nextImage}
               >
                 <img
                   src={images[currentImageIndex]}
                   alt="Profile"
                   className="w-full h-full object-cover rounded-br-[8rem] transition-all duration-300"
+                  style={{ objectPosition: 'center' }}
                 />
                 <div 
                   className="absolute inset-0 rounded-br-[8rem]"
@@ -104,32 +103,8 @@ const AboutSection = ({ onNavigate }) => {
           </div>
         </div>
       </div>
-
-      {/* Top right menu */}
-      <div className="absolute top-4 md:top-6 right-4 md:right-6 flex items-center gap-3 md:gap-4 scale-75 md:scale-100">
-        <button 
-          onClick={toggleLanguage}
-          className={`transition-colors ${isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-black hover:text-blue-600'}`}
-          aria-label="Toggle language"
-        >
-          {t.language}
-        </button>
-        <button 
-          onClick={toggleDarkMode}
-          className={`transition-colors ${isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-black hover:text-blue-600'}`}
-          aria-label="Toggle dark mode"
-        >
-          {isDarkMode ? '☀️' : '🌙'}
-        </button>
-        <button 
-          onClick={() => onNavigate('main')}
-          className={`transition-colors ${isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-black hover:text-blue-600'}`}
-        >
-          ☰
-        </button>
-      </div>
     </div>
   );
 };
 
-export default AboutSection; 
+export default AboutSection;

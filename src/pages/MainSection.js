@@ -3,7 +3,6 @@ import GradientBackground from '../components/GradientBackground';
 import useThemeStore from '../store/themeStore';
 import useLanguageStore from '../store/languageStore';
 import { translations } from '../utils/translations';
-import Logo from '../components/Logo';
 import MouseFollower from '../components/MouseFollower';
 
 const AnimatedName = ({ children }) => {
@@ -84,8 +83,8 @@ const AnimatedName = ({ children }) => {
 };
 
 const MainSection = ({ onNavigate }) => {
-  const { isDarkMode, toggleDarkMode } = useThemeStore();
-  const { isFrench, toggleLanguage } = useLanguageStore();
+  const { isDarkMode } = useThemeStore();
+  const { isFrench } = useLanguageStore();
   const t = translations[isFrench ? 'fr' : 'en'];
 
   useEffect(() => {
@@ -101,7 +100,6 @@ const MainSection = ({ onNavigate }) => {
     <div className="relative w-full h-screen flex items-center justify-center transition-colors duration-300">
       <MouseFollower />
       <GradientBackground />
-      <Logo />
       
       {/* Content */}
       <div className="relative z-10 text-center px-4 scale-75 md:scale-100 transform-gpu">
@@ -129,27 +127,8 @@ const MainSection = ({ onNavigate }) => {
           </button>
         </div>
       </div>
-
-      {/* Top right menu */}
-      <div className="absolute top-4 md:top-6 right-4 md:right-6 flex items-center gap-3 md:gap-4 scale-75 md:scale-100">
-        <button 
-          onClick={toggleLanguage}
-          className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-          aria-label="Toggle language"
-        >
-          {t.language}
-        </button>
-        <button 
-          onClick={toggleDarkMode}
-          className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-          aria-label="Toggle dark mode"
-        >
-          {isDarkMode ? '☀️' : '🌙'}
-        </button>
-        <button className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">☰</button>
-      </div>
     </div>
   );
 };
 
-export default MainSection; 
+export default MainSection;

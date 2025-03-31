@@ -1,12 +1,27 @@
 import React from 'react';
 import useThemeStore from '../store/themeStore';
 
-const Logo = () => {
+const Logo = ({ onNavigate }) => {
   const { isDarkMode } = useThemeStore();
-
+  
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    // Navigate to main section using the same navigation function
+    if (onNavigate) {
+      onNavigate('main');
+    } else {
+      // Fallback if onNavigate is not provided
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+  
   return (
     <div className="absolute top-6 left-6 z-20">
-      <a href="/portfoliov2/" className="flex items-center space-x-2">
+      <a 
+        href="#main"
+        onClick={handleLogoClick}
+        className="flex items-center space-x-2"
+      >
         <div className="relative">
           {isDarkMode && (
             <div 
@@ -32,4 +47,4 @@ const Logo = () => {
   );
 };
 
-export default Logo; 
+export default Logo;

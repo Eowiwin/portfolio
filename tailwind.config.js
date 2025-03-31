@@ -9,8 +9,10 @@ module.exports = {
         'float-medium': 'float 6s ease-in-out infinite',
         'float-fast': 'float 4s ease-in-out infinite',
         'floatUp': 'floatUp 1s ease-out forwards',
+        'spin-slow': 'spin 8s linear infinite',
         sparkleLeft: 'sparkleLeft 2s ease-in-out infinite',
         sparkleRight: 'sparkleRight 2s ease-in-out infinite',
+        'sound-wave': 'soundWave 1s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -28,6 +30,10 @@ module.exports = {
             opacity: '1',
             transform: 'translate(-50%, -20px) scale(1)',
           }
+        },
+        spin: {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' }
         },
         sparkleLeft: {
           '0%': { 
@@ -82,6 +88,11 @@ module.exports = {
             visibility: 'hidden',
             transform: 'translateX(20px) scale(0.5)',
           }
+        },
+        soundWave: {
+          '0%': { height: '3px' },
+          '50%': { height: '12px' },
+          '100%': { height: '3px' }
         }
       }
     },
@@ -90,4 +101,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-} 
+}
