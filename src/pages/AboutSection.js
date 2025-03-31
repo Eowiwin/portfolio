@@ -54,12 +54,12 @@ const AboutSection = ({ onNavigate }) => {
   };
 
   return (
-    <div className="relative w-full min-h-screen overflow-y-auto flex flex-col items-start justify-start transition-colors duration-300">
+    <div className="relative w-full min-h-screen overflow-y-auto overflow-x-hidden flex flex-col items-start justify-start transition-colors duration-300">
       <MouseFollower />
       <GradientBackground />
       
       {/* Content */}
-      <div className="relative z-10 px-4 max-w-7xl mx-auto mt-20 md:mt-40 w-full pb-20">
+      <div className="relative z-10 px-4 max-w-7xl mx-auto mt-16 md:mt-40 w-full pb-20">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-16">
           {/* Text content */}
           <div className="w-full md:w-6/12">

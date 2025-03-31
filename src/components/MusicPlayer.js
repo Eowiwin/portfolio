@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import useThemeStore from '../store/themeStore';
 
-const MusicPlayer = ({ audioSrc = '/background-music.mp3', trackTitle = "Now Playing" }) => {
+const MusicPlayer = ({ audioSrc = '/background-music.mp3', trackTitle = "Now Playing", hideControls = true }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const { isDarkMode } = useThemeStore();
@@ -85,25 +85,27 @@ const MusicPlayer = ({ audioSrc = '/background-music.mp3', trackTitle = "Now Pla
             </svg>
           </div>
           
-          {/* Play/Pause icon overlay */}
-          <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300
-                           ${isPlaying ? 'opacity-0 hover:opacity-80' : 'opacity-80'}
-                           ${isDarkMode ? 'text-white' : 'text-black'}`}>
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="16" 
-              height="16" 
-              viewBox="0 0 24 24" 
-              fill="currentColor" 
-              className={`transition-transform duration-300 ${isPlaying ? 'scale-0' : 'scale-100'}`}
-            >
-              {isPlaying ? (
-                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
-              ) : (
-                <path d="M8 5v14l11-7z" />
-              )}
-            </svg>
-          </div>
+          {/* Play/Pause icon overlay - Only shown if hideControls is false */}
+          {!hideControls && (
+            <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300
+                            ${isPlaying ? 'opacity-0 hover:opacity-80' : 'opacity-80'}
+                            ${isDarkMode ? 'text-white' : 'text-black'}`}>
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="16" 
+                height="16" 
+                viewBox="0 0 24 24" 
+                fill="currentColor" 
+                className={`transition-transform duration-300 ${isPlaying ? 'scale-0' : 'scale-100'}`}
+              >
+                {isPlaying ? (
+                  <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+                ) : (
+                  <path d="M8 5v14l11-7z" />
+                )}
+              </svg>
+            </div>
+          )}
         </div>
       </button>
       
