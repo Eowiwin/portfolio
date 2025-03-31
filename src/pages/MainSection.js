@@ -106,28 +106,28 @@ const MainSection = ({ onNavigate }) => {
         <h1 className="text-2xl md:text-5xl font-bold text-gray-800 dark:text-white mb-1 md:mb-2">
           {t.greeting} <AnimatedName>{t.name}</AnimatedName>
         </h1>
-        <h2 className="text-lg md:text-3xl font-medium text-gray-600 dark:text-gray-300 mb-2 md:mb-4">
+        <h2 className="text-lg md:text-3xl font-medium text-gray-800 dark:text-gray-200 mb-2 md:mb-4">
           {t.nickname} <AnimatedName>{t.nicknameValue}</AnimatedName>
         </h2>
-        <p className="text-sm md:text-xl text-gray-600 dark:text-gray-300 mb-6 md:mb-8">
+        <p className="text-sm md:text-xl text-gray-800 dark:text-gray-200 mb-6 md:mb-8">
           {t.description}
         </p>
         <div className="flex gap-4 md:gap-6 justify-center">
           <a 
             href="#projects" 
-            className="text-xs md:text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            className="text-xs md:text-base text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
           >
             {t.projects}
           </a>
           <button 
             onClick={() => onNavigate('about')}
-            className="text-xs md:text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            className="text-xs md:text-base text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
           >
             {t.about}
           </button>
           <button 
             onClick={() => onNavigate('contact')}
-            className="text-xs md:text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            className="text-xs md:text-base text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
           >
             {t.contact || 'Contact'}
           </button>

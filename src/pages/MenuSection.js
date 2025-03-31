@@ -18,46 +18,55 @@ const MenuSection = ({ onNavigate, currentSection }) => {
       </div>
       
       <div className="relative z-10 w-full max-w-md mx-auto">
-        <nav className="flex flex-col items-center space-y-8 py-12">
+        <nav className="flex flex-col items-center space-y-16 py-12">
           <button
             onClick={() => onNavigate('main')}
-            className={`relative w-full text-center px-6 py-4 text-2xl md:text-4xl font-bold transition-all duration-300 transform hover:scale-105 ${
+            className={`group relative w-full text-center px-6 text-3xl md:text-6xl font-bold tracking-wider transition-all duration-500 transform hover:scale-105 ${
               currentSection === 'main'
                 ? (isDarkMode ? 'text-blue-400' : 'text-blue-600')
                 : (isDarkMode ? 'text-white hover:text-blue-400' : 'text-black hover:text-blue-600')
             }`}
           >
-            {t.homeLink}
+            <span className="inline-block relative overflow-hidden">
+              <span className="relative z-10">{t.homeLink}</span>
+              <span className={`absolute bottom-0 left-0 w-0 h-1 ${isDarkMode ? 'bg-blue-400' : 'bg-blue-600'} transition-all duration-500 group-hover:w-full`}></span>
+            </span>
             {currentSection === 'main' && (
-              <span className="absolute bottom-0 left-1/2 w-12 h-1 bg-current transform -translate-x-1/2"></span>
+              <span className="absolute -left-6 top-1/2 transform -translate-y-1/2 w-3 h-3 rounded-full bg-blue-400"></span>
             )}
           </button>
           
           <button
             onClick={() => onNavigate('about')}
-            className={`relative w-full text-center px-6 py-4 text-2xl md:text-4xl font-bold transition-all duration-300 transform hover:scale-105 ${
+            className={`group relative w-full text-center px-6 text-3xl md:text-6xl font-bold tracking-wider transition-all duration-500 transform hover:scale-105 ${
               currentSection === 'about'
                 ? (isDarkMode ? 'text-blue-400' : 'text-blue-600')
                 : (isDarkMode ? 'text-white hover:text-blue-400' : 'text-black hover:text-blue-600')
             }`}
           >
-            {t.aboutLink}
+            <span className="inline-block relative overflow-hidden">
+              <span className="relative z-10">{t.aboutLink}</span>
+              <span className={`absolute bottom-0 left-0 w-0 h-1 ${isDarkMode ? 'bg-blue-400' : 'bg-blue-600'} transition-all duration-500 group-hover:w-full`}></span>
+            </span>
             {currentSection === 'about' && (
-              <span className="absolute bottom-0 left-1/2 w-12 h-1 bg-current transform -translate-x-1/2"></span>
+              <span className="absolute -left-6 top-1/2 transform -translate-y-1/2 w-3 h-3 rounded-full bg-blue-400"></span>
             )}
           </button>
           
           <button
             onClick={() => onNavigate('contact')}
-            className={`relative w-full text-center px-6 py-4 text-2xl md:text-4xl font-bold transition-all duration-300 transform hover:scale-105 ${
+            className={`group relative w-full text-center px-6 text-3xl md:text-6xl font-bold tracking-wider transition-all duration-500 transform hover:scale-105 ${
               currentSection === 'contact'
                 ? (isDarkMode ? 'text-blue-400' : 'text-blue-600')
                 : (isDarkMode ? 'text-white hover:text-blue-400' : 'text-black hover:text-blue-600')
             }`}
           >
-            {t.contactLink}
+            <span className="inline-block relative overflow-hidden">
+              <span className="relative z-10">{t.contactLink}</span>
+              <span className={`absolute bottom-0 left-0 w-0 h-1 ${isDarkMode ? 'bg-blue-400' : 'bg-blue-600'} transition-all duration-500 group-hover:w-full`}></span>
+            </span>
             {currentSection === 'contact' && (
-              <span className="absolute bottom-0 left-1/2 w-12 h-1 bg-current transform -translate-x-1/2"></span>
+              <span className="absolute -left-6 top-1/2 transform -translate-y-1/2 w-3 h-3 rounded-full bg-blue-400"></span>
             )}
           </button>
         </nav>
