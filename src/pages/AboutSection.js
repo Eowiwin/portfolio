@@ -79,7 +79,7 @@ const AboutSection = ({ onNavigate }) => {
         
         <div className="relative z-10 w-full h-full p-4 flex flex-row items-center justify-between">
           {/* Text content - made more compact */}
-          <div className="w-9/12 pr-4 h-full flex flex-col justify-center">
+          <div className="w-7/12 pr-4 h-full flex flex-col justify-center">
             <h1 className={`text-2xl font-bold mb-2 font-display ${isDarkMode ? 'text-white' : 'text-black'}`}>
               {t.aboutTitle}
             </h1>
@@ -98,9 +98,9 @@ const AboutSection = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Image part - drastically reduced size (about 4x smaller) */}
-          <div className="w-3/12 h-full flex items-center justify-center">
-            <div className="relative h-[35%] aspect-[3/4] max-w-[15vh]">
+          {/* Image part - made 1.5-1.75x smaller */}
+          <div className="w-5/12 h-full flex items-center justify-center">
+            <div className="relative h-[55%] aspect-[3/4] max-w-[25vh]">
               {/* Current image */}
               <div 
                 className="relative w-full h-full overflow-hidden rounded-lg"
@@ -125,12 +125,12 @@ const AboutSection = ({ onNavigate }) => {
               </div>
 
               {/* Mobile navigation indicators */}
-              <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 flex justify-center gap-1">
+              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex justify-center gap-1.5">
                 {images.map((_, index) => (
                   <button 
                     key={index}
                     onClick={() => setCurrentImageIndex(index)}
-                    className={`w-1 h-1 rounded-full transition-colors ${
+                    className={`w-1.5 h-1.5 rounded-full transition-colors ${
                       index === currentImageIndex 
                         ? (isDarkMode ? 'bg-blue-400' : 'bg-blue-600') 
                         : (isDarkMode ? 'bg-gray-600' : 'bg-gray-300')
