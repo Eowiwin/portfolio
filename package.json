@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://eowiwin.github.io/portfoliov2/",
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@tailwindcss/postcss": "^4.0.15",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",

@@ -125,6 +125,12 @@ const MainSection = ({ onNavigate }) => {
           >
             {t.about}
           </button>
+          <button 
+            onClick={() => onNavigate('contact')}
+            className="text-xs md:text-base text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          >
+            {t.contact || 'Contact'}
+          </button>
         </div>
       </div>
     </div>

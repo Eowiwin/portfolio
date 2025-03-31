@@ -16,6 +16,11 @@ const AboutSection = ({ onNavigate }) => {
   const { isFrench } = useLanguageStore();
   const t = translations[isFrench ? 'fr' : 'en'];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  // Minimum swipe distance (in px) to register as swipe
+  const minSwipeDistance = 50;
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
@@ -23,6 +28,29 @@ const AboutSection = ({ onNavigate }) => {
 
   const previousImage = () => {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe) {
+      nextImage();
+    } else if (isRightSwipe) {
+      previousImage();
+    }
   };
 
   return (
@@ -36,7 +64,7 @@ const AboutSection = ({ onNavigate }) => {
           {/* Text content */}
           <div className="w-full md:w-6/12">
             <h1 className={`text-4xl md:text-6xl font-bold mb-8 md:mb-12 font-display ${isDarkMode ? 'text-white' : 'text-black'}`}>
-              {isFrench ? 'À PROPOS DE MOI' : 'ABOUT'}
+              {t.aboutTitle}
             </h1>
             
             <div className="space-y-8">
@@ -48,7 +76,7 @@ const AboutSection = ({ onNavigate }) => {
                 href="#resume" 
                 className={`inline-block text-base md:text-xl transition-colors ${isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-black hover:text-blue-600'}`}
               >
-                ↓ {isFrench ? 'CV' : 'Resume'}
+                {t.resumeButton}
               </a>
             </div>
           </div>
@@ -59,29 +87,32 @@ const AboutSection = ({ onNavigate }) => {
               <div className="relative aspect-[3/4] w-full group flex items-center justify-center md:justify-start gap-8">
                 {/* Previous image preview */}
                 <div 
-                  className="hidden md:block relative w-48 h-96 overflow-hidden opacity-50 cursor-pointer hover:opacity-70 transition-opacity"
+                  className="hidden md:block relative w-48 h-96 overflow-hidden opacity-50 cursor-pointer hover:opacity-70 transition-opacity rounded-lg"
                   onClick={previousImage}
                 >
                   <img
                     src={images[(currentImageIndex - 1 + images.length) % images.length]}
                     alt="Previous"
-                    className="absolute inset-0 w-full h-full object-cover blur-sm"
+                    className="absolute inset-0 w-full h-full object-cover blur-sm rounded-lg"
                   />
                 </div>
 
                 {/* Current image - fixed width container for mobile */}
                 <div 
-                  className="relative w-full md:flex-[2] cursor-pointer h-80 md:h-96 overflow-hidden"
+                  className="relative w-full md:flex-[2] cursor-pointer h-80 md:h-96 overflow-hidden rounded-lg"
                   onClick={nextImage}
+                  onTouchStart={onTouchStart}
+                  onTouchMove={onTouchMove}
+                  onTouchEnd={onTouchEnd}
                 >
                   <img
                     src={images[currentImageIndex]}
                     alt="Profile"
-                    className="w-full h-full object-cover rounded-br-[8rem] transition-all duration-300"
+                    className="w-full h-full object-cover rounded-lg transition-all duration-300"
                     style={{ objectPosition: 'center' }}
                   />
                   <div 
-                    className="absolute inset-0 rounded-br-[8rem]"
+                    className="absolute inset-0 rounded-lg"
                     style={{
                       background: 'linear-gradient(to bottom right, rgba(255,255,255,0.1), rgba(255,255,255,0))',
                       mixBlendMode: 'overlay'
@@ -91,13 +122,13 @@ const AboutSection = ({ onNavigate }) => {
 
                 {/* Next image preview */}
                 <div 
-                  className="hidden md:block relative w-48 h-96 overflow-hidden opacity-50 cursor-pointer hover:opacity-70 transition-opacity"
+                  className="hidden md:block relative w-48 h-96 overflow-hidden opacity-50 cursor-pointer hover:opacity-70 transition-opacity rounded-lg"
                   onClick={nextImage}
                 >
                   <img
                     src={images[(currentImageIndex + 1) % images.length]}
                     alt="Next"
-                    className="absolute inset-0 w-full h-full object-cover blur-sm"
+                    className="absolute inset-0 w-full h-full object-cover blur-sm rounded-lg"
                   />
                 </div>
               </div>
