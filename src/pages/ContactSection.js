@@ -109,11 +109,11 @@ const ContactSection = ({ onNavigate }) => {
   };
 
   return (
-    <div className="relative w-full min-h-screen overflow-y-auto overflow-x-hidden flex flex-col items-start justify-start transition-colors duration-300">
+    <div className="relative w-full min-h-screen h-auto overflow-y-auto overflow-x-hidden bg-transparent">
       <MouseFollower />
       <GradientBackground />
       
-      <div className="relative z-10 px-4 max-w-7xl mx-auto mt-16 md:mt-40 w-full pb-20">
+      <div className="relative z-10 px-4 max-w-7xl mx-auto mt-24 md:mt-40 w-full pb-20">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-16">
           <div className="w-full md:w-5/12">
             <h1 className={`text-4xl md:text-6xl font-bold mb-8 md:mb-12 font-display ${isDarkMode ? 'text-white' : 'text-black'}`}>
