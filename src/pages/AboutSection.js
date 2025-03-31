@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import GradientBackground from '../components/GradientBackground';
 import useThemeStore from '../store/themeStore';
 import useLanguageStore from '../store/languageStore';
@@ -18,6 +18,23 @@ const AboutSection = ({ onNavigate }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+  const [isLandscape, setIsLandscape] = useState(false);
+
+  // Detect landscape mode
+  useEffect(() => {
+    const checkOrientation = () => {
+      setIsLandscape(window.innerWidth > window.innerHeight && window.innerWidth < 1024);
+    };
+    
+    checkOrientation();
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', checkOrientation);
+    
+    return () => {
+      window.removeEventListener('resize', checkOrientation);
+      window.removeEventListener('orientationchange', checkOrientation);
+    };
+  }, []);
 
   // Minimum swipe distance (in px) to register as swipe
   const minSwipeDistance = 50;
@@ -53,6 +70,83 @@ const AboutSection = ({ onNavigate }) => {
     }
   };
 
+  // Landscape mode layout
+  if (isLandscape) {
+    return (
+      <div className="relative w-full h-screen overflow-hidden">
+        <MouseFollower />
+        <GradientBackground />
+        
+        <div className="relative z-10 w-full h-full p-4 flex flex-row items-center justify-between">
+          {/* Text content - made more compact */}
+          <div className="w-6/12 pr-4 h-full flex flex-col justify-center">
+            <h1 className={`text-2xl font-bold mb-2 font-display ${isDarkMode ? 'text-white' : 'text-black'}`}>
+              {t.aboutTitle}
+            </h1>
+            
+            <div className="space-y-2 overflow-auto max-h-[calc(100vh-120px)] pr-1 scrollbar-thin scrollbar-thumb-gray-400">
+              <p className={`text-sm leading-tight ${isDarkMode ? 'text-gray-300' : 'text-black'}`}>
+                {t.aboutDescription}
+              </p>
+              
+              <a 
+                href="#resume" 
+                className={`inline-block text-sm transition-colors ${isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-black hover:text-blue-600'}`}
+              >
+                {t.resumeButton}
+              </a>
+            </div>
+          </div>
+
+          {/* Image part - optimized for landscape */}
+          <div className="w-6/12 h-full flex items-center justify-center">
+            <div className="relative h-[90%] aspect-[3/4] max-w-[40vh]">
+              {/* Current image */}
+              <div 
+                className="relative w-full h-full overflow-hidden rounded-lg"
+                onClick={nextImage}
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+              >
+                <img
+                  src={images[currentImageIndex]}
+                  alt="Profile"
+                  className="w-full h-full object-cover rounded-lg"
+                  style={{ objectPosition: 'center' }}
+                />
+                <div 
+                  className="absolute inset-0 rounded-lg"
+                  style={{
+                    background: 'linear-gradient(to bottom right, rgba(255,255,255,0.1), rgba(255,255,255,0))',
+                    mixBlendMode: 'overlay'
+                  }}
+                />
+              </div>
+
+              {/* Mobile navigation indicators */}
+              <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex justify-center gap-2">
+                {images.map((_, index) => (
+                  <button 
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      index === currentImageIndex 
+                        ? (isDarkMode ? 'bg-blue-400' : 'bg-blue-600') 
+                        : (isDarkMode ? 'bg-gray-600' : 'bg-gray-300')
+                    }`}
+                    aria-label={`View image ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Default portrait mode layout
   return (
     <div className="relative w-full h-auto min-h-screen overflow-y-auto overflow-x-hidden touch-manipulation overscroll-none">
       <MouseFollower />
