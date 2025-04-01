@@ -137,7 +137,7 @@ const ContactSection = ({ onNavigate }) => {
             </h1>
             
             <div className="space-y-2">
-              <p className={`text-xs leading-tight ${isDarkMode ? 'text-gray-300' : 'text-black'}`}>
+              <p className={`text-xs text-justify leading-tight ${isDarkMode ? 'text-gray-300' : 'text-black'}`}>
                 {t.contactDescription}
               </p>
               
@@ -275,7 +275,7 @@ const ContactSection = ({ onNavigate }) => {
             </h1>
             
             <div className="space-y-6 md:space-y-8">
-              <p className={`text-base md:text-xl leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-black'}`}>
+              <p className={`text-base md:text-xl text-justify leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-black'}`}>
                 {t.contactDescription}
               </p>
               

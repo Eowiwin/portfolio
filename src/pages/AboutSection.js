@@ -23,7 +23,13 @@ const AboutSection = ({ onNavigate }) => {
   // Detect landscape mode
   useEffect(() => {
     const checkOrientation = () => {
-      setIsLandscape(window.innerWidth > window.innerHeight && window.innerWidth < 1024);
+      const isLand = window.innerWidth > window.innerHeight && window.innerWidth < 1024;
+      console.log("Orientation check:", { 
+        width: window.innerWidth, 
+        height: window.innerHeight,
+        isLandscape: isLand 
+      });
+      setIsLandscape(isLand);
     };
     
     checkOrientation();
@@ -72,13 +78,19 @@ const AboutSection = ({ onNavigate }) => {
 
   // Landscape mode layout
   if (isLandscape) {
+    console.log("Rendering LANDSCAPE layout");
     return (
       <div className="relative w-full h-screen overflow-hidden">
         <MouseFollower />
         <GradientBackground />
         
+        {/* DEBUG - Landscape mode indicator */}
+        <div className="fixed top-0 left-0 bg-red-500 text-white px-2 py-1 z-50 text-xs">
+          LANDSCAPE MODE
+        </div>
+        
         <div className="relative z-10 w-full h-full p-4 flex flex-row items-center justify-between">
-          {/* Text content - expanded to 85% of the screen */}
+          {/* Text content - increased width */}
           <div className="w-10/12 pr-4 h-full flex flex-col justify-center">
             <h1 className={`text-2xl font-bold mb-2 font-display ${isDarkMode ? 'text-white' : 'text-black'}`}>
               {t.aboutTitle}
@@ -98,12 +110,12 @@ const AboutSection = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Image part - reduced to 15% of the screen */}
+          {/* Image part - significantly reduced size */}
           <div className="w-2/12 h-full flex items-center justify-center">
-            <div className="relative h-[35%] aspect-[3/4] max-w-[15vh]">
+            <div className="relative h-[30%] aspect-[3/4] max-w-[15vh]">
               {/* Current image */}
               <div 
-                className="relative w-full h-full overflow-hidden rounded-lg"
+                className="relative w-full h-full overflow-hidden rounded-lg shadow-lg"
                 onClick={nextImage}
                 onTouchStart={onTouchStart}
                 onTouchMove={onTouchMove}
@@ -147,16 +159,22 @@ const AboutSection = ({ onNavigate }) => {
   }
 
   // Default portrait mode layout
+  console.log("Rendering PORTRAIT layout");
   return (
     <div className="relative w-full h-auto min-h-screen overflow-y-auto overflow-x-hidden touch-manipulation overscroll-none">
       <MouseFollower />
       <GradientBackground />
       
+      {/* DEBUG - Portrait mode indicator */}
+      <div className="fixed top-0 left-0 bg-blue-500 text-white px-2 py-1 z-50 text-xs">
+        PORTRAIT MODE
+      </div>
+      
       {/* Content */}
       <div className="relative z-10 px-4 max-w-7xl mx-auto pt-28 pb-24 md:pt-40 md:pb-20 w-full">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-16">
           {/* Text content */}
-          <div className="w-full md:w-6/12">
+          <div className="w-full md:w-5/12">
             <h1 className={`text-3xl md:text-6xl font-bold mb-6 md:mb-12 font-display ${isDarkMode ? 'text-white' : 'text-black'}`}>
               {t.aboutTitle}
             </h1>
@@ -175,74 +193,106 @@ const AboutSection = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Image with navigation - fixed for mobile centering */}
-          <div className="w-full md:w-5/12 flex justify-center md:justify-start mt-6 md:mt-0">
-            <div className="relative w-[250px] md:w-full">
-              <div className="relative aspect-[3/4] w-full group flex items-center justify-center md:justify-start gap-8">
-                {/* Previous image preview */}
-                <div 
-                  className="hidden md:block relative w-48 h-96 overflow-hidden opacity-50 cursor-pointer hover:opacity-70 transition-opacity rounded-lg"
-                  onClick={previousImage}
-                >
-                  <img
-                    src={images[(currentImageIndex - 1 + images.length) % images.length]}
-                    alt="Previous"
-                    className="absolute inset-0 w-full h-full object-cover blur-sm rounded-lg"
-                  />
-                </div>
-
-                {/* Current image - fixed width container for mobile */}
-                <div 
-                  className="relative w-full md:flex-[2] cursor-pointer h-80 md:h-96 overflow-hidden rounded-lg"
-                  onClick={nextImage}
-                  onTouchStart={onTouchStart}
-                  onTouchMove={onTouchMove}
-                  onTouchEnd={onTouchEnd}
-                >
-                  <img
-                    src={images[currentImageIndex]}
-                    alt="Profile"
-                    className="w-full h-full object-cover rounded-lg transition-all duration-300"
-                    style={{ objectPosition: 'center' }}
-                  />
+          {/* Image with navigation - larger but still mobile-appropriate */}
+          <div className="w-full md:w-7/12 flex flex-col items-center md:items-start mt-6 md:mt-0">
+            {/* Mobile image - larger size */}
+            <div className="block md:hidden" style={{ width: '300px', height: '420px' }}>
+              <div 
+                className="w-full h-full rounded-lg shadow-lg overflow-hidden cursor-pointer"
+                onClick={nextImage}
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+              >
+                <img
+                  src={images[currentImageIndex]}
+                  alt="Profile"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            
+            {/* Desktop version with previews - FINAL FIX */}
+            <div className="hidden md:block relative w-full">
+              <div className="relative w-full flex items-center justify-center">
+                {/* Image navigation container with absolute fixed width */}
+                <div className="flex items-center justify-between" style={{ width: '700px' }}>
+                  {/* Previous image preview */}
                   <div 
-                    className="absolute inset-0 rounded-lg"
-                    style={{
-                      background: 'linear-gradient(to bottom right, rgba(255,255,255,0.1), rgba(255,255,255,0))',
-                      mixBlendMode: 'overlay'
+                    className="relative overflow-hidden cursor-pointer hover:opacity-100 transition-opacity rounded-lg"
+                    onClick={previousImage}
+                    style={{ 
+                      width: '165px', 
+                      height: '350px',
+                      opacity: 0.7 
                     }}
-                  />
-                </div>
+                  >
+                    <img
+                      src={images[(currentImageIndex - 1 + images.length) % images.length]}
+                      alt="Previous"
+                      className="h-full w-full object-cover rounded-lg"
+                    />
+                  </div>
 
-                {/* Next image preview */}
-                <div 
-                  className="hidden md:block relative w-48 h-96 overflow-hidden opacity-50 cursor-pointer hover:opacity-70 transition-opacity rounded-lg"
-                  onClick={nextImage}
-                >
-                  <img
-                    src={images[(currentImageIndex + 1) % images.length]}
-                    alt="Next"
-                    className="absolute inset-0 w-full h-full object-cover blur-sm rounded-lg"
-                  />
+                  {/* Current image - desktop */}
+                  <div 
+                    className="relative overflow-hidden rounded-lg shadow-lg cursor-pointer"
+                    onClick={nextImage}
+                    style={{ 
+                      width: '700px', 
+                      height: '700px'
+                    }}
+                  >
+                    <img
+                      src={images[currentImageIndex]}
+                      alt="Profile"
+                      className="w-full h-full object-cover rounded-lg transition-all duration-300"
+                      style={{ objectPosition: 'center' }}
+                    />
+                    <div 
+                      className="absolute inset-0 rounded-lg"
+                      style={{
+                        background: 'linear-gradient(to bottom right, rgba(255,255,255,0.1), rgba(255,255,255,0))',
+                        mixBlendMode: 'overlay'
+                      }}
+                    />
+                  </div>
+
+                  {/* Next image preview */}
+                  <div 
+                    className="relative overflow-hidden cursor-pointer hover:opacity-100 transition-opacity rounded-lg"
+                    onClick={nextImage}
+                    style={{ 
+                      width: '165px', 
+                      height: '350px',
+                      opacity: 0.7 
+                    }}
+                  >
+                    <img
+                      src={images[(currentImageIndex + 1) % images.length]}
+                      alt="Next"
+                      className="h-full w-full object-cover rounded-lg"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Mobile navigation indicators */}
-          <div className="md:hidden flex justify-center w-full mt-4 gap-2">
-            {images.map((_, index) => (
-              <button 
-                key={index}
-                onClick={() => setCurrentImageIndex(index)}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  index === currentImageIndex 
-                    ? (isDarkMode ? 'bg-blue-400' : 'bg-blue-600') 
-                    : (isDarkMode ? 'bg-gray-600' : 'bg-gray-300')
-                }`}
-                aria-label={`View image ${index + 1}`}
-              />
-            ))}
+            {/* Mobile navigation indicators */}
+            <div className="md:hidden flex justify-center w-full mt-2 gap-2">
+              {images.map((_, index) => (
+                <button 
+                  key={index}
+                  onClick={() => setCurrentImageIndex(index)}
+                  className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                    index === currentImageIndex 
+                      ? (isDarkMode ? 'bg-blue-400' : 'bg-blue-600') 
+                      : (isDarkMode ? 'bg-gray-600' : 'bg-gray-300')
+                  }`}
+                  aria-label={`View image ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
