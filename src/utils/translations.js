@@ -9,7 +9,7 @@ export const translations = {
     about: "→ More about me",
     contact: "→ Contact me",
     language: "FR",
-    aboutDescription: "Hey! My name is Erwan MENAGER and I'm a french full-stack developer. I'm also a big fan of calisthenics and I've been practicing it since 2023. On average, I train 5 to 6 times a week.",
+    aboutDescription: "Hey! My name is Erwan MENAGER and I'm a french full-stack developer. I'm also a big fan of calisthenics and I've been practicing it since 2023. On average, I train 5 to 6 times a week. I plan to start competing when I feel my level is sufficient. (Yes, I'm a little demanding of myself).",
     
     // About section
     aboutTitle: "ABOUT",
@@ -42,7 +42,7 @@ export const translations = {
     about: "→ Plus sur moi",
     contact: "→ Me contacter",
     language: "EN",
-    aboutDescription: "Salut ! Je m'appelle Erwan MENAGER et je suis développeur full-stack. Je suis également un grand passionné de callisthénie et j'en pratique depuis 2023. En moyenne, je m'entraîne 5 à 6 fois par semaine.",
+    aboutDescription: "Salut ! Je m'appelle Erwan MENAGER et je suis développeur full-stack. Je suis également un grand passionné de callisthénie et j'en pratique depuis 2023. En moyenne, je m'entraîne 5 à 6 fois par semaine. Je compte me lancer dans les compétitions quand j'estimerai que mon niveau est suffisant. (Oui, je suis un peu exigeant avec moi-même).",
     
     // About section
     aboutTitle: "À PROPOS DE MOI",

@@ -261,7 +261,7 @@ const AboutSection = ({ onNavigate }) => {
           {/* Image with navigation - larger but still mobile-appropriate */}
           <div className="w-full md:w-7/12 flex flex-col items-center md:items-start mt-6 md:mt-0">
             {/* Mobile image - larger size */}
-            <div className="block md:hidden" style={{ width: '300px', height: '420px' }}>
+            <div className="block md:hidden" style={{ width: '57vw', height: '40vh', marginTop: '-5vh' }}>
               <div 
                 className={`w-full h-full rounded-lg shadow-lg overflow-hidden ${isAnimating ? 'pointer-events-none' : 'cursor-pointer'}`}
                 onClick={nextImage}
@@ -287,7 +287,7 @@ const AboutSection = ({ onNavigate }) => {
                 {/* Image navigation container with absolute fixed width */}
                 <div className="flex items-center justify-between" style={{ 
                     width: '80vw',
-                    marginTop: '-5vh',
+                    marginTop: '-15vh',
                     }}
                   >
                   {/* Previous image preview */}
