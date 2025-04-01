@@ -19,6 +19,8 @@ const AboutSection = ({ onNavigate }) => {
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const [isLandscape, setIsLandscape] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [direction, setDirection] = useState('next'); // 'next' or 'prev'
 
   // Detect landscape mode
   useEffect(() => {
@@ -46,11 +48,31 @@ const AboutSection = ({ onNavigate }) => {
   const minSwipeDistance = 50;
 
   const nextImage = () => {
+    if (isAnimating) return;
+    setDirection('next');
+    setIsAnimating(true);
+    
+    // Change the image immediately but use CSS to handle the visual transition
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    
+    // Reset animation state after transition completes
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 300);
   };
 
   const previousImage = () => {
+    if (isAnimating) return;
+    setDirection('prev');
+    setIsAnimating(true);
+    
+    // Change the image immediately but use CSS to handle the visual transition
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+    
+    // Reset animation state after transition completes
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 300);
   };
 
   const onTouchStart = (e) => {
@@ -84,11 +106,6 @@ const AboutSection = ({ onNavigate }) => {
         <MouseFollower />
         <GradientBackground />
         
-        {/* DEBUG - Landscape mode indicator */}
-        <div className="fixed top-0 left-0 bg-red-500 text-white px-2 py-1 z-50 text-xs">
-          LANDSCAPE MODE
-        </div>
-        
         <div className="relative z-10 w-full h-full p-4 flex flex-row items-center justify-between">
           {/* Text content - increased width */}
           <div className="w-10/12 pr-4 h-full flex flex-col justify-center">
@@ -115,25 +132,32 @@ const AboutSection = ({ onNavigate }) => {
             <div className="relative h-[30%] aspect-[3/4] max-w-[15vh]">
               {/* Current image */}
               <div 
-                className="relative w-full h-full overflow-hidden rounded-lg shadow-lg"
+                className={`relative w-full h-full overflow-hidden rounded-lg shadow-lg ${isAnimating ? 'pointer-events-none' : 'cursor-pointer'}`}
                 onClick={nextImage}
                 onTouchStart={onTouchStart}
                 onTouchMove={onTouchMove}
                 onTouchEnd={onTouchEnd}
               >
-                <img
-                  src={images[currentImageIndex]}
-                  alt="Profile"
-                  className="w-full h-full object-cover rounded-lg"
-                  style={{ objectPosition: 'center' }}
-                />
-                <div 
-                  className="absolute inset-0 rounded-lg"
-                  style={{
-                    background: 'linear-gradient(to bottom right, rgba(255,255,255,0.1), rgba(255,255,255,0))',
-                    mixBlendMode: 'overlay'
-                  }}
-                />
+                <div className="relative w-full h-full">
+                  <img
+                    src={images[currentImageIndex]}
+                    alt="Profile"
+                    className={`w-full h-full object-cover rounded-lg transition-all duration-300 ${
+                      isAnimating 
+                        ? `transform ${direction === 'next' ? 'scale-95 opacity-90' : 'scale-95 opacity-90'}`
+                        : 'scale-100 opacity-100'
+                    }`}
+                    style={{ objectPosition: 'center' }}
+                  />
+                  <div 
+                    className="absolute inset-0 rounded-lg transition-opacity duration-300"
+                    style={{
+                      background: 'linear-gradient(to bottom right, rgba(255,255,255,0.1), rgba(255,255,255,0))',
+                      mixBlendMode: 'overlay',
+                      opacity: isAnimating ? 0.8 : 1
+                    }}
+                  />
+                </div>
               </div>
 
               {/* Mobile navigation indicators */}
@@ -141,7 +165,20 @@ const AboutSection = ({ onNavigate }) => {
                 {images.map((_, index) => (
                   <button 
                     key={index}
-                    onClick={() => setCurrentImageIndex(index)}
+                    onClick={() => {
+                      if (index === currentImageIndex || isAnimating) return;
+                      
+                      setDirection(index > currentImageIndex ? 'next' : 'prev');
+                      setIsAnimating(true);
+                      
+                      // Change image immediately
+                      setCurrentImageIndex(index);
+                      
+                      // Reset animation after it completes
+                      setTimeout(() => {
+                        setIsAnimating(false);
+                      }, 300);
+                    }}
                     className={`w-1 h-1 rounded-full transition-colors ${
                       index === currentImageIndex 
                         ? (isDarkMode ? 'bg-blue-400' : 'bg-blue-600') 
@@ -154,6 +191,39 @@ const AboutSection = ({ onNavigate }) => {
             </div>
           </div>
         </div>
+        
+        {/* Custom animation keyframes */}
+        <style jsx>{`
+          @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+          }
+          
+          @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+          }
+          
+          @keyframes slideInRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+          }
+          
+          @keyframes slideOutLeft {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
+          }
+          
+          @keyframes slideInLeft {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+          }
+          
+          @keyframes slideOutRight {
+            from { transform: translateX(0); }
+            to { transform: translateX(100%); }
+          }
+        `}</style>
       </div>
     );
   }
@@ -164,11 +234,6 @@ const AboutSection = ({ onNavigate }) => {
     <div className="relative w-full h-auto min-h-screen overflow-y-auto overflow-x-hidden touch-manipulation overscroll-none">
       <MouseFollower />
       <GradientBackground />
-      
-      {/* DEBUG - Portrait mode indicator */}
-      <div className="fixed top-0 left-0 bg-blue-500 text-white px-2 py-1 z-50 text-xs">
-        PORTRAIT MODE
-      </div>
       
       {/* Content */}
       <div className="relative z-10 px-4 max-w-7xl mx-auto pt-28 pb-24 md:pt-40 md:pb-20 w-full">
@@ -198,7 +263,7 @@ const AboutSection = ({ onNavigate }) => {
             {/* Mobile image - larger size */}
             <div className="block md:hidden" style={{ width: '300px', height: '420px' }}>
               <div 
-                className="w-full h-full rounded-lg shadow-lg overflow-hidden cursor-pointer"
+                className={`w-full h-full rounded-lg shadow-lg overflow-hidden ${isAnimating ? 'pointer-events-none' : 'cursor-pointer'}`}
                 onClick={nextImage}
                 onTouchStart={onTouchStart}
                 onTouchMove={onTouchMove}
@@ -207,71 +272,88 @@ const AboutSection = ({ onNavigate }) => {
                 <img
                   src={images[currentImageIndex]}
                   alt="Profile"
-                  className="w-full h-full object-cover"
+                  className={`w-full h-full object-cover transition-all duration-300 ${
+                    isAnimating 
+                      ? `transform ${direction === 'next' ? 'translate-x(-3%) scale-95' : 'translate-x(3%) scale-95'}`
+                      : 'translate-x(0) scale-100'
+                  }`}
                 />
               </div>
             </div>
             
-            {/* Desktop version with previews - FINAL FIX */}
+            {/* Desktop version with previews */}
             <div className="hidden md:block relative w-full">
               <div className="relative w-full flex items-center justify-center">
                 {/* Image navigation container with absolute fixed width */}
                 <div className="flex items-center justify-between" style={{ width: '700px' }}>
                   {/* Previous image preview */}
                   <div 
-                    className="relative overflow-hidden cursor-pointer hover:opacity-100 transition-opacity rounded-lg"
+                    className={`relative overflow-hidden ${isAnimating ? 'pointer-events-none' : 'cursor-pointer'} hover:opacity-100 transition-opacity rounded-lg`}
                     onClick={previousImage}
                     style={{ 
                       width: '165px', 
                       height: '350px',
-                      opacity: 0.7 
+                      opacity: isAnimating && direction === 'prev' ? 0.9 : 0.7 
                     }}
                   >
                     <img
                       src={images[(currentImageIndex - 1 + images.length) % images.length]}
                       alt="Previous"
-                      className="h-full w-full object-cover rounded-lg"
+                      className={`h-full w-full object-cover rounded-lg transition-transform duration-300 ${
+                        isAnimating && direction === 'prev' ? 'scale-110' : ''
+                      }`}
                     />
                   </div>
 
                   {/* Current image - desktop */}
                   <div 
-                    className="relative overflow-hidden rounded-lg shadow-lg cursor-pointer"
+                    className={`relative overflow-hidden rounded-lg shadow-lg ${isAnimating ? 'pointer-events-none' : 'cursor-pointer'}`}
                     onClick={nextImage}
                     style={{ 
                       width: '700px', 
-                      height: '700px'
+                      height: '700px',
+                      transition: 'all 0.3s ease-in-out',
+                      transform: isAnimating 
+                        ? 'scale(0.95)' 
+                        : 'scale(1)'
                     }}
                   >
                     <img
                       src={images[currentImageIndex]}
                       alt="Profile"
-                      className="w-full h-full object-cover rounded-lg transition-all duration-300"
+                      className={`w-full h-full object-cover rounded-lg transition-all duration-300 ease-in-out ${
+                        isAnimating 
+                          ? `transform ${direction === 'next' ? 'translate-x(-2%)' : 'translate-x(2%)'} opacity-90`
+                          : 'translate-x(0) opacity-100'
+                      }`}
                       style={{ objectPosition: 'center' }}
                     />
                     <div 
-                      className="absolute inset-0 rounded-lg"
+                      className="absolute inset-0 rounded-lg transition-opacity duration-300"
                       style={{
                         background: 'linear-gradient(to bottom right, rgba(255,255,255,0.1), rgba(255,255,255,0))',
-                        mixBlendMode: 'overlay'
+                        mixBlendMode: 'overlay',
+                        opacity: isAnimating ? 0.5 : 1
                       }}
                     />
                   </div>
 
                   {/* Next image preview */}
                   <div 
-                    className="relative overflow-hidden cursor-pointer hover:opacity-100 transition-opacity rounded-lg"
+                    className={`relative overflow-hidden ${isAnimating ? 'pointer-events-none' : 'cursor-pointer'} hover:opacity-100 transition-opacity rounded-lg`}
                     onClick={nextImage}
                     style={{ 
                       width: '165px', 
                       height: '350px',
-                      opacity: 0.7 
+                      opacity: isAnimating && direction === 'next' ? 0.9 : 0.7 
                     }}
                   >
                     <img
                       src={images[(currentImageIndex + 1) % images.length]}
                       alt="Next"
-                      className="h-full w-full object-cover rounded-lg"
+                      className={`h-full w-full object-cover rounded-lg transition-transform duration-300 ${
+                        isAnimating && direction === 'next' ? 'scale-110' : ''
+                      }`}
                     />
                   </div>
                 </div>
@@ -283,7 +365,19 @@ const AboutSection = ({ onNavigate }) => {
               {images.map((_, index) => (
                 <button 
                   key={index}
-                  onClick={() => setCurrentImageIndex(index)}
+                  onClick={() => {
+                    if (index === currentImageIndex || isAnimating) return;
+                    setDirection(index > currentImageIndex ? 'next' : 'prev');
+                    setIsAnimating(true);
+                    
+                    // Change image immediately
+                    setCurrentImageIndex(index);
+                    
+                    // Reset animation after it completes
+                    setTimeout(() => {
+                      setIsAnimating(false);
+                    }, 300);
+                  }}
                   className={`w-1.5 h-1.5 rounded-full transition-colors ${
                     index === currentImageIndex 
                       ? (isDarkMode ? 'bg-blue-400' : 'bg-blue-600') 
@@ -296,6 +390,48 @@ const AboutSection = ({ onNavigate }) => {
           </div>
         </div>
       </div>
+      
+      {/* Custom animation keyframes */}
+      <style jsx>{`
+        @keyframes slideInRight {
+          from { transform: translateX(100%); }
+          to { transform: translateX(0); }
+        }
+        
+        @keyframes slideOutLeft {
+          from { transform: translateX(0); }
+          to { transform: translateX(-100%); }
+        }
+        
+        @keyframes slideInLeft {
+          from { transform: translateX(-100%); }
+          to { transform: translateX(0); }
+        }
+        
+        @keyframes slideOutRight {
+          from { transform: translateX(0); }
+          to { transform: translateX(100%); }
+        }
+        
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        @keyframes pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.03); }
+          100% { transform: scale(1); }
+        }
+        
+        .animate-pulse-slow {
+          animation: pulse 0.5s;
+        }
+        
+        .animate-fadeIn {
+          animation: fadeIn 0.3s forwards;
+        }
+      `}</style>
     </div>
   );
 };
