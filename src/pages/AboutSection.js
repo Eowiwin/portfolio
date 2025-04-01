@@ -283,16 +283,20 @@ const AboutSection = ({ onNavigate }) => {
             
             {/* Desktop version with previews */}
             <div className="hidden md:block relative w-full">
-              <div className="relative w-full flex items-center justify-center">
+              <div className="relative w-full flex items-center">
                 {/* Image navigation container with absolute fixed width */}
-                <div className="flex items-center justify-between" style={{ width: '700px' }}>
+                <div className="flex items-center justify-between" style={{ 
+                    width: '80vw',
+                    marginTop: '-5vh',
+                    }}
+                  >
                   {/* Previous image preview */}
                   <div 
                     className={`relative overflow-hidden ${isAnimating ? 'pointer-events-none' : 'cursor-pointer'} hover:opacity-100 transition-opacity rounded-lg`}
                     onClick={previousImage}
                     style={{ 
-                      width: '165px', 
-                      height: '350px',
+                      width: '10vw', 
+                      height: '45vh',
                       opacity: isAnimating && direction === 'prev' ? 0.9 : 0.7 
                     }}
                   >
@@ -310,8 +314,9 @@ const AboutSection = ({ onNavigate }) => {
                     className={`relative overflow-hidden rounded-lg shadow-lg ${isAnimating ? 'pointer-events-none' : 'cursor-pointer'}`}
                     onClick={nextImage}
                     style={{ 
-                      width: '700px', 
-                      height: '700px',
+                      width: '29vw', 
+                      height: '85vh',
+                      scale: 0.95,
                       transition: 'all 0.3s ease-in-out',
                       transform: isAnimating 
                         ? 'scale(0.95)' 
@@ -343,8 +348,8 @@ const AboutSection = ({ onNavigate }) => {
                     className={`relative overflow-hidden ${isAnimating ? 'pointer-events-none' : 'cursor-pointer'} hover:opacity-100 transition-opacity rounded-lg`}
                     onClick={nextImage}
                     style={{ 
-                      width: '165px', 
-                      height: '350px',
+                      width: '10vw', 
+                      height: '45vh',
                       opacity: isAnimating && direction === 'next' ? 0.9 : 0.7 
                     }}
                   >
@@ -390,48 +395,6 @@ const AboutSection = ({ onNavigate }) => {
           </div>
         </div>
       </div>
-      
-      {/* Custom animation keyframes */}
-      <style jsx>{`
-        @keyframes slideInRight {
-          from { transform: translateX(100%); }
-          to { transform: translateX(0); }
-        }
-        
-        @keyframes slideOutLeft {
-          from { transform: translateX(0); }
-          to { transform: translateX(-100%); }
-        }
-        
-        @keyframes slideInLeft {
-          from { transform: translateX(-100%); }
-          to { transform: translateX(0); }
-        }
-        
-        @keyframes slideOutRight {
-          from { transform: translateX(0); }
-          to { transform: translateX(100%); }
-        }
-        
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        
-        @keyframes pulse {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.03); }
-          100% { transform: scale(1); }
-        }
-        
-        .animate-pulse-slow {
-          animation: pulse 0.5s;
-        }
-        
-        .animate-fadeIn {
-          animation: fadeIn 0.3s forwards;
-        }
-      `}</style>
     </div>
   );
 };
