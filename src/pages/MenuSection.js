@@ -19,10 +19,10 @@ const MenuSection = ({ onNavigate, currentSection }) => {
       </div>
       
       <div className="relative z-10 w-full max-w-md mx-auto">
-        <nav className="flex flex-col items-center space-y-16 py-12">
+        <nav className="flex flex-col items-center space-y-12 py-12">
           <button
             onClick={() => onNavigate('main')}
-            className={`group relative w-full text-center px-6 text-3xl md:text-6xl font-bold tracking-wider transition-all duration-500 transform hover:scale-105 ${
+            className={`group relative w-full text-center px-6 text-2xl md:text-4xl font-bold tracking-wider transition-all duration-500 transform hover:scale-105 ${
               currentSection === 'main'
                 ? (isDarkMode ? 'text-blue-400' : 'text-blue-600')
                 : (isDarkMode ? 'text-white hover:text-blue-400' : 'text-black hover:text-blue-600')
@@ -39,7 +39,7 @@ const MenuSection = ({ onNavigate, currentSection }) => {
           
           <button
             onClick={() => onNavigate('about')}
-            className={`group relative w-full text-center px-6 text-3xl md:text-6xl font-bold tracking-wider transition-all duration-500 transform hover:scale-105 ${
+            className={`group relative w-full text-center px-6 text-2xl md:text-4xl font-bold tracking-wider transition-all duration-500 transform hover:scale-105 ${
               currentSection === 'about'
                 ? (isDarkMode ? 'text-blue-400' : 'text-blue-600')
                 : (isDarkMode ? 'text-white hover:text-blue-400' : 'text-black hover:text-blue-600')
@@ -56,7 +56,7 @@ const MenuSection = ({ onNavigate, currentSection }) => {
           
           <button
             onClick={() => onNavigate('contact')}
-            className={`group relative w-full text-center px-6 text-3xl md:text-6xl font-bold tracking-wider transition-all duration-500 transform hover:scale-105 ${
+            className={`group relative w-full text-center px-6 text-2xl md:text-4xl font-bold tracking-wider transition-all duration-500 transform hover:scale-105 ${
               currentSection === 'contact'
                 ? (isDarkMode ? 'text-blue-400' : 'text-blue-600')
                 : (isDarkMode ? 'text-white hover:text-blue-400' : 'text-black hover:text-blue-600')

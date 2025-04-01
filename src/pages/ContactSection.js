@@ -19,6 +19,12 @@ const ContactSection = ({ onNavigate }) => {
   const [cooldownRemaining, setCooldownRemaining] = useState(0);
   const [isLandscape, setIsLandscape] = useState(false);
 
+  const COOLDOWN_TIME = 30 * 60 * 1000;
+
+  const EMAIL_SERVICE_ID = "service_6rhvv8f";
+  const EMAIL_TEMPLATE_ID = "template_yoa1t3n";
+  const EMAIL_PUBLIC_KEY = "v8YTg1GPw9xxJdszT";
+
   useEffect(() => {
     const checkOrientation = () => {
       setIsLandscape(window.innerWidth > window.innerHeight && window.innerWidth < 1024);
@@ -33,12 +39,6 @@ const ContactSection = ({ onNavigate }) => {
       window.removeEventListener('orientationchange', checkOrientation);
     };
   }, []);
-
-  const COOLDOWN_TIME = 5 * 60 * 1000;
-
-  const EMAIL_SERVICE_ID = "YOUR_SERVICE_ID";
-  const EMAIL_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-  const EMAIL_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
 
   useEffect(() => {
     const lastEmailTime = localStorage.getItem('lastEmailTime');
@@ -61,7 +61,7 @@ const ContactSection = ({ onNavigate }) => {
         return () => clearInterval(interval);
       }
     }
-  }, []);
+  }, [COOLDOWN_TIME]);
 
   const formatCooldownTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
