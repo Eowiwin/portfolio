@@ -54,6 +54,41 @@ const MenuSection = ({ onNavigate, currentSection }) => {
             )}
           </button>
           
+          {/* Projects Button */}
+          <button
+            onClick={() => onNavigate('projects')}
+            className={`group relative w-full text-center px-6 text-2xl md:text-4xl font-bold tracking-wider transition-all duration-500 transform hover:scale-105 ${
+              currentSection === 'projects'
+                ? (isDarkMode ? 'text-blue-400' : 'text-blue-600')
+                : (isDarkMode ? 'text-white hover:text-blue-400' : 'text-black hover:text-blue-600')
+            }`}
+          >
+            <span className="inline-block relative overflow-hidden">
+              <span className="relative z-10">{t.projectsLink}</span>
+              <span className={`absolute bottom-0 left-0 w-0 h-1 ${isDarkMode ? 'bg-blue-400' : 'bg-blue-600'} transition-all duration-500 group-hover:w-full`}></span>
+            </span>
+            {currentSection === 'projects' && (
+              <span className="absolute -left-6 top-1/2 transform -translate-y-1/2 w-3 h-3 rounded-full bg-blue-400"></span>
+            )}
+          </button>
+          
+          <button
+            onClick={() => onNavigate('resume')}
+            className={`group relative w-full text-center px-6 text-2xl md:text-4xl font-bold tracking-wider transition-all duration-500 transform hover:scale-105 ${
+              currentSection === 'resume'
+                ? (isDarkMode ? 'text-blue-400' : 'text-blue-600')
+                : (isDarkMode ? 'text-white hover:text-blue-400' : 'text-black hover:text-blue-600')
+            }`}
+          >
+            <span className="inline-block relative overflow-hidden">
+              <span className="relative z-10">{t.cvLink}</span>
+              <span className={`absolute bottom-0 left-0 w-0 h-1 ${isDarkMode ? 'bg-blue-400' : 'bg-blue-600'} transition-all duration-500 group-hover:w-full`}></span>
+            </span>
+            {currentSection === 'resume' && (
+              <span className="absolute -left-6 top-1/2 transform -translate-y-1/2 w-3 h-3 rounded-full bg-blue-400"></span>
+            )}
+          </button>
+          
           <button
             onClick={() => onNavigate('contact')}
             className={`group relative w-full text-center px-6 text-2xl md:text-4xl font-bold tracking-wider transition-all duration-500 transform hover:scale-105 ${

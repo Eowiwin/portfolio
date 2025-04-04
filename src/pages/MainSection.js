@@ -38,8 +38,7 @@ const MainSection = ({ onNavigate }) => {
         </p>
         <div className="flex gap-4 md:gap-6 justify-center text-xs md:text-base">
           <AnimatedButton 
-            isLink={true} 
-            href="#projects"
+            onClick={() => onNavigate('projects')} 
             emoji="🚀"
           >
             {t.projects}

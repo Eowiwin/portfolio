@@ -24,6 +24,19 @@ export const translations = {
     downloadButton: "Download CV",
     backToAbout: "↑ About",
     
+    // Projects section
+    projectsTitle: "PROJECTS",
+    projectsDescription: "Here's a selection of my recent projects. Each project represents my interests and skills in different technologies.",
+    viewProject: "View Project",
+    viewSource: "More...",
+    updated: "Updated",
+    updatedOn: "Updated on",
+    backToHome: "Back to Home",
+    searchProjects: "Search projects...",
+    sortBy: "Sort by:",
+    alphabetical: "A-Z",
+    noProjectsFound: "No projects match your search.",
+    
     // Contact section
     contactTitle: "CONTACT",
     contactDescription: "Feel free to contact me to discuss projects, job opportunities or even a quick question.",
@@ -39,7 +52,9 @@ export const translations = {
     // Navigation
     homeLink: "Home",
     aboutLink: "About",
-    contactLink: "Contact"
+    contactLink: "Contact",
+    cvLink: "Resume",
+    projectsLink: "Projects"
   },
   fr: {
     greeting: "Salut ! Je suis",
@@ -66,6 +81,19 @@ export const translations = {
     downloadButton: "Télécharger CV",
     backToAbout: "↑ À Propos",
     
+    // Projects section
+    projectsTitle: "PROJETS",
+    projectsDescription: "Voici une sélection de mes projets récents. Chaque projet représente mes intérêts et compétences dans différentes technologies.",
+    viewProject: "Voir le Projet",
+    viewSource: "Plus...",
+    updated: "Mis à jour",
+    updatedOn: "Mis à jour le",
+    backToHome: "Retour à l'Accueil",
+    searchProjects: "Rechercher un projet...",
+    sortBy: "Trier par:",
+    alphabetical: "Alphabétique",
+    noProjectsFound: "Aucun projet ne correspond à votre recherche.",
+    
     // Contact section
     contactTitle: "CONTACT",
     contactDescription: "N'hésitez pas à me contacter pour discuter de projets, d'opportunités professionnelles ou même une simple question.",
@@ -81,6 +109,8 @@ export const translations = {
     // Navigation
     homeLink: "Accueil",
     aboutLink: "À Propos",
-    contactLink: "Contact"
+    contactLink: "Contact",
+    cvLink: "CV",
+    projectsLink: "Projets"
   }
 };
