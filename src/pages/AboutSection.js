@@ -98,6 +98,11 @@ const AboutSection = ({ onNavigate }) => {
     }
   };
 
+  const handleGoToResume = (e) => {
+    e.preventDefault();
+    onNavigate('resume');
+  };
+
   // Landscape mode layout
   if (isLandscape) {
     console.log("Rendering LANDSCAPE layout");
@@ -118,12 +123,12 @@ const AboutSection = ({ onNavigate }) => {
                 {t.aboutDescription}
               </p>
               
-              <a 
-                href="#resume" 
+              <button 
+                onClick={handleGoToResume}
                 className={`inline-block text-sm transition-colors ${isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-black hover:text-blue-600'}`}
               >
                 {t.resumeButton}
-              </a>
+              </button>
             </div>
           </div>
 
@@ -249,12 +254,12 @@ const AboutSection = ({ onNavigate }) => {
                 {t.aboutDescription}
               </p>
               
-              <a 
-                href="#resume" 
+              <button 
+                onClick={handleGoToResume}
                 className={`inline-block text-base md:text-xl transition-colors ${isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-black hover:text-blue-600'}`}
               >
                 {t.resumeButton}
-              </a>
+              </button>
             </div>
           </div>
 

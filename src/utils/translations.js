@@ -15,6 +15,15 @@ export const translations = {
     aboutTitle: "ABOUT",
     resumeButton: "↓ Resume",
     
+    // Resume section
+    resumeTitle: "RESUME",
+    resumeDescription: "Here's an overview of my professional experience, education, and skills.",
+    experienceTitle: "Experience",
+    educationTitle: "Education",
+    skillsTitle: "Skills",
+    downloadButton: "Download CV",
+    backToAbout: "↑ About",
+    
     // Contact section
     contactTitle: "CONTACT",
     contactDescription: "Feel free to contact me to discuss projects, job opportunities or even a quick question.",
@@ -47,6 +56,15 @@ export const translations = {
     // About section
     aboutTitle: "À PROPOS DE MOI",
     resumeButton: "↓ CV",
+    
+    // Resume section
+    resumeTitle: "CV",
+    resumeDescription: "Voici un aperçu de mon expérience professionnelle, de ma formation et de mes compétences.",
+    experienceTitle: "Expérience",
+    educationTitle: "Formation",
+    skillsTitle: "Compétences",
+    downloadButton: "Télécharger CV",
+    backToAbout: "↑ À Propos",
     
     // Contact section
     contactTitle: "CONTACT",

@@ -3,6 +3,7 @@ import MainSection from './pages/MainSection';
 import AboutSection from './pages/AboutSection';
 import ContactSection from './pages/ContactSection';
 import MenuSection from './pages/MenuSection';
+import ResumeSection from './pages/ResumeSection';
 import MusicPlayer from './components/MusicPlayer';
 import Logo from './components/Logo';
 import LoadingScreen from './components/LoadingScreen';
@@ -118,6 +119,7 @@ const App = () => {
               {currentSection === 'main' && <MainSection onNavigate={handleNavigation} />}
               {currentSection === 'about' && <AboutSection onNavigate={handleNavigation} />}
               {currentSection === 'contact' && <ContactSection onNavigate={handleNavigation} />}
+              {currentSection === 'resume' && <ResumeSection onNavigate={handleNavigation} />}
             </>
           )}
 
