@@ -82,6 +82,84 @@ const AnimatedName = ({ children }) => {
   );
 };
 
+// Enhanced AnimatedButton component with more sparkles/magic emojis
+const AnimatedButton = ({ children, onClick, emoji, isLink = false }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const buttonContent = (
+    <span 
+      className={`
+        relative inline-block
+        text-gray-800 dark:text-gray-200 
+        hover:text-blue-600 dark:hover:text-blue-400 
+        transition-all duration-300
+        ${isHovered ? 'scale-105' : ''}
+      `}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {isHovered && (
+        <>
+          {/* Enhanced sparkles with different positions and delays */}
+          <span 
+            className="absolute -top-8 left-0 animate-sparkleLeft opacity-0 invisible"
+            style={{ animationDelay: '0s' }}
+            aria-hidden="true"
+          >
+            ✨
+          </span>
+          <span 
+            className="absolute -top-10 left-1/4 animate-sparkleRight opacity-0 invisible"
+            style={{ animationDelay: '0.2s' }}
+            aria-hidden="true"
+          >
+            ⭐
+          </span>
+          <span 
+            className="absolute -top-8 right-0 animate-sparkleRight opacity-0 invisible"
+            style={{ animationDelay: '0.3s' }}
+            aria-hidden="true"
+          >
+            ✨
+          </span>
+          <span 
+            className="absolute -top-12 right-1/4 animate-sparkleLeft opacity-0 invisible"
+            style={{ animationDelay: '0.4s' }}
+            aria-hidden="true"
+          >
+            ⭐
+          </span>
+          <span 
+            className="absolute -top-14 left-1/2 -translate-x-1/2 animate-floatUp opacity-0 invisible"
+            style={{ animationDelay: '0.5s', fontSize: '0.8em' }}
+            aria-hidden="true"
+          >
+            {emoji === '🚀' ? '🛸' : emoji === '📝' ? '✏️' : '✉️'}
+          </span>
+          
+          {/* Custom emoji for each button */}
+          <span 
+            className="absolute left-1/2 -translate-x-1/2 -top-16 animate-floatUp pointer-events-none select-none"
+            style={{ fontSize: '1.5em' }}
+            aria-hidden="true"
+          >
+            {emoji}
+          </span>
+        </>
+      )}
+      <span className="relative">
+        {children}
+      </span>
+    </span>
+  );
+
+  if (isLink) {
+    return <a href="#projects">{buttonContent}</a>;
+  }
+
+  return <button onClick={onClick}>{buttonContent}</button>;
+};
+
 const MainSection = ({ onNavigate }) => {
   const { isDarkMode } = useThemeStore();
   const { isFrench } = useLanguageStore();
@@ -112,25 +190,25 @@ const MainSection = ({ onNavigate }) => {
         <p className="text-sm md:text-xl text-gray-800 dark:text-gray-200 mb-6 md:mb-8">
           {t.description}
         </p>
-        <div className="flex gap-4 md:gap-6 justify-center">
-          <a 
-            href="#projects" 
-            className="text-xs md:text-base text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        <div className="flex gap-4 md:gap-6 justify-center text-xs md:text-base">
+          <AnimatedButton 
+            isLink={true} 
+            emoji="🚀"
           >
             {t.projects}
-          </a>
-          <button 
-            onClick={() => onNavigate('about')}
-            className="text-xs md:text-base text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          </AnimatedButton>
+          <AnimatedButton 
+            onClick={() => onNavigate('about')} 
+            emoji="📝"
           >
             {t.about}
-          </button>
-          <button 
-            onClick={() => onNavigate('contact')}
-            className="text-xs md:text-base text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          </AnimatedButton>
+          <AnimatedButton 
+            onClick={() => onNavigate('contact')} 
+            emoji="📧"
           >
             {t.contact || 'Contact'}
-          </button>
+          </AnimatedButton>
         </div>
       </div>
     </div>

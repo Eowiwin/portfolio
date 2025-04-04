@@ -6,6 +6,72 @@ import useLanguageStore from '../store/languageStore';
 import { translations } from '../utils/translations';
 import MouseFollower from '../components/MouseFollower';
 
+// Animated button component for the back to About button
+const AnimatedButton = ({ children, onClick, emoji, className = "" }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const { isDarkMode } = useThemeStore();
+
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`
+        relative inline-block transition-all duration-300
+        ${isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-900 hover:text-blue-600'}
+        ${isHovered ? 'scale-105' : ''}
+        ${className}
+      `}
+    >
+      {isHovered && (
+        <>
+          {/* Multiple sparkles with different positions and delays */}
+          <span 
+            className="absolute -top-6 left-0 animate-sparkleLeft opacity-0 invisible"
+            style={{ animationDelay: '0s' }}
+            aria-hidden="true"
+          >
+            ✨
+          </span>
+          <span 
+            className="absolute -top-8 right-0 animate-sparkleRight opacity-0 invisible"
+            style={{ animationDelay: '0.15s' }}
+            aria-hidden="true"
+          >
+            ⭐
+          </span>
+          <span 
+            className="absolute -top-10 left-1/4 animate-sparkleLeft opacity-0 invisible"
+            style={{ animationDelay: '0.3s' }}
+            aria-hidden="true"
+          >
+            ✨
+          </span>
+          <span 
+            className="absolute -top-12 right-1/4 animate-sparkleRight opacity-0 invisible"
+            style={{ animationDelay: '0.45s' }}
+            aria-hidden="true"
+          >
+            🔍
+          </span>
+          
+          {/* About emoji */}
+          <span 
+            className="absolute left-1/2 -translate-x-1/2 -top-16 animate-floatUp pointer-events-none select-none"
+            style={{ fontSize: '1.5em' }}
+            aria-hidden="true"
+          >
+            {emoji}
+          </span>
+        </>
+      )}
+      <span className="relative">
+        {children}
+      </span>
+    </button>
+  );
+};
+
 const ResumeSection = ({ onNavigate }) => {
   const { isDarkMode } = useThemeStore();
   const { isFrench } = useLanguageStore();
@@ -56,14 +122,13 @@ const ResumeSection = ({ onNavigate }) => {
           {/* Controls above the resume in landscape mode */}
           <div className="flex justify-center items-center space-x-4 mb-4 w-full">
             {/* Back button */}
-            <button 
+            <AnimatedButton 
               onClick={handleBackToAbout}
-              className={`inline-block text-sm transition-colors px-3 py-1.5 rounded ${
-                isDarkMode ? 'text-white hover:text-blue-400 bg-gray-800/60' : 'text-gray-800 hover:text-blue-700 bg-white/80'
-              }`}
+              emoji="📝"
+              className="text-sm px-3 py-1.5 rounded"
             >
               {t.backToAbout}
-            </button>
+            </AnimatedButton>
             
             {/* Download button */}
             <div className="relative">
@@ -114,14 +179,13 @@ const ResumeSection = ({ onNavigate }) => {
       {/* Mobile controls - shown above the resume on mobile with more vertical spacing */}
       <div className="md:hidden flex justify-center items-center space-x-4 mb-6 px-4 relative z-20">
         {/* Back button for mobile view */}
-        <button 
+        <AnimatedButton 
           onClick={handleBackToAbout}
-          className={`inline-block text-sm transition-colors px-3 py-1.5 rounded ${
-            isDarkMode ? 'text-white hover:text-blue-400 bg-gray-800/80' : 'text-gray-900 hover:text-blue-800 bg-white/90'
-          }`}
+          emoji="📝"
+          className="text-sm px-3 py-1.5 rounded"
         >
           {t.backToAbout}
-        </button>
+        </AnimatedButton>
         
         {/* Download button for mobile view */}
         <div className="relative">
@@ -154,12 +218,13 @@ const ResumeSection = ({ onNavigate }) => {
           {/* Back to About button and controls for desktop - moved to left side next to the resume */}
           <div className="hidden md:block mr-6 sticky top-20">
             <div className="relative mb-4">
-              <button 
+              <AnimatedButton 
                 onClick={handleBackToAbout}
-                className={`inline-block text-base transition-colors ${isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-900 hover:text-blue-600'}`}
+                emoji="📝"
+                className="text-base"
               >
                 {t.backToAbout}
-              </button>
+              </AnimatedButton>
             </div>
             
             {/* Download button - below the back button */}
