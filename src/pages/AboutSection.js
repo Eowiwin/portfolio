@@ -10,6 +10,7 @@ const images = [
   process.env.PUBLIC_URL + '/img/calisthenics1.jpg',
   process.env.PUBLIC_URL + '/img/calisthenics2.jpg',
   process.env.PUBLIC_URL + '/img/calisthenics3.jpg',
+  process.env.PUBLIC_URL + '/img/calisthenics4.jpg',
 ];
 
 const AboutSection = ({ onNavigate }) => {
