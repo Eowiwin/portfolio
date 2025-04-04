@@ -4,71 +4,7 @@ import useThemeStore from '../store/themeStore';
 import useLanguageStore from '../store/languageStore';
 import { translations } from '../utils/translations';
 import MouseFollower from '../components/MouseFollower';
-
-// Animated button component for Resume button
-const AnimatedButton = ({ children, onClick, emoji }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const { isDarkMode } = useThemeStore();
-
-  return (
-    <button
-      onClick={onClick}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={`
-        relative inline-block text-sm md:text-xl transition-all duration-300
-        ${isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-black hover:text-blue-600'}
-        ${isHovered ? 'scale-105' : ''}
-      `}
-    >
-      {isHovered && (
-        <>
-          {/* Multiple sparkles with different positions and delays */}
-          <span 
-            className="absolute -top-6 md:-top-8 left-0 animate-sparkleLeft opacity-0 invisible"
-            style={{ animationDelay: '0s' }}
-            aria-hidden="true"
-          >
-            ✨
-          </span>
-          <span 
-            className="absolute -top-8 md:-top-10 right-0 animate-sparkleRight opacity-0 invisible"
-            style={{ animationDelay: '0.2s' }}
-            aria-hidden="true"
-          >
-            ⭐
-          </span>
-          <span 
-            className="absolute -top-10 md:-top-12 left-1/4 animate-sparkleLeft opacity-0 invisible"
-            style={{ animationDelay: '0.3s' }}
-            aria-hidden="true"
-          >
-            ✨
-          </span>
-          <span 
-            className="absolute -top-10 md:-top-14 right-1/4 animate-sparkleRight opacity-0 invisible"
-            style={{ animationDelay: '0.4s' }}
-            aria-hidden="true"
-          >
-            📄
-          </span>
-          
-          {/* Resume emoji */}
-          <span 
-            className="absolute left-1/2 -translate-x-1/2 -top-14 md:-top-16 animate-floatUp pointer-events-none select-none"
-            style={{ fontSize: '1.5em' }}
-            aria-hidden="true"
-          >
-            {emoji}
-          </span>
-        </>
-      )}
-      <span className="relative">
-        {children}
-      </span>
-    </button>
-  );
-};
+import { AnimatedButton } from '../components/AnimatedElements';
 
 const images = [
   process.env.PUBLIC_URL + '/img/calisthenics1.jpg',
@@ -191,6 +127,8 @@ const AboutSection = ({ onNavigate }) => {
               <AnimatedButton
                 onClick={handleGoToResume}
                 emoji="📋"
+                darkTextClass={isDarkMode ? "text-gray-300" : "text-black"}
+                className="text-sm"
               >
                 {t.resumeButton}
               </AnimatedButton>
@@ -322,6 +260,8 @@ const AboutSection = ({ onNavigate }) => {
               <AnimatedButton 
                 onClick={handleGoToResume}
                 emoji="📋"
+                darkTextClass={isDarkMode ? "text-gray-300" : "text-black"} 
+                className="text-base md:text-xl"
               >
                 {t.resumeButton}
               </AnimatedButton>

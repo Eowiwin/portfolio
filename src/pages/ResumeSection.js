@@ -5,72 +5,7 @@ import useThemeStore from '../store/themeStore';
 import useLanguageStore from '../store/languageStore';
 import { translations } from '../utils/translations';
 import MouseFollower from '../components/MouseFollower';
-
-// Animated button component for the back to About button
-const AnimatedButton = ({ children, onClick, emoji, className = "" }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const { isDarkMode } = useThemeStore();
-
-  return (
-    <button
-      onClick={onClick}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className={`
-        relative inline-block transition-all duration-300
-        ${isDarkMode ? 'text-gray-300 hover:text-blue-400' : 'text-gray-900 hover:text-blue-600'}
-        ${isHovered ? 'scale-105' : ''}
-        ${className}
-      `}
-    >
-      {isHovered && (
-        <>
-          {/* Multiple sparkles with different positions and delays */}
-          <span 
-            className="absolute -top-6 left-0 animate-sparkleLeft opacity-0 invisible"
-            style={{ animationDelay: '0s' }}
-            aria-hidden="true"
-          >
-            ✨
-          </span>
-          <span 
-            className="absolute -top-8 right-0 animate-sparkleRight opacity-0 invisible"
-            style={{ animationDelay: '0.15s' }}
-            aria-hidden="true"
-          >
-            ⭐
-          </span>
-          <span 
-            className="absolute -top-10 left-1/4 animate-sparkleLeft opacity-0 invisible"
-            style={{ animationDelay: '0.3s' }}
-            aria-hidden="true"
-          >
-            ✨
-          </span>
-          <span 
-            className="absolute -top-12 right-1/4 animate-sparkleRight opacity-0 invisible"
-            style={{ animationDelay: '0.45s' }}
-            aria-hidden="true"
-          >
-            🔍
-          </span>
-          
-          {/* About emoji */}
-          <span 
-            className="absolute left-1/2 -translate-x-1/2 -top-16 animate-floatUp pointer-events-none select-none"
-            style={{ fontSize: '1.5em' }}
-            aria-hidden="true"
-          >
-            {emoji}
-          </span>
-        </>
-      )}
-      <span className="relative">
-        {children}
-      </span>
-    </button>
-  );
-};
+import { AnimatedButton } from '../components/AnimatedElements';
 
 const ResumeSection = ({ onNavigate }) => {
   const { isDarkMode } = useThemeStore();
@@ -84,7 +19,7 @@ const ResumeSection = ({ onNavigate }) => {
     month: 'long',
     day: 'numeric'
   });
-
+  
   // Detect landscape mode
   useEffect(() => {
     const checkOrientation = () => {
@@ -126,6 +61,7 @@ const ResumeSection = ({ onNavigate }) => {
               onClick={handleBackToAbout}
               emoji="📝"
               className="text-sm px-3 py-1.5 rounded"
+              darkTextClass={isDarkMode ? "text-white" : "text-gray-800"}
             >
               {t.backToAbout}
             </AnimatedButton>
@@ -183,6 +119,7 @@ const ResumeSection = ({ onNavigate }) => {
           onClick={handleBackToAbout}
           emoji="📝"
           className="text-sm px-3 py-1.5 rounded"
+          darkTextClass={isDarkMode ? "text-white" : "text-gray-900"}
         >
           {t.backToAbout}
         </AnimatedButton>
@@ -222,6 +159,7 @@ const ResumeSection = ({ onNavigate }) => {
                 onClick={handleBackToAbout}
                 emoji="📝"
                 className="text-base"
+                darkTextClass={isDarkMode ? "text-gray-300" : "text-gray-900"}
               >
                 {t.backToAbout}
               </AnimatedButton>
