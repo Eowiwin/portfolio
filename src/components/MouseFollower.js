@@ -8,6 +8,7 @@ const MouseFollower = () => {
   const { isDarkMode } = useThemeStore();
 
   useEffect(() => {
+    // Use passive: true to improve scrolling performance
     const handleMouseMove = (e) => {
       setPosition({ x: e.clientX, y: e.clientY });
       setIsVisible(true);
@@ -22,8 +23,9 @@ const MouseFollower = () => {
       setIsVisible(false);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mousedown', handleMouseDown);
+    // Add passive: true to improve scroll performance
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('mousedown', handleMouseDown, { passive: true });
     window.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
@@ -41,7 +43,7 @@ const MouseFollower = () => {
       ? 'rgba(59, 130, 246, 0.15)' 
       : 'rgba(0, 0, 0, 0.15)',
     borderRadius: '50%',
-    pointerEvents: 'none',
+    pointerEvents: 'none', // This ensures the element doesn't interfere with interactions
     left: `${position.x - (isClicking ? 12 : 18)}px`,
     top: `${position.y - (isClicking ? 12 : 18)}px`,
     zIndex: 9999,
@@ -54,9 +56,11 @@ const MouseFollower = () => {
       ? '1px solid rgba(59, 130, 246, 0.2)'
       : '1px solid rgba(0, 0, 0, 0.2)',
     opacity: isVisible ? 1 : 0,
+    willChange: 'transform', // Optimize for animation performance
   };
 
-  return <div style={styles} />;
+  // Only render the follower when it's needed
+  return isVisible ? <div style={styles} /> : null;
 };
 
-export default MouseFollower; 
+export default MouseFollower;

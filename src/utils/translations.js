@@ -26,16 +26,18 @@ export const translations = {
     
     // Projects section
     projectsTitle: "PROJECTS",
-    projectsDescription: "Here's a selection of my recent projects. Each project represents my interests and skills in different technologies.",
+    projectsDescription: "Here are my projects that I was able to complete during my school career or on my own. I try to learn new things every day!",
     viewProject: "View Project",
     viewSource: "More...",
     updated: "Updated",
     updatedOn: "Updated on",
-    backToHome: "Back to Home",
+    backToHome: "↑ Home",
     searchProjects: "Search projects...",
     sortBy: "Sort by:",
     alphabetical: "A-Z",
     noProjectsFound: "No projects match your search.",
+    show: "Number of projects:",
+    custom: "Custom",
     
     // Contact section
     contactTitle: "CONTACT",
@@ -83,16 +85,18 @@ export const translations = {
     
     // Projects section
     projectsTitle: "PROJETS",
-    projectsDescription: "Voici une sélection de mes projets récents. Chaque projet représente mes intérêts et compétences dans différentes technologies.",
+    projectsDescription: "Voici mes projets que j'ai pu réalisé au cours de mon cursus scolaire ou en autodidacte. J'essaye d'apprendre chaque jour de nouvelles choses !",
     viewProject: "Voir le Projet",
     viewSource: "Plus...",
     updated: "Mis à jour",
     updatedOn: "Mis à jour le",
-    backToHome: "Retour à l'Accueil",
+    backToHome: "↑ Accueil",
     searchProjects: "Rechercher un projet...",
     sortBy: "Trier par:",
     alphabetical: "Alphabétique",
     noProjectsFound: "Aucun projet ne correspond à votre recherche.",
+    show: "Nombre de projets:",
+    custom: "Personnalisé",
     
     // Contact section
     contactTitle: "CONTACT",
