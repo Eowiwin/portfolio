@@ -1,8 +1,8 @@
 {
-  "name": "portfoliov2",
+  "name": "portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://eowiwin.github.io/portfoliov2/",
+  "homepage": "https://eowiwin.github.io/portfolio/",
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@tailwindcss/postcss": "^4.0.15",
