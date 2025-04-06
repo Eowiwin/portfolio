@@ -105,6 +105,11 @@ const AboutSection = ({ onNavigate }) => {
     onNavigate('resume');
   };
 
+  const handleGoToTimeline = (e) => {
+    e.preventDefault();
+    onNavigate('timeline');
+  };
+
   // Landscape mode layout
   if (isLandscape) {
     console.log("Rendering LANDSCAPE layout");
@@ -125,14 +130,25 @@ const AboutSection = ({ onNavigate }) => {
                 {t.aboutDescription}
               </p>
               
-              <AnimatedButton
-                onClick={handleGoToResume}
-                emoji="📋"
-                darkTextClass={isDarkMode ? "text-gray-300" : "text-black"}
-                className="text-sm"
-              >
-                {t.resumeButton}
-              </AnimatedButton>
+              <div className="flex space-x-2 mt-2">
+                <AnimatedButton
+                  onClick={handleGoToResume}
+                  emoji="📋"
+                  darkTextClass={isDarkMode ? "text-gray-300" : "text-black"}
+                  className="text-sm"
+                >
+                  {t.resumeButton}
+                </AnimatedButton>
+                
+                <AnimatedButton
+                  onClick={handleGoToTimeline}
+                  emoji="📅"
+                  darkTextClass={isDarkMode ? "text-gray-300" : "text-black"}
+                  className="text-sm"
+                >
+                  {t.timelineButton}
+                </AnimatedButton>
+              </div>
             </div>
           </div>
 
@@ -258,14 +274,25 @@ const AboutSection = ({ onNavigate }) => {
                 {t.aboutDescription}
               </p>
               
-              <AnimatedButton 
-                onClick={handleGoToResume}
-                emoji="📋"
-                darkTextClass={isDarkMode ? "text-gray-300" : "text-black"} 
-                className="text-base md:text-xl"
-              >
-                {t.resumeButton}
-              </AnimatedButton>
+              <div className="flex flex-wrap gap-4">
+                <AnimatedButton 
+                  onClick={handleGoToResume}
+                  emoji="📋"
+                  darkTextClass={isDarkMode ? "text-gray-300" : "text-black"} 
+                  className="text-base md:text-xl"
+                >
+                  {t.resumeButton}
+                </AnimatedButton>
+                
+                <AnimatedButton 
+                  onClick={handleGoToTimeline}
+                  emoji="📅"
+                  darkTextClass={isDarkMode ? "text-gray-300" : "text-black"} 
+                  className="text-base md:text-xl"
+                >
+                  {t.timelineButton}
+                </AnimatedButton>
+              </div>
             </div>
           </div>
 

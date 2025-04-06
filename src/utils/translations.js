@@ -14,6 +14,7 @@ export const translations = {
     // About section
     aboutTitle: "ABOUT",
     resumeButton: "↓ Resume",
+    timelineButton: "↓ Timeline",
     
     // Resume section
     resumeTitle: "RESUME",
@@ -23,6 +24,12 @@ export const translations = {
     skillsTitle: "Skills",
     downloadButton: "Download CV",
     backToAbout: "↑ About",
+    
+    // Timeline section
+    timelineTitle: "TIMELINE",
+    timelineDescription: "This is my story, since I was little! 👶🏼",
+    educationEvents: "Education",
+    workEvents: "Work Experience",
     
     // Projects section
     projectsTitle: "PROJECTS",
@@ -56,7 +63,8 @@ export const translations = {
     aboutLink: "About",
     contactLink: "Contact",
     cvLink: "Resume",
-    projectsLink: "Projects"
+    projectsLink: "Projects",
+    timelineLink: "Timeline"
   },
   fr: {
     greeting: "Salut ! Je suis",
@@ -73,6 +81,7 @@ export const translations = {
     // About section
     aboutTitle: "À PROPOS DE MOI",
     resumeButton: "↓ CV",
+    timelineButton: "↓ Parcours",
     
     // Resume section
     resumeTitle: "CV",
@@ -82,6 +91,12 @@ export const translations = {
     skillsTitle: "Compétences",
     downloadButton: "Télécharger CV",
     backToAbout: "↑ À Propos",
+    
+    // Timeline section
+    timelineTitle: "PARCOURS",
+    timelineDescription: "Voici mon histoire, depuis que je suis tout petit ! 👶🏼",
+    educationEvents: "Formation",
+    workEvents: "Expérience Professionnelle",
     
     // Projects section
     projectsTitle: "PROJETS",
@@ -115,6 +130,7 @@ export const translations = {
     aboutLink: "À Propos",
     contactLink: "Contact",
     cvLink: "CV",
-    projectsLink: "Projets"
+    projectsLink: "Projets",
+    timelineLink: "Parcours"
   }
 };

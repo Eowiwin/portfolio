@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import useThemeStore from '../store/themeStore';
 
 /**
  * AnimatedName component for name animations with sparkles and a lion emoji
@@ -95,7 +94,6 @@ export const AnimatedButton = ({
   hoverTextClass = "hover:text-blue-600 dark:hover:text-blue-400" 
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const { isDarkMode } = useThemeStore();
 
   const getSecondaryEmoji = () => {
     if (emoji === '🚀') return '🛸';
@@ -180,4 +178,6 @@ export const AnimatedButton = ({
   return <button onClick={onClick}>{buttonContent}</button>;
 };
 
-export default { AnimatedName, AnimatedButton };
+// Fix anonymous export by creating a named object first
+const AnimatedElements = { AnimatedName, AnimatedButton };
+export default AnimatedElements;

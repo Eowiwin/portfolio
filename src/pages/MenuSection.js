@@ -28,7 +28,7 @@ const MenuSection = ({ onNavigate, currentSection }) => {
                 : (isDarkMode ? 'text-white hover:text-blue-400' : 'text-black hover:text-blue-600')
             }`}
           >
-            <span className="inline-block relative overflow-hidden">
+            <span className="inline-block relative overflow-hidden pb-2">
               <span className="relative z-10">{t.homeLink}</span>
               <span className={`absolute bottom-0 left-0 w-0 h-1 ${isDarkMode ? 'bg-blue-400' : 'bg-blue-600'} transition-all duration-500 group-hover:w-full`}></span>
             </span>
@@ -45,7 +45,7 @@ const MenuSection = ({ onNavigate, currentSection }) => {
                 : (isDarkMode ? 'text-white hover:text-blue-400' : 'text-black hover:text-blue-600')
             }`}
           >
-            <span className="inline-block relative overflow-hidden">
+            <span className="inline-block relative overflow-hidden pb-2">
               <span className="relative z-10">{t.aboutLink}</span>
               <span className={`absolute bottom-0 left-0 w-0 h-1 ${isDarkMode ? 'bg-blue-400' : 'bg-blue-600'} transition-all duration-500 group-hover:w-full`}></span>
             </span>
@@ -63,7 +63,7 @@ const MenuSection = ({ onNavigate, currentSection }) => {
                 : (isDarkMode ? 'text-white hover:text-blue-400' : 'text-black hover:text-blue-600')
             }`}
           >
-            <span className="inline-block relative overflow-hidden">
+            <span className="inline-block relative overflow-hidden pb-2">
               <span className="relative z-10">{t.projectsLink}</span>
               <span className={`absolute bottom-0 left-0 w-0 h-1 ${isDarkMode ? 'bg-blue-400' : 'bg-blue-600'} transition-all duration-500 group-hover:w-full`}></span>
             </span>
@@ -80,7 +80,7 @@ const MenuSection = ({ onNavigate, currentSection }) => {
                 : (isDarkMode ? 'text-white hover:text-blue-400' : 'text-black hover:text-blue-600')
             }`}
           >
-            <span className="inline-block relative overflow-hidden">
+            <span className="inline-block relative overflow-hidden pb-2">
               <span className="relative z-10">{t.cvLink}</span>
               <span className={`absolute bottom-0 left-0 w-0 h-1 ${isDarkMode ? 'bg-blue-400' : 'bg-blue-600'} transition-all duration-500 group-hover:w-full`}></span>
             </span>
@@ -88,6 +88,8 @@ const MenuSection = ({ onNavigate, currentSection }) => {
               <span className="absolute -left-6 top-1/2 transform -translate-y-1/2 w-3 h-3 rounded-full bg-blue-400"></span>
             )}
           </button>
+          
+          {/* Timeline button removed */}
           
           <button
             onClick={() => onNavigate('contact')}
@@ -97,7 +99,7 @@ const MenuSection = ({ onNavigate, currentSection }) => {
                 : (isDarkMode ? 'text-white hover:text-blue-400' : 'text-black hover:text-blue-600')
             }`}
           >
-            <span className="inline-block relative overflow-hidden">
+            <span className="inline-block relative overflow-hidden pb-2">
               <span className="relative z-10">{t.contactLink}</span>
               <span className={`absolute bottom-0 left-0 w-0 h-1 ${isDarkMode ? 'bg-blue-400' : 'bg-blue-600'} transition-all duration-500 group-hover:w-full`}></span>
             </span>

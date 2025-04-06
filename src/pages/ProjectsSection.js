@@ -993,7 +993,7 @@ const ProjectsSection = ({ onNavigate }) => {
               <span className={`text-xs ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                 {t.sortBy}
               </span>
-              <div className="flex border rounded-md overflow-hidden">
+              <div className="flex rounded-md overflow-hidden">
                 <button
                   onClick={() => setSortOption('updated')}
                   className={`py-1 px-2 text-xs transition-colors ${
@@ -1022,7 +1022,7 @@ const ProjectsSection = ({ onNavigate }) => {
               <span className={`text-xs ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                 {t.show}
               </span>
-              <div className="flex border rounded-md overflow-hidden">
+              <div className="flex rounded-md overflow-hidden">
                 {projectCountOptions.map(count => (
                   <button
                     key={count}
@@ -1643,7 +1643,7 @@ const ProjectsSection = ({ onNavigate }) => {
               <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                 {t.sortBy}
               </span>
-              <div className="flex border rounded-md overflow-hidden ml-2">
+              <div className="flex rounded-md overflow-hidden ml-2">
                 <button
                   onClick={() => setSortOption('updated')}
                   className={`py-2 px-3 text-sm transition-colors ${
@@ -1672,7 +1672,7 @@ const ProjectsSection = ({ onNavigate }) => {
               <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                 {t.show}
               </span>
-              <div className="flex border rounded-md overflow-hidden ml-2">
+              <div className="flex rounded-md overflow-hidden ml-2">
                 {projectCountOptions.map(count => (
                   <button
                     key={count}

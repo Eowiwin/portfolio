@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import GradientBackground from '../components/GradientBackground';
 import useThemeStore from '../store/themeStore';
 import useLanguageStore from '../store/languageStore';

@@ -6,6 +6,7 @@ import useLanguageStore from '../store/languageStore';
 import { translations } from '../utils/translations';
 import MouseFollower from '../components/MouseFollower';
 import { AnimatedButton } from '../components/AnimatedElements';
+import { jsPDF } from 'jspdf';
 
 const ResumeSection = ({ onNavigate }) => {
   const { isDarkMode } = useThemeStore();
@@ -38,8 +39,21 @@ const ResumeSection = ({ onNavigate }) => {
   }, []);
 
   const handleDownloadCV = () => {
-    // Link to the PNG file in the public folder
-    window.open(process.env.PUBLIC_URL + '/img/CV.png', '_blank');
+    // Create a new image object
+    const img = new Image();
+    img.src = process.env.PUBLIC_URL + '/img/CV.png';
+    
+    img.onload = () => {
+      // Create a new PDF with jsPDF
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'px',
+        format: [img.width, img.height]
+      });
+      pdf.addImage(img, 'PNG', 0, 0, img.width, img.height);
+
+      pdf.save('Resume.pdf');
+    };
   };
 
   const handleBackToAbout = () => {
@@ -90,7 +104,7 @@ const ResumeSection = ({ onNavigate }) => {
           </div>
           
           <div className="w-full flex justify-center">
-            <div className="max-w-4xl border rounded-lg overflow-hidden shadow-md bg-white">
+            <div className="max-w-2xl shadow-md">
               <img
                 src={process.env.PUBLIC_URL + '/img/CV.png'}
                 alt="Resume"
@@ -188,7 +202,7 @@ const ResumeSection = ({ onNavigate }) => {
             </div>
           </div>
           
-          <div className="w-full max-w-4xl border rounded-lg overflow-hidden shadow-md bg-white relative">
+          <div className="w-full mb-20 max-w-2xl shadow-md">
             <img
               src={process.env.PUBLIC_URL + '/img/CV.png'}
               alt="Resume"
