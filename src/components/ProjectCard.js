@@ -47,20 +47,20 @@ const ProjectCard = ({ project, onClick }) => {
         />
       </div>
       
-      <div className="p-6">
-        <h3 className={`text-xl font-bold mb-2 text-justify ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+      <div className="p-4 md:p-6">
+        <h3 className={`text-lg md:text-xl font-bold mb-1 md:mb-2 text-justify ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
           {project.title}
         </h3>
         
-        <p className={`text-sm mb-4 text-justify ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+        <p className={`text-xs md:text-sm mb-3 md:mb-4 text-justify ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
           {project.description}
         </p>
         
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-1 md:gap-2 mb-3 md:mb-4">
           {project.tech.map((tech, index) => (
             <span 
               key={index}
-              className={`px-2 py-1 text-xs rounded ${
+              className={`px-1.5 md:px-2 py-0.5 md:py-1 text-[10px] md:text-xs rounded ${
                 isDarkMode ? 'bg-blue-900 text-blue-100' : 'bg-blue-100 text-blue-800'
               }`}
             >
@@ -69,7 +69,7 @@ const ProjectCard = ({ project, onClick }) => {
           ))}
         </div>
         
-        <div className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+        <div className={`text-[10px] md:text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
           {t.updated}: {formatDate(project.updatedAt)}
         </div>
       </div>

@@ -261,25 +261,25 @@ const AboutSection = ({ onNavigate }) => {
       <GradientBackground />
       
       {/* Content */}
-      <SectionContainer className="relative z-10 px-4 max-w-7xl mx-auto pt-28 pb-24 md:pt-40 md:pb-20 w-full">
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-16">
+      <SectionContainer className="relative z-10 px-4 max-w-7xl mx-auto pt-24 pb-20 md:pt-40 md:pb-20 w-full">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-6 md:gap-16">
           {/* Text content */}
           <div className="w-full md:w-5/12">
-            <h1 className={`text-3xl md:text-6xl font-bold mb-6 md:mb-12 font-display ${isDarkMode ? 'text-white' : 'text-black'}`}>
+            <h1 className={`text-2xl md:text-6xl font-bold mb-4 md:mb-12 font-display ${isDarkMode ? 'text-white' : 'text-black'}`}>
               {t.aboutTitle}
             </h1>
             
-            <div className="space-y-6 md:space-y-8">
-              <p className={`text-base md:text-xl leading-relaxed text-justify ${isDarkMode ? 'text-gray-300' : 'text-black'}`}>
+            <div className="space-y-4 md:space-y-8">
+              <p className={`text-sm md:text-xl leading-relaxed text-justify ${isDarkMode ? 'text-gray-300' : 'text-black'}`}>
                 {t.aboutDescription}
               </p>
               
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-3 md:gap-4">
                 <AnimatedButton 
                   onClick={handleGoToResume}
                   emoji="📋"
                   darkTextClass={isDarkMode ? "text-gray-300" : "text-black"} 
-                  className="text-base md:text-xl"
+                  className="text-sm md:text-xl"
                 >
                   {t.resumeButton}
                 </AnimatedButton>
@@ -288,7 +288,7 @@ const AboutSection = ({ onNavigate }) => {
                   onClick={handleGoToTimeline}
                   emoji="📅"
                   darkTextClass={isDarkMode ? "text-gray-300" : "text-black"} 
-                  className="text-base md:text-xl"
+                  className="text-sm md:text-xl"
                 >
                   {t.timelineButton}
                 </AnimatedButton>
@@ -297,7 +297,7 @@ const AboutSection = ({ onNavigate }) => {
           </div>
 
           {/* Image with navigation - larger but still mobile-appropriate */}
-          <div className="w-full md:w-7/12 flex flex-col items-center md:items-start mt-6 md:mt-0 pb-12">
+          <div className="w-full md:w-7/12 flex flex-col items-center md:items-start mt-4 md:mt-0 pb-8 md:pb-12">
             {/* Mobile image - larger size */}
             <div className="block md:hidden" style={{ width: '57vw', height: '40vh' }}>
               <div 
