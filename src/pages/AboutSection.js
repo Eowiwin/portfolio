@@ -256,7 +256,7 @@ const AboutSection = ({ onNavigate }) => {
   // Default portrait mode layout
   console.log("Rendering PORTRAIT layout");
   return (
-    <div className="relative w-full h-auto min-h-screen overflow-y-auto overflow-x-hidden touch-manipulation overscroll-none">
+    <div className="relative w-full min-h-screen overflow-y-auto overflow-x-hidden touch-manipulation">
       <MouseFollower />
       <GradientBackground />
       
@@ -297,9 +297,9 @@ const AboutSection = ({ onNavigate }) => {
           </div>
 
           {/* Image with navigation - larger but still mobile-appropriate */}
-          <div className="w-full md:w-7/12 flex flex-col items-center md:items-start mt-6 md:mt-0">
+          <div className="w-full md:w-7/12 flex flex-col items-center md:items-start mt-6 md:mt-0 pb-12">
             {/* Mobile image - larger size */}
-            <div className="block md:hidden" style={{ width: '57vw', height: '40vh', marginTop: '-5vh' }}>
+            <div className="block md:hidden" style={{ width: '57vw', height: '40vh' }}>
               <div 
                 className={`w-full h-full rounded-lg shadow-lg overflow-hidden ${isAnimating ? 'pointer-events-none' : 'cursor-pointer'}`}
                 onClick={nextImage}
@@ -404,7 +404,7 @@ const AboutSection = ({ onNavigate }) => {
             </div>
 
             {/* Mobile navigation indicators */}
-            <div className="md:hidden flex justify-center w-full mt-2 gap-2">
+            <div className="md:hidden flex justify-center w-full mt-4 gap-2 pb-4">
               {images.map((_, index) => (
                 <button 
                   key={index}
@@ -421,7 +421,7 @@ const AboutSection = ({ onNavigate }) => {
                       setIsAnimating(false);
                     }, 300);
                   }}
-                  className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                  className={`w-2 h-2 rounded-full transition-colors ${
                     index === currentImageIndex 
                       ? (isDarkMode ? 'bg-blue-400' : 'bg-blue-600') 
                       : (isDarkMode ? 'bg-gray-600' : 'bg-gray-300')
