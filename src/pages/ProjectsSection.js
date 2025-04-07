@@ -742,7 +742,7 @@ const ProjectsSection = ({ onNavigate }) => {
       image: isDarkMode 
         ? (isFrench ? process.env.PUBLIC_URL + "/img/portfolio-preview-dark.png" : process.env.PUBLIC_URL + "/img/portfolio-preview-dark-en.png")
         : (isFrench ? process.env.PUBLIC_URL + "/img/portfolio-preview-light.png" : process.env.PUBLIC_URL + "/img/portfolio-preview-light-en.png"),
-      link: "https://www.behance.net/erwanmenager",
+      link: "https://www.behance.net/gallery/223117437/Portfolio",
       updatedAt: "2025-04-06"
     },
     {
