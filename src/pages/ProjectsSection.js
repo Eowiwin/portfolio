@@ -738,7 +738,7 @@ const ProjectsSection = ({ onNavigate }) => {
       description: isFrench 
         ? "Mon site portfolio créé avec React et Tailwind CSS. J'ai décidé de partir sur un style différent et d'ajouter des petites animations ✨."
         : "My portfolio website built with React and Tailwind CSS. I decided to go for a different style and add some small animations ✨.",
-      tech: ["React", "Tailwind CSS", "JavaScript"],
+      tech: ["React Native", "Tailwind CSS", "JavaScript"],
       image: isDarkMode 
         ? (isFrench ? process.env.PUBLIC_URL + "/img/portfolio-preview-dark.png" : process.env.PUBLIC_URL + "/img/portfolio-preview-dark-en.png")
         : (isFrench ? process.env.PUBLIC_URL + "/img/portfolio-preview-light.png" : process.env.PUBLIC_URL + "/img/portfolio-preview-light-en.png"),
@@ -773,7 +773,7 @@ const ProjectsSection = ({ onNavigate }) => {
       description: isFrench 
         ? "SQLuedo est une application ludique pour permettre d'apprendre le langage SQL de manière ludique ! Destinée pour les lycéens, il faut résoudre des enquêtes policières avec le SQL 🔎."
         : "SQLuedo is an app that lets you learn SQL in a fun way! Designed for high school students, you have to solve detective investigations using SQL 🔎.",
-      tech: ["PHP", "HTML", "CSS", "JavaScript", "Blazor", "Kotlin", "Docker", "PostgreSQL"],
+      tech: ["PHP", "Docker", ".NET API REST", "EntityFramework", "C#", "HTML", "CSS", "JavaScript", "Blazor", "Kotlin", "XAML", "PostgreSQL", "Twig"],
       image: process.env.PUBLIC_URL + "/img/sqluedo-preview.png",
       link: "https://www.behance.net/erwanmenager",
       updatedAt: "2024-06-24"
