@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import GradientBackground from '../components/GradientBackground';
 import useThemeStore from '../store/themeStore';
 import useLanguageStore from '../store/languageStore';
@@ -10,7 +10,100 @@ const MenuSection = ({ onNavigate, currentSection }) => {
   const { isDarkMode } = useThemeStore();
   const { isFrench } = useLanguageStore();
   const t = translations[isFrench ? 'fr' : 'en'];
+  const [isLandscape, setIsLandscape] = useState(false);
 
+  // Detect landscape mode
+  useEffect(() => {
+    const checkOrientation = () => {
+      const isLand = window.innerWidth > window.innerHeight && window.innerWidth < 1024;
+      setIsLandscape(isLand);
+    };
+    
+    checkOrientation();
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', checkOrientation);
+    
+    return () => {
+      window.removeEventListener('resize', checkOrientation);
+      window.removeEventListener('orientationchange', checkOrientation);
+    };
+  }, []);
+
+  // Landscape mode layout
+  if (isLandscape) {
+    return (
+      <div className={`fixed inset-0 z-40 w-full h-full flex items-center justify-center ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
+        <MouseFollower />
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <GradientBackground />
+        </div>
+        
+        <div className="relative z-10 w-full px-4">
+          <nav className="flex flex-row flex-wrap justify-center gap-2 py-2">
+            <button
+              onClick={() => onNavigate('main')}
+              className={`group relative text-center px-3 py-2 text-sm font-bold tracking-wide transition-all duration-300 transform hover:scale-105 rounded-md ${
+                currentSection === 'main'
+                  ? (isDarkMode ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white')
+                  : (isDarkMode ? 'bg-gray-800 text-white hover:bg-gray-700' : 'bg-gray-100 text-black hover:bg-gray-200')
+              }`}
+            >
+              {t.homeLink}
+            </button>
+            
+            <button
+              onClick={() => onNavigate('about')}
+              className={`group relative text-center px-3 py-2 text-sm font-bold tracking-wide transition-all duration-300 transform hover:scale-105 rounded-md ${
+                currentSection === 'about'
+                  ? (isDarkMode ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white')
+                  : (isDarkMode ? 'bg-gray-800 text-white hover:bg-gray-700' : 'bg-gray-100 text-black hover:bg-gray-200')
+              }`}
+            >
+              {t.aboutLink}
+            </button>
+            
+            <button
+              onClick={() => onNavigate('projects')}
+              className={`group relative text-center px-3 py-2 text-sm font-bold tracking-wide transition-all duration-300 transform hover:scale-105 rounded-md ${
+                currentSection === 'projects'
+                  ? (isDarkMode ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white')
+                  : (isDarkMode ? 'bg-gray-800 text-white hover:bg-gray-700' : 'bg-gray-100 text-black hover:bg-gray-200')
+              }`}
+            >
+              {t.projectsLink}
+            </button>
+            
+            <button
+              onClick={() => onNavigate('resume')}
+              className={`group relative text-center px-3 py-2 text-sm font-bold tracking-wide transition-all duration-300 transform hover:scale-105 rounded-md ${
+                currentSection === 'resume'
+                  ? (isDarkMode ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white')
+                  : (isDarkMode ? 'bg-gray-800 text-white hover:bg-gray-700' : 'bg-gray-100 text-black hover:bg-gray-200')
+              }`}
+            >
+              {t.cvLink}
+            </button>
+            
+            <button
+              onClick={() => onNavigate('contact')}
+              className={`group relative text-center px-3 py-2 text-sm font-bold tracking-wide transition-all duration-300 transform hover:scale-105 rounded-md ${
+                currentSection === 'contact'
+                  ? (isDarkMode ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white')
+                  : (isDarkMode ? 'bg-gray-800 text-white hover:bg-gray-700' : 'bg-gray-100 text-black hover:bg-gray-200')
+              }`}
+            >
+              {t.contactLink}
+            </button>
+          </nav>
+        </div>
+        
+        {/* Footer */}
+        <Footer />
+      </div>
+    );
+  }
+
+  // Default portrait mode layout
   return (
     <div className={`fixed inset-0 z-40 w-full h-full flex items-center justify-center ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
       <MouseFollower />
