@@ -5,7 +5,7 @@ import useThemeStore from '../store/themeStore';
 import useLanguageStore from '../store/languageStore';
 import { translations } from '../utils/translations';
 import MouseFollower from '../components/MouseFollower';
-import { AnimatedButton } from '../components/AnimatedElements';
+import { AnimatedButton, TransitionElement, SectionContainer } from '../components/AnimatedElements';
 import { jsPDF } from 'jspdf';
 
 const ResumeSection = ({ onNavigate }) => {
@@ -67,52 +67,58 @@ const ResumeSection = ({ onNavigate }) => {
         <MouseFollower />
         <GradientBackground />
         
-        <div className="relative z-10 w-full min-h-full p-4 flex flex-col items-center">
+        <SectionContainer className="relative z-10 w-full min-h-full p-4 flex flex-col items-center">
           {/* Controls above the resume in landscape mode */}
-          <div className="flex justify-center items-center space-x-4 mb-4 w-full">
-            {/* Back button */}
-            <AnimatedButton 
-              onClick={handleBackToAbout}
-              emoji="📝"
-              className="text-sm px-3 py-1.5 rounded"
-              darkTextClass={isDarkMode ? "text-white" : "text-gray-800"}
-            >
-              {t.backToAbout}
-            </AnimatedButton>
-            
-            {/* Download button */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-md filter blur-md opacity-75 -z-10 scale-110"></div>
-              <button 
-                onClick={handleDownloadCV}
-                className={`relative inline-block text-sm px-3 py-1.5 rounded transition-all ${
-                  isDarkMode 
-                    ? 'border-blue-500 text-white bg-gray-800/60 hover:bg-gray-800/80' 
-                    : 'border-0 text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-md hover:shadow-lg'
-                }`}
+          <TransitionElement index={0}>
+            <div className="flex justify-center items-center space-x-4 mb-4 w-full">
+              {/* Back button */}
+              <AnimatedButton 
+                onClick={handleBackToAbout}
+                emoji="📝"
+                className="text-sm px-3 py-1.5 rounded"
+                darkTextClass={isDarkMode ? "text-white" : "text-gray-800"}
               >
-                {t.downloadButton}
-              </button>
+                {t.backToAbout}
+              </AnimatedButton>
+              
+              {/* Download button */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-md filter blur-md opacity-75 -z-10 scale-110"></div>
+                <button 
+                  onClick={handleDownloadCV}
+                  className={`relative inline-block text-sm px-3 py-1.5 rounded transition-all ${
+                    isDarkMode 
+                      ? 'border-blue-500 text-white bg-gray-800/60 hover:bg-gray-800/80' 
+                      : 'border-0 text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-md hover:shadow-lg'
+                  }`}
+                >
+                  {t.downloadButton}
+                </button>
+              </div>
             </div>
-          </div>
+          </TransitionElement>
           
           {/* Update date above the resume */}
-          <div className="w-full text-center mb-2">
-            <p className={`text-xs italic ${isDarkMode ? 'text-gray-300' : 'text-gray-900'}`}>
-              {isFrench ? 'Mis à jour le ' : 'Updated on '} {currentDate}
-            </p>
-          </div>
-          
-          <div className="w-full flex justify-center">
-            <div className="max-w-2xl shadow-md">
-              <img
-                src={process.env.PUBLIC_URL + '/img/CV.png'}
-                alt="Resume"
-                className="w-full h-auto"
-              />
+          <TransitionElement index={1}>
+            <div className="w-full text-center mb-2">
+              <p className={`text-xs italic ${isDarkMode ? 'text-gray-300' : 'text-gray-900'}`}>
+                {isFrench ? 'Mis à jour le ' : 'Updated on '} {currentDate}
+              </p>
             </div>
-          </div>
-        </div>
+          </TransitionElement>
+          
+          <TransitionElement index={2}>
+            <div className="w-full flex justify-center">
+              <div className="max-w-2xl shadow-md">
+                <img
+                  src={process.env.PUBLIC_URL + '/img/CV.png'}
+                  alt="Resume"
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+          </TransitionElement>
+        </SectionContainer>
       </div>
     );
   }
@@ -126,91 +132,101 @@ const ResumeSection = ({ onNavigate }) => {
       {/* Add more top padding to push controls down */}
       <div className="pt-20 md:pt-0"></div>
       
-      {/* Mobile controls - shown above the resume on mobile with more vertical spacing */}
-      <div className="md:hidden flex justify-center items-center space-x-4 mb-6 px-4 relative z-20">
-        {/* Back button for mobile view */}
-        <AnimatedButton 
-          onClick={handleBackToAbout}
-          emoji="📝"
-          className="text-sm px-3 py-1.5 rounded"
-          darkTextClass={isDarkMode ? "text-white" : "text-gray-900"}
-        >
-          {t.backToAbout}
-        </AnimatedButton>
-        
-        {/* Download button for mobile view */}
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-md filter blur-md opacity-75 -z-10 scale-110"></div>
-          <button 
-            onClick={handleDownloadCV}
-            className={`relative inline-block text-sm px-3 py-1.5 rounded transition-all ${
-              isDarkMode 
-                ? 'border-blue-500 text-white bg-gray-800/90 hover:bg-gray-800' 
-                : 'border-0 text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-md hover:shadow-lg'
-            }`}
-          >
-            {t.downloadButton}
-          </button>
-        </div>
-      </div>
-      
-      {/* Update date above the resume with darker text - visible ONLY on mobile */}
-      <div className="md:hidden w-full text-center mb-2 px-4 relative z-20">
-        <p className={`text-xs md:text-sm italic px-2 py-1 rounded inline-block ${
-          isDarkMode ? 'text-white bg-gray-800/70' : 'text-gray-900 bg-white/80'
-        }`}>
-          {isFrench ? 'Mis à jour le ' : 'Updated on '} {currentDate}
-        </p>
-      </div>
-      
-      {/* CV Container with download button next to it */}
-      <div className="relative z-10 px-4 py-2 w-full">
-        <div className="flex justify-center items-start">
-          {/* Back to About button and controls for desktop - moved to left side next to the resume */}
-          <div className="hidden md:block mr-6 sticky top-20">
-            <div className="relative mb-4">
-              <AnimatedButton 
-                onClick={handleBackToAbout}
-                emoji="📝"
-                className="text-base"
-                darkTextClass={isDarkMode ? "text-gray-300" : "text-gray-900"}
-              >
-                {t.backToAbout}
-              </AnimatedButton>
-            </div>
+      <SectionContainer className="relative z-10">
+        {/* Mobile controls - shown above the resume on mobile with more vertical spacing */}
+        <TransitionElement index={0}>
+          <div className="md:hidden flex justify-center items-center space-x-4 mb-6 px-4 relative z-20">
+            {/* Back button for mobile view */}
+            <AnimatedButton 
+              onClick={handleBackToAbout}
+              emoji="📝"
+              className="text-sm px-3 py-1.5 rounded"
+              darkTextClass={isDarkMode ? "text-white" : "text-gray-900"}
+            >
+              {t.backToAbout}
+            </AnimatedButton>
             
-            {/* Download button - below the back button */}
-            <div className="relative mt-4 mb-4">
+            {/* Download button for mobile view */}
+            <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-md filter blur-md opacity-75 -z-10 scale-110"></div>
               <button 
                 onClick={handleDownloadCV}
-                className={`relative inline-block text-sm md:text-base px-3 py-2 rounded transition-all ${
+                className={`relative inline-block text-sm px-3 py-1.5 rounded transition-all ${
                   isDarkMode 
-                    ? 'border-blue-500 text-white bg-gray-800/80 hover:bg-gray-800' 
+                    ? 'border-blue-500 text-white bg-gray-800/90 hover:bg-gray-800' 
                     : 'border-0 text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-md hover:shadow-lg'
                 }`}
               >
                 {t.downloadButton}
               </button>
             </div>
-            
-            {/* Update date - below download button on desktop */}
-            <div className="text-center mt-2">
-              <p className={`text-xs md:text-sm italic ${isDarkMode ? 'text-gray-300' : 'text-gray-900'}`}>
-                {isFrench ? 'Mis à jour le ' : 'Updated on '} {currentDate}
-              </p>
-            </div>
           </div>
-          
-          <div className="w-full mb-20 max-w-2xl shadow-md">
-            <img
-              src={process.env.PUBLIC_URL + '/img/CV.png'}
-              alt="Resume"
-              className="w-full h-auto"
-            />
+        </TransitionElement>
+        
+        {/* Update date above the resume with darker text - visible ONLY on mobile */}
+        <TransitionElement index={1}>
+          <div className="md:hidden w-full text-center mb-2 px-4 relative z-20">
+            <p className={`text-xs md:text-sm italic px-2 py-1 rounded inline-block ${
+              isDarkMode ? 'text-white bg-gray-800/70' : 'text-gray-900 bg-white/80'
+            }`}>
+              {isFrench ? 'Mis à jour le ' : 'Updated on '} {currentDate}
+            </p>
+          </div>
+        </TransitionElement>
+        
+        {/* CV Container with download button next to it */}
+        <div className="relative z-10 px-4 py-2 w-full">
+          <div className="flex justify-center items-start">
+            {/* Back to About button and controls for desktop - moved to left side next to the resume */}
+            <TransitionElement index={2}>
+              <div className="hidden md:block mr-6 sticky top-20">
+                <div className="relative mb-4">
+                  <AnimatedButton 
+                    onClick={handleBackToAbout}
+                    emoji="📝"
+                    className="text-base"
+                    darkTextClass={isDarkMode ? "text-gray-300" : "text-gray-900"}
+                  >
+                    {t.backToAbout}
+                  </AnimatedButton>
+                </div>
+                
+                {/* Download button - below the back button */}
+                <div className="relative mt-4 mb-4">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-md filter blur-md opacity-75 -z-10 scale-110"></div>
+                  <button 
+                    onClick={handleDownloadCV}
+                    className={`relative inline-block text-sm md:text-base px-3 py-2 rounded transition-all ${
+                      isDarkMode 
+                        ? 'border-blue-500 text-white bg-gray-800/80 hover:bg-gray-800' 
+                        : 'border-0 text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 shadow-md hover:shadow-lg'
+                    }`}
+                  >
+                    {t.downloadButton}
+                  </button>
+                </div>
+                
+                {/* Update date - below download button on desktop */}
+                <div className="text-center mt-2">
+                  <p className={`text-xs md:text-sm italic ${isDarkMode ? 'text-gray-300' : 'text-gray-900'}`}>
+                    {isFrench ? 'Mis à jour le ' : 'Updated on '} {currentDate}
+                  </p>
+                </div>
+              </div>
+            </TransitionElement>
+            
+            <TransitionElement index={3}>
+              <div className="w-full mb-20 max-w-2xl shadow-md">
+                <img
+                  src={process.env.PUBLIC_URL + '/img/CV.png'}
+                  alt="Resume"
+                  className="w-full h-auto"
+                />
+              </div>
+            </TransitionElement>
           </div>
         </div>
-      </div>
+      </SectionContainer>
     </div>
   );
 };

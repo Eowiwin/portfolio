@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 /**
  * AnimatedName component for name animations with sparkles and a lion emoji
@@ -178,6 +178,72 @@ export const AnimatedButton = ({
   return <button onClick={onClick}>{buttonContent}</button>;
 };
 
+/**
+ * TransitionElement component for staggered section transitions
+ * This wraps elements to animate them when a section appears
+ */
+export const TransitionElement = ({ 
+  children, 
+  index = 0, 
+  className = "",
+  delay = 0  // additional delay in ms
+}) => {
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    // Start in entering state
+    setIsVisible(false);
+    
+    // Set a timeout to trigger the entered state with staggered delay
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100 + (index * 100) + delay);
+    
+    return () => clearTimeout(timer);
+  }, [index, delay]);
+  
+  return (
+    <div 
+      className={`section-element ${isVisible ? 'entered' : 'entering'} ${className}`}
+      style={{ '--index': index }}
+    >
+      {children}
+    </div>
+  );
+};
+
+/**
+ * SectionContainer for wrapping entire sections
+ * This handles the transition of sections and ensures children animate properly
+ */
+export const SectionContainer = ({ children, className = "" }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    // Start invisible
+    setIsVisible(false);
+    
+    // After a short delay, make it visible
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 50);
+    
+    return () => clearTimeout(timer);
+  }, []);
+  
+  return (
+    <div className={`transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'} ${className}`}>
+      {children}
+    </div>
+  );
+};
+
 // Fix anonymous export by creating a named object first
-const AnimatedElements = { AnimatedName, AnimatedButton };
+const AnimatedElements = { 
+  AnimatedName, 
+  AnimatedButton, 
+  TransitionElement,
+  SectionContainer
+};
+
 export default AnimatedElements;

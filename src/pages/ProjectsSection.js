@@ -4,7 +4,7 @@ import useThemeStore from '../store/themeStore';
 import useLanguageStore from '../store/languageStore';
 import { translations } from '../utils/translations';
 import MouseFollower from '../components/MouseFollower';
-import { AnimatedButton } from '../components/AnimatedElements';
+import { AnimatedButton, TransitionElement, SectionContainer } from '../components/AnimatedElements';
 import ProjectCard, { formatProjectDate } from '../components/ProjectCard';
 
 // Project Detail Component
@@ -1590,152 +1590,162 @@ const ProjectsSection = ({ onNavigate }) => {
       )}
       
       {/* Content */}
-      <div className="relative z-10 px-4 max-w-7xl mx-auto pt-28 pb-24 md:pt-40 md:pb-20 w-full">
-        <h1 className={`text-3xl md:text-6xl font-bold mb-6 md:mb-12 font-display ${isDarkMode ? 'text-white' : 'text-black'}`}>
-          {t.projectsTitle}
-        </h1>
+      <SectionContainer className="relative z-10 px-4 max-w-7xl mx-auto pt-28 pb-24 md:pt-40 md:pb-20 w-full">
+        <TransitionElement index={0}>
+          <h1 className={`text-3xl md:text-6xl font-bold mb-6 md:mb-12 font-display ${isDarkMode ? 'text-white' : 'text-black'}`}>
+            {t.projectsTitle}
+          </h1>
+        </TransitionElement>
         
-        <p className={`text-base md:text-xl leading-relaxed mb-8 max-w-3xl ${isDarkMode ? 'text-gray-300' : 'text-black'}`}>
-          {t.projectsDescription}
-        </p>
+        <TransitionElement index={1}>
+          <p className={`text-base md:text-xl leading-relaxed mb-8 max-w-3xl ${isDarkMode ? 'text-gray-300' : 'text-black'}`}>
+            {t.projectsDescription}
+          </p>
+        </TransitionElement>
         
         {/* Search, Sort and Count Controls */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-          {/* Search Bar */}
-          <div className="w-full md:w-auto">
-            <div className={`relative rounded-md shadow-sm w-full md:w-64`}>
-              <input
-                type="text"
-                name="search"
-                id="search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={t.searchProjects}
-                className={`block w-full rounded-md border-0 py-3 px-4 shadow-sm ring-1 ring-inset 
-                  ${isDarkMode 
-                    ? 'bg-gray-800 text-white ring-gray-700 placeholder:text-gray-400 focus:ring-blue-500' 
-                    : 'bg-white text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-blue-600'
-                  } focus:ring-2 focus:ring-inset focus:outline-none sm:text-sm sm:leading-6`}
-              />
-              <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  className={`h-5 w-5 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" 
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
-          
-          {/* Sort and Count Controls */}
-          <div className="flex flex-wrap items-center gap-3">
-            {/* Sort Options */}
-            <div className="flex items-center">
-              <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                {t.sortBy}
-              </span>
-              <div className="flex rounded-md overflow-hidden ml-2">
-                <button
-                  onClick={() => setSortOption('updated')}
-                  className={`py-2 px-3 text-sm transition-colors ${
-                    sortOption === 'updated'
-                      ? (isDarkMode ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white')
-                      : (isDarkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-700 hover:bg-gray-200')
-                  }`}
-                >
-                  {t.updated}
-                </button>
-                <button
-                  onClick={() => setSortOption('alphabetical')}
-                  className={`py-2 px-3 text-sm transition-colors ${
-                    sortOption === 'alphabetical'
-                      ? (isDarkMode ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white')
-                      : (isDarkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-700 hover:bg-gray-200')
-                  }`}
-                >
-                  {t.alphabetical}
-                </button>
+        <TransitionElement index={2}>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            {/* Search Bar */}
+            <div className="w-full md:w-auto">
+              <div className={`relative rounded-md shadow-sm w-full md:w-64`}>
+                <input
+                  type="text"
+                  name="search"
+                  id="search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder={t.searchProjects}
+                  className={`block w-full rounded-md border-0 py-3 px-4 shadow-sm ring-1 ring-inset 
+                    ${isDarkMode 
+                      ? 'bg-gray-800 text-white ring-gray-700 placeholder:text-gray-400 focus:ring-blue-500' 
+                      : 'bg-white text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-blue-600'
+                    } focus:ring-2 focus:ring-inset focus:outline-none sm:text-sm sm:leading-6`}
+                />
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className={`h-5 w-5 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`} 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" 
+                    />
+                  </svg>
+                </div>
               </div>
             </div>
             
-            {/* Count Options */}
-            <div className="flex items-center">
-              <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                {t.show}
-              </span>
-              <div className="flex rounded-md overflow-hidden ml-2">
-                {projectCountOptions.map(count => (
+            {/* Sort and Count Controls */}
+            <div className="flex flex-wrap items-center gap-3">
+              {/* Sort Options */}
+              <div className="flex items-center">
+                <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  {t.sortBy}
+                </span>
+                <div className="flex rounded-md overflow-hidden ml-2">
                   <button
-                    key={count}
-                    onClick={() => {
-                      setProjectCount(count);
-                      setShowCustomInput(false);
-                    }}
+                    onClick={() => setSortOption('updated')}
                     className={`py-2 px-3 text-sm transition-colors ${
-                      projectCount === count && !showCustomInput
+                      sortOption === 'updated'
                         ? (isDarkMode ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white')
                         : (isDarkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-700 hover:bg-gray-200')
                     }`}
                   >
-                    {count}
+                    {t.updated}
                   </button>
-                ))}
-                <button
-                  onClick={toggleCustomInput}
-                  className={`py-2 px-3 text-sm transition-colors ${
-                    showCustomInput
-                      ? (isDarkMode ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white')
-                      : (isDarkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-700 hover:bg-gray-200')
-                  }`}
-                >
-                  {t.custom}
-                </button>
-              </div>
-              
-              {/* Custom count input */}
-              {showCustomInput && (
-                <div className="flex items-center ml-2">
-                  <input
-                    type="number"
-                    min="1"
-                    value={customCount}
-                    onChange={handleCustomCountChange}
-                    onKeyDown={handleKeyDown}
-                    className={`w-16 py-2 px-3 text-sm rounded-l-md border-0 shadow-sm ring-1 ring-inset
-                      ${isDarkMode 
-                        ? 'bg-gray-800 text-white ring-gray-700 focus:ring-blue-500' 
-                        : 'bg-white text-gray-900 ring-gray-300 focus:ring-blue-600'
-                      } focus:ring-2 focus:ring-inset focus:outline-none`}
-                  />
                   <button
-                    onClick={handleCustomCountSubmit}
-                    className={`py-2 px-3 text-sm rounded-r-md ${
-                      isDarkMode 
-                        ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                        : 'bg-blue-500 text-white hover:bg-blue-600'
+                    onClick={() => setSortOption('alphabetical')}
+                    className={`py-2 px-3 text-sm transition-colors ${
+                      sortOption === 'alphabetical'
+                        ? (isDarkMode ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white')
+                        : (isDarkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-700 hover:bg-gray-200')
                     }`}
                   >
-                    ✓
+                    {t.alphabetical}
                   </button>
                 </div>
-              )}
+              </div>
+              
+              {/* Count Options */}
+              <div className="flex items-center">
+                <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  {t.show}
+                </span>
+                <div className="flex rounded-md overflow-hidden ml-2">
+                  {projectCountOptions.map(count => (
+                    <button
+                      key={count}
+                      onClick={() => {
+                        setProjectCount(count);
+                        setShowCustomInput(false);
+                      }}
+                      className={`py-2 px-3 text-sm transition-colors ${
+                        projectCount === count && !showCustomInput
+                          ? (isDarkMode ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white')
+                          : (isDarkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-700 hover:bg-gray-200')
+                      }`}
+                    >
+                      {count}
+                    </button>
+                  ))}
+                  <button
+                    onClick={toggleCustomInput}
+                    className={`py-2 px-3 text-sm transition-colors ${
+                      showCustomInput
+                        ? (isDarkMode ? 'bg-blue-600 text-white' : 'bg-blue-500 text-white')
+                        : (isDarkMode ? 'bg-gray-700 text-gray-300 hover:bg-gray-600' : 'bg-gray-100 text-gray-700 hover:bg-gray-200')
+                    }`}
+                  >
+                    {t.custom}
+                  </button>
+                </div>
+                
+                {/* Custom count input */}
+                {showCustomInput && (
+                  <div className="flex items-center ml-2">
+                    <input
+                      type="number"
+                      min="1"
+                      value={customCount}
+                      onChange={handleCustomCountChange}
+                      onKeyDown={handleKeyDown}
+                      className={`w-16 py-2 px-3 text-sm rounded-l-md border-0 shadow-sm ring-1 ring-inset
+                        ${isDarkMode 
+                          ? 'bg-gray-800 text-white ring-gray-700 focus:ring-blue-500' 
+                          : 'bg-white text-gray-900 ring-gray-300 focus:ring-blue-600'
+                        } focus:ring-2 focus:ring-inset focus:outline-none`}
+                    />
+                    <button
+                      onClick={handleCustomCountSubmit}
+                      className={`py-2 px-3 text-sm rounded-r-md ${
+                        isDarkMode 
+                          ? 'bg-blue-600 text-white hover:bg-blue-700' 
+                          : 'bg-blue-500 text-white hover:bg-blue-600'
+                      }`}
+                    >
+                      ✓
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        </TransitionElement>
         
-        {/* Projects Grid */}
+        {/* Projects Grid - with staggered animations */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {visibleProjects.length > 0 ? (
-            visibleProjects.map((project) => renderProjectCard(project))
+            visibleProjects.map((project, index) => (
+              <TransitionElement key={project.id} index={index + 3} delay={index * 50}>
+                {renderProjectCard(project)}
+              </TransitionElement>
+            ))
           ) : (
             <div className={`col-span-full text-center py-12 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               {t.noProjectsFound}
@@ -1744,16 +1754,18 @@ const ProjectsSection = ({ onNavigate }) => {
         </div>
         
         {/* Return button */}
-        <div className="mt-12 md:mt-16 mb-8">
-          <AnimatedButton 
-            onClick={() => onNavigate('main')}
-            emoji="↩️"
-            darkTextClass={isDarkMode ? "text-gray-300" : "text-black"}
-          >
-            {t.backToHome}
-          </AnimatedButton>
-        </div>
-      </div>
+        <TransitionElement index={visibleProjects.length + 4}>
+          <div className="mt-12 md:mt-16 mb-8">
+            <AnimatedButton 
+              onClick={() => onNavigate('main')}
+              emoji="↩️"
+              darkTextClass={isDarkMode ? "text-gray-300" : "text-black"}
+            >
+              {t.backToHome}
+            </AnimatedButton>
+          </div>
+        </TransitionElement>
+      </SectionContainer>
     </div>
   );
 };

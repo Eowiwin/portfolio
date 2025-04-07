@@ -17,6 +17,8 @@ import './App.css';
 
 const App = () => {
   const [currentSection, setCurrentSection] = useState('main');
+  const [previousSection, setPreviousSection] = useState(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { isDarkMode, toggleDarkMode } = useThemeStore();
@@ -39,7 +41,19 @@ const App = () => {
   };
   
   const handleNavigation = (section) => {
-    setCurrentSection(section);
+    if (section !== currentSection && !isTransitioning) {
+      setIsTransitioning(true);
+      setPreviousSection(currentSection);
+      
+      // Wait for fade-out animation before changing section
+      setTimeout(() => {
+        setCurrentSection(section);
+        // Wait a tiny bit before starting fade-in animation
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 50);
+      }, 500); // This should match the CSS transition duration
+    }
     setMenuOpen(false); // Close menu after navigation
   };
 
@@ -117,14 +131,14 @@ const App = () => {
           {menuOpen ? (
             <MenuSection onNavigate={handleNavigation} currentSection={currentSection} />
           ) : (
-            <>
+            <div className={`page-transition ${isTransitioning ? 'fade-out' : 'fade-in'}`}>
               {currentSection === 'main' && <MainSection onNavigate={handleNavigation} />}
               {currentSection === 'about' && <AboutSection onNavigate={handleNavigation} />}
               {currentSection === 'projects' && <ProjectsSection onNavigate={handleNavigation} />}
               {currentSection === 'contact' && <ContactSection onNavigate={handleNavigation} />}
               {currentSection === 'resume' && <ResumeSection onNavigate={handleNavigation} />}
               {currentSection === 'timeline' && <TimelineSection onNavigate={handleNavigation} />}
-            </>
+            </div>
           )}
 
           {/* Footer */}

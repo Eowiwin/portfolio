@@ -14,4 +14,36 @@ code {
     monospace;
 }
 
-/* Tailwind styles will be used instead */
+/* Page transition animations */
+.page-transition {
+  transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+  will-change: opacity, transform;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Animated elements for section transitions */
+.section-element {
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+  transition-delay: calc(var(--index, 0) * 100ms);
+}
+
+.section-element.entering {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.section-element.entered {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tailwind styles will be used for most other styling */

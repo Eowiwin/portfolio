@@ -13,6 +13,7 @@ module.exports = {
         sparkleLeft: 'sparkleLeft 2s ease-in-out infinite',
         sparkleRight: 'sparkleRight 2s ease-in-out infinite',
         'sound-wave': 'soundWave 1s ease-in-out infinite',
+        'path-draw': 'pathDraw 1.5s ease-out forwards',
       },
       keyframes: {
         float: {
@@ -93,6 +94,16 @@ module.exports = {
           '0%': { height: '3px' },
           '50%': { height: '12px' },
           '100%': { height: '3px' }
+        },
+        pathDraw: {
+          '0%': { 
+            strokeDasharray: '300',
+            strokeDashoffset: '300'
+          },
+          '100%': { 
+            strokeDasharray: '300',
+            strokeDashoffset: '0'
+          }
         }
       }
     },
