@@ -753,7 +753,7 @@ const ProjectsSection = ({ onNavigate }) => {
         : "An app based on the board game Ubongo. Players must solve puzzles in a limited time. Each player receives a grid and pieces similar to Tetris shapes. Cross-platform, single-player, and multi-player modes 🧩.",
       tech: ["React Native", "Zustand"],
       image: process.env.PUBLIC_URL + "/img/bongomino-preview.png",
-      link: "https://www.behance.net/erwanmenager",
+      link: "https://www.behance.net/gallery/223202905/Bongomino",
       updatedAt: "2025-02-15"
     },
     {
@@ -764,7 +764,7 @@ const ProjectsSection = ({ onNavigate }) => {
         : "Android application that serves as a guide for the game Undertale. Developed in the first year of my degree with another developer ❤️.",
       tech: ["C#", ".NET", "MAUI"],
       image: process.env.PUBLIC_URL + "/img/undertalya-preview.png",
-      link: "https://www.behance.net/erwanmenager",
+      link: "https://www.behance.net/gallery/223200553/Undertalya",
       updatedAt: "2023-11-17"
     },
     {
@@ -775,7 +775,7 @@ const ProjectsSection = ({ onNavigate }) => {
         : "SQLuedo is an app that lets you learn SQL in a fun way! Designed for high school students, you have to solve detective investigations using SQL 🔎.",
       tech: ["PHP", "Docker", ".NET API REST", "EntityFramework", "C#", "HTML", "CSS", "JavaScript", "Blazor", "Kotlin", "XAML", "PostgreSQL", "Twig"],
       image: process.env.PUBLIC_URL + "/img/sqluedo-preview.png",
-      link: "https://www.behance.net/erwanmenager",
+      link: "https://www.behance.net/gallery/223203511/SQLuedo",
       updatedAt: "2024-06-24"
     },
     {
@@ -786,7 +786,7 @@ const ProjectsSection = ({ onNavigate }) => {
         : "Minecraft plugin that adds custom features to the game (Items, armor, tools, trophies...) 🧱.",
       tech: ["Java", "Spigot"],
       image: process.env.PUBLIC_URL + "/img/minecraft-preview.png",
-      link: "https://www.behance.net/erwanmenager",
+      link: "https://www.behance.net/gallery/223163959/Minecraft-plugin",
       updatedAt: "2023-07-01"
     },
     {
@@ -797,7 +797,7 @@ const ProjectsSection = ({ onNavigate }) => {
         : "Console application (CLI) for iOS with single-player (against a robot) and multi-player modes. Several modes are available: Connect 4, Tic-Tac-Toe... 🎮.",
       tech: ["Swift"],
       image: process.env.PUBLIC_URL + "/img/connect4-preview.png",
-      link: "https://www.behance.net/erwanmenager",
+      link: "https://www.behance.net/gallery/223206847/Connect-Four",
       updatedAt: "2025-02-12"
     }
   ], [isFrench, isDarkMode]); // Re-create when language or theme changes
