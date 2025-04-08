@@ -1,11 +1,29 @@
 import React, { useState, useRef, useEffect } from 'react';
 import useThemeStore from '../store/themeStore';
 
-const MusicPlayer = ({ audioSrc = '/background-music.mp3', trackTitle = "Now Playing", hideControls = true }) => {
+// Array of music tracks for rotation. Love Toby Fox <3
+const musicTracks = [
+  { src: '/audio/HisTheme.mp3', title: 'His Theme' },
+  { src: '/audio/CybersWorld.mp3', title: 'Cybers World' },
+  { src: '/audio/RainingSomewhereElse.mp3', title: 'Raining Somewhere Else' },
+  { src: '/audio/WeMeetAgain.mp3', title: 'We Meet Again' },
+  { src: '/audio/BattleAgainstATrueHero.mp3', title: 'Battle Against A True Hero' },
+];
+
+const MusicPlayer = ({ hideControls = true }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const { isDarkMode } = useThemeStore();
   const audioRef = useRef(null);
+  
+  // Get current track info
+  const currentTrack = musicTracks[currentTrackIndex];
+  
+  // Reset isLoaded when track changes
+  useEffect(() => {
+    setIsLoaded(false);
+  }, [currentTrackIndex]);
   
   useEffect(() => {
     const audioElement = audioRef.current;
@@ -14,18 +32,28 @@ const MusicPlayer = ({ audioSrc = '/background-music.mp3', trackTitle = "Now Pla
       const handleCanPlayThrough = () => setIsLoaded(true);
       audioElement.addEventListener('canplaythrough', handleCanPlayThrough);
       
+      // Add event listener for when track ends
+      const handleTrackEnd = () => {
+        // Move to next track when current one ends
+        setCurrentTrackIndex((prevIndex) => (prevIndex + 1) % musicTracks.length);
+      };
+      audioElement.addEventListener('ended', handleTrackEnd);
+      
       return () => {
         audioElement.removeEventListener('canplaythrough', handleCanPlayThrough);
+        audioElement.removeEventListener('ended', handleTrackEnd);
         audioElement.pause();
       };
     }
-  }, []);
+  }, [currentTrackIndex]);
   
   const togglePlay = () => {
     if (!isLoaded) return;
     
     if (isPlaying) {
       audioRef.current.pause();
+      // Move to next track and then play it
+      setCurrentTrackIndex((prevIndex) => (prevIndex + 1) % musicTracks.length);
     } else {
       const playPromise = audioRef.current.play();
       
@@ -38,7 +66,7 @@ const MusicPlayer = ({ audioSrc = '/background-music.mp3', trackTitle = "Now Pla
     
     setIsPlaying(!isPlaying);
   };
-  
+
   return (
     <div className="relative">
       <button
@@ -79,7 +107,7 @@ const MusicPlayer = ({ audioSrc = '/background-music.mp3', trackTitle = "Now Pla
               </defs>
               <text fill={isDarkMode ? '#ffffff' : '#000000'} fontSize="8">
                 <textPath xlinkHref="#circlePath" startOffset="0%">
-                  {trackTitle} • {trackTitle} •
+                  {currentTrack.title} • {currentTrack.title} •
                 </textPath>
               </text>
             </svg>
@@ -111,10 +139,9 @@ const MusicPlayer = ({ audioSrc = '/background-music.mp3', trackTitle = "Now Pla
       
       <audio
         ref={audioRef}
-        src={audioSrc}
-        loop
+        src={process.env.PUBLIC_URL + currentTrack.src}
+        loop={false}
         preload="auto"
-        onEnded={() => setIsPlaying(false)}
         onPause={() => setIsPlaying(false)}
         onPlay={() => setIsPlaying(true)}
       />
