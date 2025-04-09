@@ -340,9 +340,9 @@ const TimelineSection = ({ onNavigate }) => {
         <GradientBackground />
         
         <SectionContainer className="relative z-10 w-full min-h-full p-4 flex flex-col items-center pb-32">
-          {/* Controls above the timeline in landscape mode - removed blur effect */}
+          {/* Controls above the timeline in landscape mode - with significantly increased top margin */}
           <TransitionElement index={0}>
-            <div className="sticky top-0 flex justify-center items-center space-x-4 py-2 mb-4 w-full z-20">
+            <div className="sticky top-0 flex justify-center items-center space-x-4 py-2 mt-32 mb-4 w-full z-20">
               {/* Back button */}
               <AnimatedButton 
                 onClick={handleBackToAbout}
@@ -394,8 +394,8 @@ const TimelineSection = ({ onNavigate }) => {
       <GradientBackground />
       
       <SectionContainer className="relative z-10">
-        {/* Add some top padding */}
-        <div className="pt-4 md:pt-8"></div>
+        {/* Add significant top padding */}
+        <div className="pt-16 md:pt-24"></div>
         
         {/* Controls above the timeline - removed blur effect */}
         <TransitionElement index={0}>
