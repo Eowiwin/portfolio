@@ -270,7 +270,7 @@ const ContactSection = ({ onNavigate }) => {
   }
 
   return (
-    <div className="relative w-full h-auto min-h-screen overflow-y-auto overflow-x-hidden touch-manipulation overscroll-none">
+    <div className="relative w-full min-h-screen overflow-y-auto overflow-x-hidden touch-manipulation" style={{ WebkitOverflowScrolling: 'touch' }}>
       <MouseFollower />
       <GradientBackground />
       
