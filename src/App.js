@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import MainSection from './pages/MainSection';
 import AboutSection from './pages/AboutSection';
 import ContactSection from './pages/ContactSection';
@@ -15,13 +16,37 @@ import useLanguageStore from './store/languageStore';
 import { translations } from './utils/translations';
 import './App.css';
 
+// Mapping des sections vers les chemins d'URL
+const sectionToPath = {
+  main: '/',
+  about: '/about',
+  projects: '/projects',
+  contact: '/contact',
+  resume: '/resume',
+  timeline: '/timeline',
+};
+
+// Mapping inverse des chemins vers les sections
+const pathToSection = {
+  '/': 'main',
+  '/about': 'about',
+  '/projects': 'projects',
+  '/contact': 'contact',
+  '/resume': 'resume',
+  '/timeline': 'timeline',
+};
+
 const App = () => {
-  const [currentSection, setCurrentSection] = useState('main');
+  const navigate = useNavigate();
+  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { isDarkMode, toggleDarkMode } = useThemeStore();
   const { isFrench, toggleLanguage } = useLanguageStore();
   const t = translations[isFrench ? 'fr' : 'en'];
+  
+  // Déterminer la section actuelle à partir de l'URL
+  const currentSection = pathToSection[location.pathname] || 'main';
   
   // Pre-load any assets if needed
   useEffect(() => {
@@ -39,7 +64,8 @@ const App = () => {
   };
   
   const handleNavigation = (section) => {
-    setCurrentSection(section);
+    const path = sectionToPath[section] || '/';
+    navigate(path);
     setMenuOpen(false); // Close menu after navigation
   };
 
@@ -114,14 +140,14 @@ const App = () => {
           {menuOpen ? (
             <MenuSection onNavigate={handleNavigation} currentSection={currentSection} />
           ) : (
-            <>
-              {currentSection === 'main' && <MainSection onNavigate={handleNavigation} />}
-              {currentSection === 'about' && <AboutSection onNavigate={handleNavigation} />}
-              {currentSection === 'projects' && <ProjectsSection onNavigate={handleNavigation} />}
-              {currentSection === 'contact' && <ContactSection onNavigate={handleNavigation} />}
-              {currentSection === 'resume' && <ResumeSection onNavigate={handleNavigation} />}
-              {currentSection === 'timeline' && <TimelineSection onNavigate={handleNavigation} />}
-            </>
+            <Routes>
+              <Route path="/" element={<MainSection onNavigate={handleNavigation} />} />
+              <Route path="/about" element={<AboutSection onNavigate={handleNavigation} />} />
+              <Route path="/projects" element={<ProjectsSection onNavigate={handleNavigation} />} />
+              <Route path="/contact" element={<ContactSection onNavigate={handleNavigation} />} />
+              <Route path="/resume" element={<ResumeSection onNavigate={handleNavigation} />} />
+              <Route path="/timeline" element={<TimelineSection onNavigate={handleNavigation} />} />
+            </Routes>
           )}
 
           {/* Footer */}

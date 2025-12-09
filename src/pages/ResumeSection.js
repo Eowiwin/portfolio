@@ -13,13 +13,25 @@ const ResumeSection = ({ onNavigate }) => {
   const { isFrench } = useLanguageStore();
   const t = translations[isFrench ? 'fr' : 'en'];
   const [isLandscape, setIsLandscape] = useState(false);
+  const [cvAnimating, setCvAnimating] = useState(false);
+  const [displayedCv, setDisplayedCv] = useState(isFrench ? 'CV.png' : 'CV-english.png');
   
-  // Get current date in format: Month Day, Year
-  const currentDate = new Date().toLocaleDateString(isFrench ? 'fr-FR' : 'en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
+  // Fixed date for the resume
+  const currentDate = isFrench ? '9 décembre 2025' : 'December 9, 2025';
+  
+  // Animation lors du changement de langue
+  useEffect(() => {
+    const newCv = isFrench ? 'CV.png' : 'CV-english.png';
+    if (newCv !== displayedCv) {
+      setCvAnimating(true);
+      // Attendre la fin de l'animation de fade-out avant de changer l'image
+      const timeout = setTimeout(() => {
+        setDisplayedCv(newCv);
+        setCvAnimating(false);
+      }, 300);
+      return () => clearTimeout(timeout);
+    }
+  }, [isFrench, displayedCv]);
   
   // Detect landscape mode
   useEffect(() => {
@@ -41,7 +53,7 @@ const ResumeSection = ({ onNavigate }) => {
   const handleDownloadCV = () => {
     // Create a new image object
     const img = new Image();
-    img.src = process.env.PUBLIC_URL + '/img/CV.png';
+    img.src = process.env.PUBLIC_URL + '/img/' + displayedCv;
     
     img.onload = () => {
       // Create a new PDF with jsPDF
@@ -111,9 +123,9 @@ const ResumeSection = ({ onNavigate }) => {
             <div className="w-full flex justify-center">
               <div className="max-w-2xl shadow-md">
                 <img
-                  src={process.env.PUBLIC_URL + '/img/CV.png'}
+                  src={process.env.PUBLIC_URL + '/img/' + displayedCv}
                   alt="Resume"
-                  className="w-full h-auto"
+                  className={`w-full h-auto transition-all duration-300 ${cvAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
                 />
               </div>
             </div>
@@ -218,9 +230,9 @@ const ResumeSection = ({ onNavigate }) => {
             <TransitionElement index={3}>
               <div className="w-full mb-20 max-w-2xl shadow-md">
                 <img
-                  src={process.env.PUBLIC_URL + '/img/CV.png'}
+                  src={process.env.PUBLIC_URL + '/img/' + displayedCv}
                   alt="Resume"
-                  className="w-full h-auto"
+                  className={`w-full h-auto transition-all duration-300 ${cvAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}
                 />
               </div>
             </TransitionElement>
