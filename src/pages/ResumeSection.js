@@ -17,7 +17,7 @@ const ResumeSection = ({ onNavigate }) => {
   const [displayedCv, setDisplayedCv] = useState(isFrench ? 'CV.png' : 'CV-english.png');
   
   // Fixed date for the resume
-  const currentDate = isFrench ? '9 décembre 2025' : 'December 9, 2025';
+  const currentDate = isFrench ? '26 janvier 2026' : 'January 26, 2026';
   
   // Animation lors du changement de langue
   useEffect(() => {
