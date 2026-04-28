@@ -108,7 +108,7 @@ const ProjectDetailView = ({ project, onClose, isDarkMode, t }) => {
                 </div>
                 
                 <a 
-                  href={project.link} 
+                  href={project.sourceLink || project.link} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className={`px-2 py-1 rounded-md text-xs font-medium transition-colors ${
@@ -138,9 +138,9 @@ const ProjectDetailView = ({ project, onClose, isDarkMode, t }) => {
       
       {/* Modal Content */}
       <div 
-        className={`relative max-w-4xl w-full rounded-lg shadow-xl overflow-hidden ${
+        className={`relative max-w-3xl w-full rounded-lg shadow-xl overflow-hidden ${
           isDarkMode ? 'bg-gray-800' : 'bg-white'
-        } transform transition-all max-h-[90vh] flex flex-col`}
+        } transform transition-all max-h-[85vh] flex flex-col`}
       >
         {/* Close button */}
         <button
@@ -157,7 +157,7 @@ const ProjectDetailView = ({ project, onClose, isDarkMode, t }) => {
         </button>
         
         {/* Project image banner */}
-        <div className="w-full relative">
+        <div className="w-full h-40 sm:h-48 md:h-56 lg:h-64 relative flex-shrink-0 overflow-hidden">
           <img 
             src={project.image} 
             alt={project.title}
@@ -169,24 +169,24 @@ const ProjectDetailView = ({ project, onClose, isDarkMode, t }) => {
         </div>
         
         {/* Project content - scrollable */}
-        <div className="p-6 md:p-8 overflow-y-auto">
-          <h2 className={`text-2xl md:text-3xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+        <div className="p-4 md:p-6 overflow-y-auto flex-1 min-h-0">
+          <h2 className={`text-xl md:text-2xl font-bold mb-3 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
             {project.title}
           </h2>
           
-          <p className={`text-base md:text-lg mb-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+          <p className={`text-sm md:text-base mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
             {project.description}
           </p>
           
-          <div className="mb-6">
-            <h3 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+          <div className="mb-4">
+            <h3 className={`text-base md:text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               Technologies
             </h3>
             <div className="flex flex-wrap gap-2">
               {project.tech.map((tech, index) => (
                 <span 
                   key={index}
-                  className={`px-3 py-1 text-sm rounded-full ${
+                  className={`px-2.5 py-1 text-xs md:text-sm rounded-full ${
                     isDarkMode ? 'bg-blue-900 text-blue-100' : 'bg-blue-100 text-blue-800'
                   }`}
                 >
@@ -196,29 +196,111 @@ const ProjectDetailView = ({ project, onClose, isDarkMode, t }) => {
             </div>
           </div>
           
-          <div className="flex justify-between items-center">
-            <div className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+            <div className={`text-xs md:text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
               {t.updated}: {formatProjectDate(project.updatedAt, isFrench)}
             </div>
             
-            <a 
-              href={project.link} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className={`px-4 py-2 rounded-md font-medium transition-colors ${
-                isDarkMode 
-                  ? 'bg-blue-600 text-white hover:bg-blue-700' 
-                  : 'bg-blue-500 text-white hover:bg-blue-600'
-              }`}
-            >
-              {t.viewSource}
-            </a>
+            <div className="flex flex-wrap gap-2">
+              <a 
+                href={project.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isDarkMode 
+                    ? 'bg-blue-600 text-white hover:bg-blue-700' 
+                    : 'bg-blue-500 text-white hover:bg-blue-600'
+                }`}
+              >
+                {t.viewSource}
+              </a>
+              
+              {project.title === "Lumora" && (
+                <a 
+                  href={project.playLink || project.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="px-3 py-2 rounded-md text-sm font-medium transition-colors bg-pink-500 text-white hover:bg-pink-600"
+                >
+                  {isFrench ? "Jouer !" : "Play!"}
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 };
+
+  // Custom component for Lumora project with logo
+  const LumoraProjectCard = ({ project, onClick, isDarkMode }) => {
+    const { isFrench } = useLanguageStore();
+    const t = translations[isFrench ? 'fr' : 'en'];
+
+    return (
+      <div 
+        onClick={onClick}
+        className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative ${
+          isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'
+        } transform hover:-translate-y-1`}
+      >
+        {/* Project image */}
+        <div className="h-48 overflow-hidden">
+          <img 
+            src={project.image} 
+            alt={project.title}
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.target.src = "https://via.placeholder.com/400x200?text=Project+Preview";
+            }}
+          />
+        </div>
+
+        {/* Project content */}
+        <div className="p-5">
+          <h3 className={`text-xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+            {project.title}
+          </h3>
+
+          <p className={`mb-4 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            {project.description}
+          </p>
+
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.tech.slice(0, 4).map((tech, index) => (
+              <span 
+                key={index}
+                className={`px-2 py-1 text-sm rounded-full ${
+                  isDarkMode ? 'bg-blue-900 text-blue-100' : 'bg-blue-100 text-blue-800'
+                }`}
+              >
+                {tech}
+              </span>
+            ))}
+            {project.tech.length > 4 && (
+              <span className={`px-2 py-1 text-sm rounded-full ${isDarkMode ? 'bg-blue-900 text-blue-100' : 'bg-blue-100 text-blue-800'}`}>
+                ...
+              </span>
+            )}
+          </div>
+
+          <div className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+            {t.updated}: {formatProjectDate(project.updatedAt, isFrench)}
+          </div>
+        </div>
+
+        {/* Lumora Logo in bottom right */}
+        <div className="absolute bottom-3 right-3 w-12 h-12">
+          <img 
+            src={process.env.PUBLIC_URL + "/img/lumora-logo.png"} 
+            alt="Lumora Logo"
+            className="w-full h-full object-contain"
+          />
+        </div>
+      </div>
+    );
+  };
 
 // Custom component for Undertalya project with logo
 const UndertalyaProjectCard = ({ project, onClick, isDarkMode }) => {
@@ -228,7 +310,7 @@ const UndertalyaProjectCard = ({ project, onClick, isDarkMode }) => {
   return (
     <div 
       onClick={onClick}
-      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative ${
+      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative h-full flex flex-col ${
         isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'
       } transform hover:-translate-y-1`}
     >
@@ -303,7 +385,7 @@ const BongominoProjectCard = ({ project, onClick, isDarkMode }) => {
   return (
     <div 
       onClick={onClick}
-      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative ${
+      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative h-full flex flex-col ${
         isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'
       } transform hover:-translate-y-1`}
     >
@@ -384,7 +466,7 @@ const PortfolioProjectCard = ({ project, onClick, isDarkMode }) => {
   return (
     <div 
       onClick={onClick}
-      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative ${
+      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative h-full flex flex-col ${
         isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'
       } transform hover:-translate-y-1`}
     >
@@ -462,7 +544,7 @@ const SQLuedoProjectCard = ({ project, onClick, isDarkMode }) => {
   return (
     <div 
       onClick={onClick}
-      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative ${
+      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative h-full flex flex-col ${
         isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'
       } transform hover:-translate-y-1`}
     >
@@ -538,7 +620,7 @@ const MinecraftPluginProjectCard = ({ project, onClick, isDarkMode }) => {
   return (
     <div 
       onClick={onClick}
-      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative ${
+      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative h-full flex flex-col ${
         isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'
       } transform hover:-translate-y-1`}
     >
@@ -614,7 +696,7 @@ const Connect4ProjectCard = ({ project, onClick, isDarkMode }) => {
   return (
     <div 
       onClick={onClick}
-      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative ${
+      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative h-full flex flex-col ${
         isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'
       } transform hover:-translate-y-1`}
     >
@@ -732,8 +814,22 @@ const ProjectsSection = ({ onNavigate }) => {
 
   // Sample projects data - wrapped in useMemo to prevent recreation on every render
   const projects = useMemo(() => [
+      {
+        id: 0,
+        title: "Lumora",
+        description: isFrench 
+          ? "Lumora est mon premier jeu vidéo ! Environ 500 heures passées à apprendre Unity et à renforcer mes compétences en C#. 114 Lumora différents, chacun avec son propre sprite. Explorez, fabriquez, adoptez, combattez... 💫"
+          : "Lumora is my first video game! Around 500 hours spent learning Unity and strengthening my C# skills. 114 different Lumora, each with its own sprite. Explore, craft, adopt, battle... 💫",
+        tech: ["Unity", "C#"],
+        image: process.env.PUBLIC_URL + "/img/lumora-preview.png",
+          link: "https://www.behance.net/gallery/248381655/Lumora",
+          playLink: "https://eowin.itch.io/lumora",
+          sourceLink: "https://www.behance.net/gallery/248381655/Lumora",
+        updatedAt: "2026-04-28",
+        isFavorite: true
+      },
     {
-      id: 1,
+        id: 1,
       title: "Portfolio",
       description: isFrench 
         ? "Mon site portfolio créé avec React et Tailwind CSS. J'ai décidé de partir sur un style différent et d'ajouter des petites animations ✨."
@@ -743,7 +839,7 @@ const ProjectsSection = ({ onNavigate }) => {
         ? (isFrench ? process.env.PUBLIC_URL + "/img/portfolio-preview-dark.png" : process.env.PUBLIC_URL + "/img/portfolio-preview-dark-en.png")
         : (isFrench ? process.env.PUBLIC_URL + "/img/portfolio-preview-light.png" : process.env.PUBLIC_URL + "/img/portfolio-preview-light-en.png"),
       link: "https://www.behance.net/gallery/223117437/Portfolio",
-      updatedAt: "2025-04-08"
+        updatedAt: "2026-04-28"
     },
     {
       id: 2,
@@ -867,6 +963,15 @@ const ProjectsSection = ({ onNavigate }) => {
     } else if (project.title === "Portfolio") {
       return (
         <PortfolioProjectCard
+          key={project.id}
+          project={project}
+          onClick={() => handleProjectClick(project)}
+          isDarkMode={isDarkMode}
+        />
+      );
+    } else if (project.title === "Lumora") {
+      return (
+        <LumoraProjectCard
           key={project.id}
           project={project}
           onClick={() => handleProjectClick(project)}
@@ -1090,7 +1195,7 @@ const ProjectsSection = ({ onNavigate }) => {
                     <div 
                       key={project.id}
                       onClick={() => handleProjectClick(project)}
-                      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative ${
+                      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative h-full flex flex-col ${
                         isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'
                       } transform hover:-translate-y-1`}
                     >
@@ -1105,7 +1210,7 @@ const ProjectsSection = ({ onNavigate }) => {
                         />
                       </div>
                       
-                      <div className="p-2">
+                      <div className="p-2 flex-1">
                         <h3 className={`text-sm font-bold mb-1 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                           {project.title}
                         </h3>
@@ -1156,7 +1261,7 @@ const ProjectsSection = ({ onNavigate }) => {
                     <div 
                       key={project.id}
                       onClick={() => handleProjectClick(project)}
-                      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative ${
+                      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative h-full flex flex-col ${
                         isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'
                       } transform hover:-translate-y-1`}
                     >
@@ -1171,7 +1276,7 @@ const ProjectsSection = ({ onNavigate }) => {
                         />
                       </div>
                       
-                      <div className="p-2">
+                      <div className="p-2 flex-1">
                         <h3 className={`text-sm font-bold mb-1 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                           {project.title}
                         </h3>
@@ -1227,7 +1332,7 @@ const ProjectsSection = ({ onNavigate }) => {
                     <div 
                       key={project.id}
                       onClick={() => handleProjectClick(project)}
-                      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative ${
+                      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative h-full flex flex-col ${
                         isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'
                       } transform hover:-translate-y-1`}
                     >
@@ -1242,7 +1347,7 @@ const ProjectsSection = ({ onNavigate }) => {
                         />
                       </div>
                       
-                      <div className="p-2">
+                      <div className="p-2 flex-1">
                         <h3 className={`text-sm font-bold mb-1 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                           {project.title}
                         </h3>
@@ -1290,12 +1395,78 @@ const ProjectsSection = ({ onNavigate }) => {
                       </div>
                     </div>
                   );
+                  } else if (project.title === "Lumora") {
+                    return (
+                      <div 
+                        key={project.id}
+                        onClick={() => handleProjectClick(project)}
+                        className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative h-full flex flex-col ${
+                          isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'
+                        } transform hover:-translate-y-1`}
+                      >
+                        <div className="h-24 overflow-hidden">
+                          <img 
+                            src={project.image} 
+                            alt={project.title}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.src = "https://via.placeholder.com/400x200?text=Project+Preview";
+                            }}
+                          />
+                        </div>
+                      
+                        <div className="p-2 flex-1">
+                          <h3 className={`text-sm font-bold mb-1 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                            {project.title}
+                          </h3>
+                        
+                          <p className={`text-xs mb-2 line-clamp-2 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                            {project.description}
+                          </p>
+                        
+                          <div className="flex flex-wrap gap-1 mb-2">
+                            {project.tech.slice(0, 3).map((tech, index) => (
+                              <span 
+                                key={index}
+                                className={`px-1 py-0.5 text-xs rounded ${
+                                  isDarkMode ? 'bg-blue-900 text-blue-100' : 'bg-blue-100 text-blue-800'
+                                }`}
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                            {project.tech.length > 3 && (
+                              <span 
+                                className={`px-1 py-0.5 text-xs rounded ${
+                                  isDarkMode ? 'bg-blue-900 text-blue-100' : 'bg-blue-100 text-blue-800'
+                                }`}
+                              >
+                                ...
+                              </span>
+                            )}
+                          </div>
+                        
+                          <div className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                            {t.updated}: {formatProjectDate(project.updatedAt, isFrench)}
+                          </div>
+                        </div>
+                      
+                        {/* Lumora Logo in bottom right (landscape) */}
+                        <div className="absolute bottom-2 right-2 w-8 h-8">
+                          <img 
+                            src={process.env.PUBLIC_URL + "/img/lumora-logo.png"} 
+                            alt="Lumora Logo"
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                      </div>
+                    );
                 } else if (project.title === "SQLuedo") {
                   return (
                     <div 
                       key={project.id}
                       onClick={() => handleProjectClick(project)}
-                      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative ${
+                      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative h-full flex flex-col ${
                         isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'
                       } transform hover:-translate-y-1`}
                     >
@@ -1310,7 +1481,7 @@ const ProjectsSection = ({ onNavigate }) => {
                         />
                       </div>
                       
-                      <div className="p-2">
+                      <div className="p-2 flex-1">
                         <h3 className={`text-sm font-bold mb-1 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                           {project.title}
                         </h3>
@@ -1361,7 +1532,7 @@ const ProjectsSection = ({ onNavigate }) => {
                     <div 
                       key={project.id}
                       onClick={() => handleProjectClick(project)}
-                      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative ${
+                      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative h-full flex flex-col ${
                         isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'
                       } transform hover:-translate-y-1`}
                     >
@@ -1376,7 +1547,7 @@ const ProjectsSection = ({ onNavigate }) => {
                         />
                       </div>
                       
-                      <div className="p-2">
+                      <div className="p-2 flex-1">
                         <h3 className={`text-sm font-bold mb-1 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                           {project.title}
                         </h3>
@@ -1427,7 +1598,7 @@ const ProjectsSection = ({ onNavigate }) => {
                     <div 
                       key={project.id}
                       onClick={() => handleProjectClick(project)}
-                      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative ${
+                      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative h-full flex flex-col ${
                         isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'
                       } transform hover:-translate-y-1`}
                     >
@@ -1442,7 +1613,7 @@ const ProjectsSection = ({ onNavigate }) => {
                         />
                       </div>
                       
-                      <div className="p-2">
+                      <div className="p-2 flex-1">
                         <h3 className={`text-sm font-bold mb-1 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                           {project.title}
                         </h3>
@@ -1493,9 +1664,9 @@ const ProjectsSection = ({ onNavigate }) => {
                     <div 
                       key={project.id}
                       onClick={() => handleProjectClick(project)}
-                      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer ${
-                        isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'
-                      } transform hover:-translate-y-1`}
+                      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer h-full flex flex-col ${
+                          isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'
+                        } transform hover:-translate-y-1`}
                     >
                       <div className="h-24 overflow-hidden">
                         <img 
@@ -1738,13 +1909,11 @@ const ProjectsSection = ({ onNavigate }) => {
           </div>
         </TransitionElement>
         
-        {/* Projects Grid - with staggered animations */}
+        {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {visibleProjects.length > 0 ? (
-            visibleProjects.map((project, index) => (
-              <TransitionElement key={project.id} index={index + 3} delay={index * 50}>
-                {renderProjectCard(project)}
-              </TransitionElement>
+            visibleProjects.map((project) => (
+              renderProjectCard(project)
             ))
           ) : (
             <div className={`col-span-full text-center py-12 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>

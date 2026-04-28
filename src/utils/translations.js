@@ -45,6 +45,7 @@ export const translations = {
     noProjectsFound: "No projects match your search.",
     show: "Number of projects:",
     custom: "Custom",
+    favoriteProject: "My favorite project",
     
     // Contact section
     contactTitle: "CONTACT",
@@ -111,8 +112,7 @@ export const translations = {
     alphabetical: "Alphabétique",
     noProjectsFound: "Aucun projet ne correspond à votre recherche.",
     show: "Nombre de projets:",
-    custom: "Personnalisé",
-    
+    custom: "Personnalisé",    favoriteProject: "Mon projet favori",    
     // Contact section
     contactTitle: "CONTACT",
     contactDescription: "N'hésitez pas à me contacter pour discuter de projets, d'opportunités professionnelles ou même une simple question.",

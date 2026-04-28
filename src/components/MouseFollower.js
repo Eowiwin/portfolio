@@ -51,7 +51,6 @@ const MouseFollower = () => {
     boxShadow: isDarkMode
       ? '0 0 20px rgba(59, 130, 246, 0.3)'
       : '0 0 20px rgba(0, 0, 0, 0.3)',
-    backdropFilter: 'blur(4px)',
     border: isDarkMode
       ? '1px solid rgba(59, 130, 246, 0.2)'
       : '1px solid rgba(0, 0, 0, 0.2)',

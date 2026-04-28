@@ -31,11 +31,34 @@ const ProjectCard = ({ project, onClick }) => {
   return (
     <div 
       onClick={onClick}
-      className={`rounded-lg overflow-hidden shadow-lg transition-all duration-300 cursor-pointer ${
+      className={`rounded-lg overflow-visible shadow-lg transition-all duration-300 cursor-pointer relative h-full flex flex-col ${
         isDarkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'
       } transform hover:-translate-y-2`}
     >
-      <div className="h-40 md:h-48 overflow-hidden">
+      {/* Favorite Badge */}
+      {project.isFavorite && (
+        <div className="absolute -top-3 -right-3 z-10 bg-white rounded-full p-2 shadow-lg border-4 border-white">
+          <img 
+            src={process.env.PUBLIC_URL + "/img/favorite.png"} 
+            alt="Favorite"
+            className="w-6 h-6"
+            onError={(e) => {
+              e.target.style.display = 'none';
+            }}
+          />
+        </div>
+      )}
+      
+      {/* Favorite Label */}
+      {project.isFavorite && (
+        <div className="absolute top-2 right-12 z-10 bg-white rounded-full px-3 py-1 shadow-md">
+          <span className="text-xs font-semibold text-pink-600">
+            {isFrench ? "Mon projet favori" : "My favorite project"}
+          </span>
+        </div>
+      )}
+      
+      <div className="flex-shrink-0 h-40 md:h-48 overflow-hidden rounded-t-lg">
         <img 
           src={project.image} 
           alt={project.title}
@@ -47,7 +70,7 @@ const ProjectCard = ({ project, onClick }) => {
         />
       </div>
       
-      <div className="p-3 md:p-6">
+      <div className="p-3 md:p-6 flex-1">
         <h3 className={`text-base md:text-xl font-bold mb-1 md:mb-2 text-justify ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
           {project.title}
         </h3>
