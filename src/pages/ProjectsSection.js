@@ -65,7 +65,7 @@ const ProjectDetailView = ({ project, onClose, isDarkMode, t }) => {
             {/* Project image - take up 40% of width */}
             <div className="w-2/5 h-full relative">
               <img 
-                src={project.image} 
+                src={project.title === "Lumora" ? (process.env.PUBLIC_URL + "/img/lumora-banner.png") : project.image} 
                 alt={project.title}
                 className="w-full h-full object-cover"
                 onError={(e) => {
@@ -159,7 +159,7 @@ const ProjectDetailView = ({ project, onClose, isDarkMode, t }) => {
         {/* Project image banner */}
         <div className="w-full h-40 sm:h-48 md:h-56 lg:h-64 relative flex-shrink-0 overflow-hidden">
           <img 
-            src={project.image} 
+            src={project.title === "Lumora" ? (process.env.PUBLIC_URL + "/img/lumora-banner.png") : project.image} 
             alt={project.title}
             className="w-full h-full object-cover"
             onError={(e) => {
