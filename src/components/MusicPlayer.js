@@ -10,12 +10,13 @@ const musicTracks = [
   { src: '/audio/BattleAgainstATrueHero.mp3', title: 'Battle Against A True Hero' },
 ];
 
-const MusicPlayer = ({ hideControls = true }) => {
+const MusicPlayer = ({ hideControls = true, onReady }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const { isDarkMode } = useThemeStore();
   const audioRef = useRef(null);
+  const hasSignaledReadyRef = useRef(false);
   
   // Get current track info
   const currentTrack = musicTracks[currentTrackIndex];
@@ -23,14 +24,37 @@ const MusicPlayer = ({ hideControls = true }) => {
   // Reset isLoaded when track changes
   useEffect(() => {
     setIsLoaded(false);
+    hasSignaledReadyRef.current = false;
   }, [currentTrackIndex]);
+
+  const signalReady = () => {
+    setIsLoaded(true);
+
+    if (!hasSignaledReadyRef.current) {
+      hasSignaledReadyRef.current = true;
+
+      if (onReady) {
+        onReady();
+      }
+    }
+  };
   
   useEffect(() => {
     const audioElement = audioRef.current;
     
     if (audioElement) {
-      const handleCanPlayThrough = () => setIsLoaded(true);
+      const handleCanPlayThrough = () => signalReady();
+      const handleLoadedData = () => {
+        if (audioElement.readyState >= 3) {
+          signalReady();
+        }
+      };
+      const handleError = () => {
+        setIsLoaded(false);
+      };
       audioElement.addEventListener('canplaythrough', handleCanPlayThrough);
+      audioElement.addEventListener('loadeddata', handleLoadedData);
+      audioElement.addEventListener('error', handleError);
       
       // Add event listener for when track ends
       const handleTrackEnd = () => {
@@ -41,11 +65,13 @@ const MusicPlayer = ({ hideControls = true }) => {
       
       return () => {
         audioElement.removeEventListener('canplaythrough', handleCanPlayThrough);
+        audioElement.removeEventListener('loadeddata', handleLoadedData);
+        audioElement.removeEventListener('error', handleError);
         audioElement.removeEventListener('ended', handleTrackEnd);
         audioElement.pause();
       };
     }
-  }, [currentTrackIndex]);
+  }, [currentTrackIndex, onReady]);
   
   const togglePlay = () => {
     if (!isLoaded) return;

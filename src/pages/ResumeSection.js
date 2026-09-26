@@ -17,7 +17,7 @@ const ResumeSection = ({ onNavigate }) => {
   const [displayedCv, setDisplayedCv] = useState(isFrench ? 'CV.png' : 'CV-english.png');
   
   // Fixed date for the resume
-  const currentDate = isFrench ? '26 janvier 2026' : 'January 26, 2026';
+  const currentDate = isFrench ? '27 septembre 2026' : 'September 27, 2026';
   
   // Animation lors du changement de langue
   useEffect(() => {
@@ -64,7 +64,7 @@ const ResumeSection = ({ onNavigate }) => {
       });
       pdf.addImage(img, 'PNG', 0, 0, img.width, img.height);
 
-      pdf.save('Resume.pdf');
+      pdf.save('Erwan MENAGER - Gameplay Programmer resume.pdf');
     };
   };
 
