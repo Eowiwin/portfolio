@@ -93,7 +93,15 @@ const TimelineSection = ({ onNavigate }) => {
       return [
         {
           id: 'w1',
-          period: "2024 - Aujourd'hui",
+          period: "2025 - Aujourd'hui",
+          title: "Alternant ingénieur logiciel - 1ère et 2ème année d'école d'ingénieurs en informatique",
+          place: "CLERAD",
+          description: "Développement d'un ERP interne.",
+          type: 'work'
+        },
+        {
+          id: 'w2',
+          period: "2024 - 2025",
           title: "Alternant développeur - 3ème année BUT Informatique",
           place: "CLERAD",
           description: "Développement d'un ERP interne.",
@@ -108,7 +116,7 @@ const TimelineSection = ({ onNavigate }) => {
           type: 'education'
         },
         {
-          id: 'w2',
+          id: 'w3',
           period: "2019 - 2022",
           title: "Baccalauréat Général",
           place: "Lycée Jeanne d'Arc - Montaigu Vendée",
@@ -116,7 +124,7 @@ const TimelineSection = ({ onNavigate }) => {
           type: 'education'
         },
         {
-          id: 'w3',
+          id: 'w4',
           period: "2015 - 2019",
           title: "Brevet des Collèges",
           place: "Collège Saint Nicolas",
@@ -136,8 +144,16 @@ const TimelineSection = ({ onNavigate }) => {
       return [
         {
           id: 'w1',
-          period: "2024 - Present",
-          title: "Developer Apprentice - 3rd year BUT Computer Science",
+          period: "2025 - Present",
+          title: "Engineer Apprentice - 1st and 2nd year Master in Computer Science (Equivalent)",
+          place: "CLERAD",
+          description: "Development of an internal ERP system.",
+          type: 'work'
+        },
+        {
+          id: 'w2',
+          period: "2024 - 2025",
+          title: "Developer Apprentice - 3rd year BUT Computer Science (Equivalent to Bachelor's Degree)",
           place: "CLERAD",
           description: "Development of an internal ERP system.",
           type: 'work'
@@ -145,25 +161,25 @@ const TimelineSection = ({ onNavigate }) => {
         {
           id: 'e1',
           period: "2022 - 2024",
-          title: "BUT Computer Science - 1st and 2nd year",
+          title: "BUT Computer Science (Equivalent to Bachelor's Degree) - 1st and 2nd year",
           place: "Clermont Auvergne University - Aubière",
           description: "Specialization in mobile development from the 2nd year onwards.",
           type: 'education'
         },
         {
-          id: 'w2',
+          id: 'w3',
           period: "2019 - 2022",
-          title: "General Baccalaureate",
+          title: "French Baccalauréat (General track)",
           place: "Jeanne d'Arc High School - Montaigu Vendée",
-          description: "Honors degree.",
+          description: "Honors degree (2:1).",
           type: 'education'
         },
         {
-          id: 'w3',
+          id: 'w4',
           period: "2015 - 2019",
           title: "Middle School Diploma",
           place: "Saint Nicolas Middle School",
-          description: "Honors degree.",
+          description: "Honors degree (2:1).",
           type: 'education'
         },
         {
@@ -188,7 +204,7 @@ const TimelineSection = ({ onNavigate }) => {
     
     // Determine which emoji to show based on the index
     const getEmoji = () => {
-      if (index === 0) {
+      if (index === 0 || index === 1) {
         // For the first item, return a fragment with both emojis
         return (
           <>
