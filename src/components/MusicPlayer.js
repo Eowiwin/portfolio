@@ -17,6 +17,11 @@ const MusicPlayer = ({ hideControls = true, onReady }) => {
   const { isDarkMode } = useThemeStore();
   const audioRef = useRef(null);
   const hasSignaledReadyRef = useRef(false);
+  const onReadyRef = useRef(onReady);
+
+  useEffect(() => {
+    onReadyRef.current = onReady;
+  }, [onReady]);
   
   // Get current track info
   const currentTrack = musicTracks[currentTrackIndex];
@@ -33,8 +38,8 @@ const MusicPlayer = ({ hideControls = true, onReady }) => {
     if (!hasSignaledReadyRef.current) {
       hasSignaledReadyRef.current = true;
 
-      if (onReady) {
-        onReady();
+      if (onReadyRef.current) {
+        onReadyRef.current();
       }
     }
   };
@@ -71,7 +76,7 @@ const MusicPlayer = ({ hideControls = true, onReady }) => {
         audioElement.pause();
       };
     }
-  }, [currentTrackIndex, onReady]);
+  }, []);
   
   const togglePlay = () => {
     if (!isLoaded) return;
